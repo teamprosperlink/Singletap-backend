@@ -1,0 +1,9 @@
+# Railway Configuration
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "uvicorn main:app --host 0.0.0.0 --port $PORT"
+healthcheckPath = "/"
+healthcheckTimeout = 100
+# Removed explicit restart policy to use Railway defaults and avoid schema errors
