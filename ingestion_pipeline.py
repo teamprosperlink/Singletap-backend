@@ -25,7 +25,6 @@ import uuid
 from supabase import create_client, Client
 from qdrant_client import QdrantClient
 from qdrant_client.models import PointStruct
-from sentence_transformers import SentenceTransformer
 
 from embedding_builder import build_embedding_text
 
@@ -65,7 +64,7 @@ class IngestionClients:
     def __init__(self):
         self.supabase: Optional[Client] = None
         self.qdrant: Optional[QdrantClient] = None
-        self.embedding_model: Optional[SentenceTransformer] = None
+        self.embedding_model = None
 
     def initialize(self):
         """Initialize all clients."""
@@ -88,7 +87,8 @@ class IngestionClients:
             self.qdrant = QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT)
             print(f"✓ Connected to Qdrant (local): {QDRANT_HOST}:{QDRANT_PORT}")
 
-        # Embedding model
+        # Embedding model (lazy import to avoid slow startup)
+        from sentence_transformers import SentenceTransformer
         print(f"Loading embedding model: {EMBEDDING_MODEL}...")
         self.embedding_model = SentenceTransformer(EMBEDDING_MODEL)
         print(f"✓ Loaded embedding model: {EMBEDDING_MODEL} ({EMBEDDING_DIM}D)")
