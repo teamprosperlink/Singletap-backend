@@ -101,7 +101,8 @@ class IngestionClients:
 def insert_to_supabase(
     client: Client,
     listing: Dict[str, Any],
-    listing_id: Optional[str] = None
+    listing_id: Optional[str] = None,
+    user_id: Optional[str] = None
 ) -> str:
     """
     Insert listing into appropriate Supabase table.
@@ -146,6 +147,8 @@ def insert_to_supabase(
         "data": listing,  # Store entire listing as JSONB
         "created_at": datetime.utcnow().isoformat()
     }
+    if user_id:
+        data["user_id"] = user_id
 
     # Insert
     try:
@@ -272,6 +275,7 @@ def ingest_listing(
     clients: IngestionClients,
     listing: Dict[str, Any],
     listing_id: Optional[str] = None,
+    user_id: Optional[str] = None,
     verbose: bool = True
 ) -> Tuple[str, list]:
     """
@@ -302,7 +306,7 @@ def ingest_listing(
     # Step 1: Insert to Supabase
     if verbose:
         print("  [1/4] Inserting to Supabase...")
-    listing_id = insert_to_supabase(clients.supabase, listing, listing_id)
+    listing_id = insert_to_supabase(clients.supabase, listing, listing_id, user_id)
     if verbose:
         print(f"        ✓ Inserted with ID: {listing_id}")
 

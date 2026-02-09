@@ -515,35 +515,47 @@ async def search_and_match_endpoint(request: SearchAndMatchRequest):
                     print(f"⚠️ Error fetching/matching listing {listing_id}: {e}")
                     continue
 
-        # Step 5: Store in matches table
-        match_id = str(uuid.uuid4())
+        # Step 5: Store query as a listing and create match records
         has_matches = len(matched_listings) > 0
         match_count = len(matched_listings)
 
-        matches_data = {
-            "match_id": match_id,
-            "query_user_id": request.user_id,
-            "query_text": request.query,
-            "query_json": extracted_json,
-            "has_matches": has_matches,
-            "match_count": match_count,
-            "matched_user_ids": matched_user_ids,
-            "matched_listing_ids": matched_listing_ids
-        }
+        # Auto-store the query as a listing to get a listing_a_id
+        query_listing_id, _ = ingest_listing(ingestion_clients, normalized_query, user_id=request.user_id, verbose=True)
+        print(f"✅ Query stored as listing: {query_listing_id}")
 
-        print(f"💾 Storing search history in matches table...")
-        ingestion_clients.supabase.table("matches").insert(matches_data).execute()
-        print(f"✅ Stored with match_id: {match_id}")
+        # Insert one match record per matched listing
+        match_ids = []
+        if has_matches:
+            print(f"💾 Storing {match_count} match records...")
+            for matched in matched_listings:
+                match_row = {
+                    "listing_a_id": query_listing_id,
+                    "listing_b_id": matched["listing_id"],
+                    "user_a_id": request.user_id,
+                    "user_b_id": matched.get("user_id") or request.user_id,
+                    "match_score": 1.0,
+                    "match_type": normalized_query.get("intent", "service"),
+                    "is_bidirectional": False,
+                    "status": "pending"
+                }
+                try:
+                    resp = ingestion_clients.supabase.table("matches").insert(match_row).execute()
+                    if resp.data:
+                        match_ids.append(resp.data[0]["match_id"])
+                except Exception as e:
+                    print(f"⚠️ Error storing match record: {e}")
+            print(f"✅ Stored {len(match_ids)} match records")
 
         return {
             "status": "success",
-            "match_id": match_id,
+            "listing_id": query_listing_id,
+            "match_ids": match_ids,
             "query_text": request.query,
             "query_json": extracted_json,
             "has_matches": has_matches,
             "match_count": match_count,
             "matched_listings": matched_listings,
-            "message": f"Found {match_count} matches" if has_matches else "No matches found. You can store your query for future matching."
+            "message": f"Found {match_count} matches" if has_matches else "No matches found. Your listing has been stored for future matching."
         }
 
     except HTTPException:

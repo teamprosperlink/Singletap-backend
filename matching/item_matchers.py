@@ -351,7 +351,7 @@ def _extract_candidate_ranges(candidate_item: Item) -> Dict[str, Range]:
         Phase 2.1 already structured all numeric values into constraint objects.
         This function extracts them into the Range format expected by Phase 2.2.
     """
-    from numeric_constraints import NEGATIVE_INFINITY, POSITIVE_INFINITY
+    from matching.numeric_constraints import NEGATIVE_INFINITY, POSITIVE_INFINITY
 
     candidate_min = candidate_item.get("min", {})
     candidate_max = candidate_item.get("max", {})

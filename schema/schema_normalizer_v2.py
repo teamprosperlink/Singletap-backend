@@ -727,6 +727,23 @@ def normalize_and_validate_v2(listing: Dict) -> Dict:
     # Make a deep copy to avoid mutating input
     listing = copy.deepcopy(listing)
 
+    # Fill in defaults for fields GPT may omit
+    defaults = {
+        "primary_mutual_category": "",
+        "other_party_exclusions": [],
+        "self_exclusions": [],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "self_attributes": {},
+        "target_location": {},
+        "location_match_mode": "",
+        "location_exclusions": [],
+        "reasoning": ""
+    }
+    for field, default in defaults.items():
+        if field not in listing:
+            listing[field] = default
+
     # Step 1: Validate NEW schema
     validate_new_schema(listing)
 
