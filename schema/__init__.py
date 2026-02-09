@@ -1,0 +1,1 @@
+from schema.schema_normalizer_v2 import normalize_and_validate_v2

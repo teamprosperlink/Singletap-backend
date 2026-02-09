@@ -13,11 +13,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Import project modules
-from schema_normalizer_v2 import normalize_and_validate_v2
-from ingestion_pipeline import IngestionClients, ingest_listing
-from retrieval_service import RetrievalClients, retrieve_candidates
-from listing_matcher_v2 import listing_matches_v2
-from embedding_builder import build_embedding_text
+from schema.schema_normalizer_v2 import normalize_and_validate_v2
+from pipeline.ingestion_pipeline import IngestionClients, ingest_listing
+from pipeline.retrieval_service import RetrievalClients, retrieve_candidates
+from matching.listing_matcher_v2 import listing_matches_v2
+from embedding.embedding_builder import build_embedding_text
 
 app = FastAPI(title="Vriddhi Matching Engine API", version="2.0")
 

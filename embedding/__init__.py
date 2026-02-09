@@ -1,0 +1,1 @@
+from embedding.embedding_builder import build_embedding_text
