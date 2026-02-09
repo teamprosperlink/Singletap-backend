@@ -82,6 +82,300 @@ GLOBAL_REFERENCE_CONTEXT.md
 
 ---
 
+## INTERNAL CLASSIFICATION GUIDANCE (NEVER OUTPUT)
+
+⚠️ **INTERNAL USE ONLY — NEVER INCLUDE IN OUTPUT OR REASONING FIELD**
+
+These decision trees are scaffolding for classification. They guide the model to select the correct domain/category but MUST NEVER appear in any output field, especially not in `reasoning`.
+
+---
+
+### Chain of Thought (CoT) for Building the Service Domain Decision Tree
+
+Start with broad economic sector split — Services are mostly tertiary (intangible value delivery). Distinguish public/government vs. private/market-driven first, as public services have unique authority/regulation aspects (domains 10, 18).
+
+Handle physical vs. intangible — Physical/infrastructure/construction (7, 11, 14) vs. knowledge/advice (2, 5, 6, 17) vs. people-care (1, 9, 16) vs. movement/connectivity (3, 12) vs. experience/leisure (4, 8).
+
+Prioritize primary purpose — Ask "What is the core value delivered?" (e.g., learning → education; money/risk management → finance/legal; healing/wellness → health).
+
+Resolve listed overlaps:
+- Domains 10 & 18: Merge functionally (regulatory is a subset/tool of public administration); treat as one unless strictly enforcement vs. operations.
+- Professional cluster (5, 6, 17): Differentiate by creative/output (marketing/design), advisory/operations (consulting/business), or innovation/knowledge creation (R&D).
+- Health: Mainstream education/training vs. alternative/holistic (non-medical wellness).
+- Repair vs. Construction: New/create vs. fix/maintain.
+- Personal vs. Repair: Human body/appearance vs. objects/equipment.
+- Culture vs. Entertainment: Tradition/heritage/ritual vs. leisure/amusement.
+
+Make questions mutually exclusive where possible — Use binary or small-choice branches to guide quickly to one domain.
+
+End leaves — Each terminal points to exactly one of the 18 domains (or notes rare hybrids).
+
+Test mentally — Walk through examples (e.g., tax preparation → Finance/legal; building permit office → Government/regulatory or public admin; yoga studio → Holistic health).
+
+#### Service Domain Decision Tree (Text Flowchart)
+
+Use this sequentially. Answer the question at each node and follow the branch.
+
+```
+Root: Is the service primarily provided by / for government entities, involves legal authority, regulation, compliance enforcement, or public policy execution?
+├── YES (Public / Government-oriented)
+│   └── → Merge 10 + 18 → **Government & Regulatory** or **Government & Public Administration**
+│       (treat as equivalent; use "Government & Public Administration" if broad operations,
+│        "Government & Regulatory" if focused on rules/licensing/oversight)
+│
+└── NO (Primarily private, commercial, nonprofit, or individual market-driven)
+    ├── Does it involve physical construction, installation, building, heavy trades, or large-scale infrastructure creation / major public works?
+    │   ├── YES → **Construction & Trades** (7)
+    │   └── NO
+    │       ├── Does it involve repair, fixing, servicing, or ongoing maintenance of objects, equipment, vehicles, homes, or appliances?
+    │       │   ├── YES → **Repair & Maintenance Services** (14)
+    │       │   └── NO
+    │       ├── Does it involve moving people/goods, supply chain, warehousing, delivery, or fleet operations?
+    │       │   ├── YES → **Transportation & Logistics** (3)
+    │       │   └── NO
+    │       ├── Does it provide core utilities (electricity, gas, water, sewage) or maintain large public infrastructure networks (grids, pipelines, telecom backbone)?
+    │       │   ├── YES → **Utilities & Infrastructure** (11)
+    │       │   └── NO
+    │       ├── Is the core offering connectivity, data transmission, internet access, mobile/cable services, or telecom infrastructure?
+    │       │   ├── YES → **Telecommunication & Internet** (12)
+    │       │   └── NO
+    │       ├── Is the core value learning, skill-building, certification, academic instruction, or formal training programs?
+    │       │   ├── YES → **Education & Training** (1)
+    │       │   └── NO
+    │       ├── Is the core value wellness, energy work, natural therapies, mind-body practices, or non-mainstream healing (not licensed medical)?
+    │       │   ├── YES → **Alternative & Holistic Health** (16)
+    │       │   └── NO
+    │       ├── Is the core value money management, risk protection, investments, lending, accounting, taxes, contracts, or legal representation/advice?
+    │       │   ├── YES → **Finance, Insurance & Legal** (2)
+    │       │   └── NO
+    │       ├── Is the core value strategic/management advice, operations improvement, HR, process optimization for organizations?
+    │       │   ├── YES → **Business Services & Consulting** (5)
+    │       │   └── NO
+    │       ├── Is the core value creative/promotional output — advertising campaigns, branding, graphic/web design, copywriting, media buying?
+    │       │   ├── YES → **Marketing, Advertising & Design** (6)
+    │       │   └── NO
+    │       ├── Is the core value new knowledge creation, experimentation, innovation, scientific/technical investigation, prototyping (not routine consulting)?
+    │       │   ├── YES → **Research & Development** (17)
+    │       │   └── NO
+    │       ├── Is the core value temporary stay, lodging, food service, tourism planning, guided travel experiences?
+    │       │   ├── YES → **Hospitality, Travel & Accommodation** (4)
+    │       │   └── NO
+    │       ├── Is the core value performances, shows, festivals, parties, recreation, amusement, sports events (primarily for enjoyment)?
+    │       │   ├── YES → **Entertainment & Events** (8)
+    │       │   └── NO
+    │       ├── Is the core value personal appearance, grooming, body care, domestic help, pet care, individual lifestyle assistance?
+    │       │   ├── YES → **Personal Services** (9)
+    │       │   └── NO
+    │       ├── Is the core value tradition, rituals, heritage preservation, cultural education, indigenous practices, community customs?
+    │       │   ├── YES → **Customs & Culture Services** (15)
+    │       │   └── NO
+    │       └── Is the core value social good, advocacy, relief, community support, donations, mission-driven without profit primary motive?
+    │           └── YES → **Nonprofit & Charity Services** (13)
+    └── (If still unclassified after all branches — rare hybrid; choose closest primary value or note multiple domains)
+```
+
+#### How to Use the Service Tree
+
+- Walk top-down; most services reach a leaf in 4–8 questions.
+- For borderline cases, ask: "If I had to remove all secondary aspects, what remains the one essential deliverable?"
+- Examples tested against tree:
+  - Tax preparation service → Finance path → YES → Domain 2
+  - Building a house → Construction path → YES → Domain 7
+  - Fixing a broken AC unit → Repair path → YES → Domain 14
+  - Yoga / Reiki studio → Holistic health path → YES → Domain 16
+  - Corporate strategy consulting → Business consulting path → YES → Domain 5
+  - Ad agency creating campaigns → Marketing path → YES → Domain 6
+  - Biotech lab inventing new drug → R&D path → YES → Domain 17
+  - Wedding DJ + planner → Entertainment path → YES → Domain 8 (if fun-focused); Customs if heavily ritual/cultural
+  - Passport office (government) → Root YES → Domain 10/18
+  - Food bank distribution → Nonprofit path → Domain 13
+
+---
+
+### Chain of Thought (CoT) for Building the Product Domain Decision Tree
+
+Observe the list structure — Mostly consumer/retail-oriented (1–10, 17, 20), with manufacturing/production (12, 15, 16, 18), raw/resource sectors (13, 21), sustainability (14), and infrastructure/energy (19, 11). Some overlaps: Healthcare & Wellness (2) vs. Beauty & Cosmetics (17); Home & Furniture (4) vs. Handicrafts (18); various manufacturing (12 general vs. specific like Textile 15).
+
+Anchor to standard classifications — Draws inspiration from NAICS (e.g., Manufacturing, Retail Trade, Mining), UNSPSC top segments (e.g., Raw Materials, Apparel, Electronics), Google/Shopify product taxonomies (e.g., Apparel > Clothing, Home & Garden > Furniture), and e-commerce trends (fashion, beauty, food, electronics, sustainability rising in 2025–2026).
+
+Prioritize primary nature — Consumer/end-user vs. B2B/production/raw vs. experiential/sustainable.
+
+Resolve overlaps:
+- Manufacturing: General (12) vs. specific (15 Textile, 16 Jewelry, 18 Handicrafts/Artisan).
+- Wellness: Medical/health devices → Healthcare (2); beauty/personal care → Beauty (17).
+- Home: Furniture/large durables → Home & Furniture (4); artisan/decor → Handicrafts (18).
+- Energy/Utilities: Consumer products (e.g., solar panels) vs. raw extraction (Mining 21).
+- Sustainability: Cross-cutting, but dedicated domain (14) for eco-products.
+
+Make tree mutually exclusive — Start broad (consumer vs. production/raw), then drill by material/use/purpose.
+
+End leaves — Point to exactly one of the 21 domains (rare hybrids noted).
+
+Test examples — Smartphone → Technology; Organic cotton shirt → Textile Manufacturing or Fashion (primary end-use); Gold necklace → Jewelry Manufacturing.
+
+#### Product Domain Decision Tree (Text Flowchart)
+
+Start at the root and follow branches based on the product's primary nature, intended use, and production level.
+
+```
+Root: Is the product primarily a raw material, extracted resource, agricultural output, or industrial-scale manufactured input/component (not finished consumer good)?
+├── YES (Raw / Production / B2B-oriented)
+│   ├── Extracted from earth (minerals, ores, coal, stone, aggregates)?
+│   │   └── YES → **Mining & Quarrying** (21)
+│   ├── Grown/raised (crops, livestock, dairy, timber, fish farming)?
+│   │   └── YES → **Agriculture & Farming** (13)
+│   ├── Manufactured at scale for other manufacturing (e.g., fabrics, yarns, threads, basic metals, chemicals, parts)?
+│   │   ├── YES, and textile/fabric-based → **Textile & Clothing Manufacturing** (15)
+│   │   ├── YES, and jewelry/precision accessories (gems, metals, watches parts)?
+│   │   │   └── YES → **Jewelry & Accessories Manufacturing** (16)
+│   │   ├── YES, and artisan/handmade/cultural craft items (not mass-produced)?
+│   │   │   └── YES → **Handicrafts & Artisan Products** (18)
+│   │   └── YES, general manufacturing/production (machinery, equipment, components, packaging)?
+│   │       └── → **Manufacturing & Production** (12)
+│   └── NO → Re-evaluate (likely consumer; go to NO branch)
+│
+└── NO (Primarily finished consumer/retail product or end-user good)
+    ├── Is it powered by/related to energy generation, distribution, or utilities (e.g., solar panels, batteries, fuel, power tools for energy)?
+    │   └── YES → **Energy & Utilities** (19)
+    ├── Is it designed for protection, surveillance, defense, or safety (e.g., locks, alarms, helmets, fire extinguishers)?
+    │   └── YES → **Security & Safety** (20)
+    ├── Is it focused on environmental protection, recycling, green/eco-friendly materials, or sustainability features as primary selling point?
+    │   └── YES → **Environmental & Sustainability** (14)
+    ├── Is it electronic, digital, computing, gadgets, software/hardware, appliances with tech core?
+    │   └── YES → **Technology & Electronics** (1)
+    ├── Is it health/medical devices, supplements, fitness equipment, therapeutic products?
+    │   └── YES → **Healthcare & Wellness** (2)
+    ├── Is it personal care, makeup, skincare, fragrances, hair products?
+    │   └── YES → **Beauty & Cosmetics** (17)
+    ├── Is it clothing, shoes, accessories for wear (not manufacturing input)?
+    │   └── YES → **Fashion & Apparel** (3)
+    ├── Is it furniture, home decor, bedding, kitchenware, appliances for living spaces?
+    │   └── YES → **Home & Furniture** (4)
+    ├── Is it food, drinks, groceries, ingredients, snacks, beverages?
+    │   └── YES → **Food & Beverage** (5)
+    ├── Is it vehicles, parts, accessories for cars, bikes, trucks, motorcycles?
+    │   └── YES → **Automotive & Vehicles** (6)
+    ├── Is it sports gear, exercise equipment, camping, outdoor adventure items?
+    │   └── YES → **Sports & Outdoors** (7)
+    ├── Is it office supplies, desks, printers, paper, stationery, business tools?
+    │   └── YES → **Office & Stationery** (8)
+    ├── Is it books, e-books, music, movies, games, streaming media physical/digital?
+    │   └── YES → **Books, Media & Entertainment** (9)
+    ├── Is it pet food, toys, accessories, animal care products?
+    │   └── YES → **Pets & Animals** (10)
+    └── Is it property, land, buildings, real estate listings (not physical movable product)?
+        └── YES → **Real Estate & Property** (11)
+        (If no match after all — rare hybrid; choose primary consumer use or note multiple)
+```
+
+#### How to Use the Product Tree
+
+- Most products reach a leaf quickly (3–7 questions).
+- For borderline cases: Ask "What is the main end-user purchase reason?" or "If stripped to core identity, what sector claims it?"
+- Quick test examples:
+  - iPhone → Technology & Electronics (1)
+  - Yoga mat → Sports & Outdoors (7) or Healthcare & Wellness (2) → Wellness if therapeutic focus
+  - Cotton fabric roll → Textile & Clothing Manufacturing (15)
+  - Handmade wooden sculpture → Handicrafts & Artisan Products (18)
+  - Electric car battery → Energy & Utilities (19) or Automotive (6) → Energy if power-focused
+  - Sunscreen lotion → Beauty & Cosmetics (17)
+  - Organic farm tomatoes → Agriculture & Farming (13) if raw; Food & Beverage (5) if packaged retail
+  - Home security camera → Security & Safety (20) or Technology (1) → Security if protection primary
+
+---
+
+### Chain of Thought (CoT) for Building the Mutual Categories Decision Tree
+
+Observe the list structure — These are primarily social/mutual connection categories (often used in apps like Bumble BFF, Meetup, Peanut, Nextdoor, or community platforms). They span living arrangements (1–2), physical activities (3–4), romantic/intimate (5,13–15), exploratory/experiential (6–7), educational/professional (8–11), platonic/social (12–13), familial/care (16–17,22–23), leisure/personal (18–21), and collective/altruistic (24–25).
+
+Anchor to real-world usage — Draws from social/friendship/dating/community apps (e.g., Meetup groups by interest/activity, Bumble BFF modes, Peanut for parents, Nextdoor for neighbors/housing), sociology taxonomies (primary/secondary groups, interest vs. friendship groups), and relationship dimensions (e.g., permanence, intimacy level, voluntary vs. obligatory).
+
+Prioritize primary connection type — Start with broad splits: Living/practical → Physical/active → Romantic/intimate → Educational/career → Platonic/social → Familial/caregiving → Leisure/personal → Collective/community/altruistic.
+
+Resolve overlaps:
+- Friendship (13) vs. Social (12): Broader social vs. close personal friendship.
+- Dating (14) vs. Relationships (15) vs. Partners (5): Initial romantic interest vs. established romantic vs. committed/long-term partner seeking.
+- Learning (8) vs. Study (9): General skill/knowledge pursuit vs. formal/academic study.
+- Hobbies (18) vs. Interests (19): Hands-on/doing activities vs. broader topics/passions.
+- Parenting (16) vs. Family (17): Child-rearing specific vs. broader family connections.
+- Pets (20) vs. Animals (21): Pet ownership/care vs. wildlife/animal interest.
+- Support (22) vs. Caregiving (23): Emotional/peer support vs. hands-on caregiving.
+
+Make tree mutually exclusive — Use binary/small-choice questions based on key attributes (intimacy level, activity type, obligation, formality).
+
+End leaves — Each terminal points to exactly one of the 25 categories (note rare hybrids).
+
+Test examples — "Find someone to hike with" → Adventure/Sports; "Need a roommate" → Roommates; "Want to talk about parenting challenges" → Parenting/Support.
+
+#### Mutual Categories Decision Tree (Text Flowchart)
+
+Start at the root and follow branches sequentially.
+
+```
+Root: Is the primary goal or connection related to shared living space, cohabitation, or practical daily home arrangements?
+├── YES
+│   ├── Shared housing/property/room rental → **Housing** (1)
+│   └── Shared living with others (finding compatible cohabitants) → **Roommates** (2)
+│
+└── NO (Primarily social, relational, activity-based, or emotional connection)
+    ├── Is it centered on physical health, exercise, gym, body movement, or athletic performance?
+    │   ├── YES, competitive/team/individual sports/games → **Sports** (4)
+    │   └── YES, general fitness/wellness/training/yoga/running → **Fitness** (3)
+    │
+    ├── Is it romantic/sexual attraction, partnership, or intimate emotional bonding?
+    │   ├── YES, seeking initial romantic/sexual interest/matches → **Dating** (14)
+    │   ├── YES, seeking committed long-term partner/spouse → **Partners** (5)
+    │   └── YES, ongoing established romantic/emotional connection → **Relationships** (15)
+    │
+    ├── Is it exploratory travel, trips, relocation, or cultural experiences?
+    │   ├── YES, leisure/vacation/exploration trips → **Travel** (6)
+    │   └── YES, high-risk/excitement/outdoor challenges (e.g., hiking, skydiving) → **Adventure** (7)
+    │
+    ├── Is it knowledge/skill acquisition or education-related?
+    │   ├── YES, formal/academic/classes/degrees/exams → **Study** (9)
+    │   └── YES, informal/self-directed learning/skills/workshops → **Learning** (8)
+    │
+    ├── Is it work/job/business/professional networking or advancement?
+    │   ├── YES, job search/mentoring/resume help → **Career** (11)
+    │   └── YES, professional networking/colleagues/business contacts → **Professional** (10)
+    │
+    ├── Is it platonic/non-romantic human connection?
+    │   ├── YES, broad casual socializing/events/meetups → **Social** (12)
+    │   └── YES, deeper personal/close friendship bonds → **Friendship** (13)
+    │
+    ├── Is it family-related or caregiving?
+    │   ├── YES, raising/parenting children/kids → **Parenting** (16)
+    │   ├── YES, broader family ties/relatives/siblings → **Family** (17)
+    │   ├── YES, emotional/mental support/advice/listening (peer or group) → **Support** (22)
+    │   └── YES, hands-on practical caregiving (elderly, disabled, sick) → **Caregiving** (23)
+    │
+    ├── Is it personal leisure, passion, or animal-related?
+    │   ├── YES, hands-on/doing activities (e.g., crafting, gaming, cooking) → **Hobbies** (18)
+    │   ├── YES, topics/passions to discuss/share (e.g., movies, tech, philosophy) → **Interests** (19)
+    │   ├── YES, pet ownership/care/playing with pets → **Pets** (20)
+    │   └── YES, wildlife/conservation/animals in general (not pets) → **Animals** (21)
+    │
+    └── Is it group/community/altruistic involvement?
+        ├── YES, local/neighborhood/belonging/voluntary groups → **Community** (24)
+        └── YES, unpaid helping/charity/service to others → **Volunteering** (25)
+        (If no clear match — rare hybrid; choose primary intent, e.g., "parent support group" → Parenting + Support)
+```
+
+#### How to Use the Mutual Tree
+
+- Walk top-down; most reach a leaf in 4–8 questions.
+- For borderline cases: Ask "What is the main emotional/practical outcome desired?" or "If forced to one core type of bond/activity, what is it?"
+- Quick test examples:
+  - "Find people for weekend hikes" → Adventure (7) or Sports (4) → Adventure if exploratory/outdoors-focused.
+  - "Need someone to share apartment rent" → Roommates (2).
+  - "Looking for a life partner" → Partners (5).
+  - "Want casual coffee chats" → Social (12) or Friendship (13) → Social if broad.
+  - "Discuss parenting tips" → Parenting (16) or Support (22) → Parenting if child-rearing primary.
+  - "Join a book club" → Interests (19) or Hobbies (18) → Interests if discussion-focused.
+  - "Help at animal shelter" → Animals (21) or Volunteering (25) → Volunteering if service primary.
+
+---
+
 ### Read this very important 
 ## <field_name>
 
