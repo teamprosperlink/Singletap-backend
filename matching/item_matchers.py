@@ -214,6 +214,12 @@ def match_item_categorical(
     required_categorical = required_item.get("categorical", {})
     candidate_categorical = candidate_item.get("categorical", {})
 
+    # Defensive: some stored listings have categorical as list instead of dict
+    if not isinstance(required_categorical, dict):
+        required_categorical = {}
+    if not isinstance(candidate_categorical, dict):
+        candidate_categorical = {}
+
     # Empty required constraints → VACUOUSLY TRUE
     if not required_categorical:
         return True
@@ -357,6 +363,16 @@ def _extract_candidate_ranges(candidate_item: Item) -> Dict[str, Range]:
     candidate_max = candidate_item.get("max", {})
     candidate_range = candidate_item.get("range", {})
     candidate_categorical = candidate_item.get("categorical", {})
+
+    # Defensive: some stored listings have these as lists instead of dicts
+    if not isinstance(candidate_min, dict):
+        candidate_min = {}
+    if not isinstance(candidate_max, dict):
+        candidate_max = {}
+    if not isinstance(candidate_range, dict):
+        candidate_range = {}
+    if not isinstance(candidate_categorical, dict):
+        candidate_categorical = {}
 
     ranges = {}
 

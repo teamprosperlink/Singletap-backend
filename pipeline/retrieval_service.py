@@ -292,16 +292,16 @@ def qdrant_search_product_service(
     query_filter = Filter(must=filter_conditions) if filter_conditions else None
 
     # Search
-    search_result = client.search(
+    search_response = client.query_points(
         collection_name=collection_name,
-        query_vector=query_vector,
+        query=query_vector,
         query_filter=query_filter,
         limit=limit
     )
 
     # Extract listing_ids
     candidate_ids = []
-    for scored_point in search_result:
+    for scored_point in search_response.points:
         listing_id = scored_point.payload.get("listing_id")
         if listing_id:
             # Post-filter by SQL-filtered IDs if provided
@@ -367,16 +367,16 @@ def qdrant_search_mutual(
     query_filter = Filter(must=filter_conditions) if filter_conditions else None
 
     # Search
-    search_result = client.search(
+    search_response = client.query_points(
         collection_name=collection_name,
-        query_vector=query_vector,
+        query=query_vector,
         query_filter=query_filter,
         limit=limit
     )
 
     # Extract listing_ids
     candidate_ids = []
-    for scored_point in search_result:
+    for scored_point in search_response.points:
         listing_id = scored_point.payload.get("listing_id")
         if listing_id:
             # Post-filter by SQL-filtered IDs if provided
