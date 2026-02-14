@@ -1,0 +1,271 @@
+{
+  "suite_name": "E2E Canonicalization + Matching Test Suite",
+  "summary": {
+    "total_tests": 18,
+    "passed": 18,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "pass_rate": "100.0%",
+    "duration_seconds": 308.956
+  },
+  "timing": {
+    "start_time": "2026-02-13T17:30:29.864852",
+    "end_time": "2026-02-13T17:35:38.820871",
+    "duration_seconds": 308.956
+  },
+  "environment": {
+    "hardware": {
+      "cpu": {
+        "processor": "ARMv8 (64-bit) Family 8 Model 1 Revision 201, Qualcomm Technologies Inc",
+        "architecture": "ARM64",
+        "cores": 8
+      },
+      "memory": {
+        "total_gb": 15.61
+      },
+      "os": {
+        "system": "Windows",
+        "release": "11",
+        "version": "10.0.26100",
+        "platform": "Windows-11-10.0.26100-SP0"
+      },
+      "python": {
+        "version": "3.13.12",
+        "implementation": "CPython",
+        "compiler": "MSC v.1944 64 bit (AMD64)"
+      },
+      "captured_at": "2026-02-13T17:30:29.863948"
+    },
+    "infrastructure": {
+      "type": "Local Development",
+      "environment_variables": {
+        "USE_NEW_PIPELINE": "1",
+        "USE_HYBRID_SCORER": "0",
+        "BABELNET_API_KEY": "***SET***"
+      },
+      "working_directory": "D:\\vriddhi-github\\Singletap-backend",
+      "user": "bhand"
+    }
+  },
+  "metadata": {},
+  "test_cases": [
+    {
+      "name": "P1: 'used' vs 'second hand' smartphone",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 17067.697525024414,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Tests synonym recognition for condition attribute"
+      }
+    },
+    {
+      "name": "P2: 'laptop' vs 'notebook' (computing devices)",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 1258.4993839263916,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Tests synonym recognition for item types"
+      }
+    },
+    {
+      "name": "P3: 'red' vs 'scarlet' clothing",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 35165.44556617737,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Tests color synonym recognition"
+      }
+    },
+    {
+      "name": "P4: 'automobile' vs 'car'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 1325.8638381958008,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Tests vehicle synonym recognition"
+      }
+    },
+    {
+      "name": "P5: Exact same terms (baseline)",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 1392.4925327301025,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Baseline test - identical listings should match"
+      }
+    },
+    {
+      "name": "P6: Different domain (electronics vs furniture)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 502.98404693603516,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Different domains should not match"
+      }
+    },
+    {
+      "name": "P7: Same domain, different item type",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 50027.2171497345,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Different items in same domain should not match"
+      }
+    },
+    {
+      "name": "P8: Same item, different brand",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 47409.99627113342,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Brand mismatch should not match"
+      }
+    },
+    {
+      "name": "P9: Same subintent (both sellers)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 0.3211498260498047,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Both sellers cannot match - need complementary subintents"
+      }
+    },
+    {
+      "name": "P10: 'new' vs 'used' condition",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 43569.642305374146,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Condition mismatch should not match"
+      }
+    },
+    {
+      "name": "S1: 'tutoring' vs 'coaching' (education)",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 59139.29796218872,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Tests service synonym recognition"
+      }
+    },
+    {
+      "name": "S2: 'plumber' vs 'plumbing' service",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 5258.091688156128,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Tests profession vs service name recognition"
+      }
+    },
+    {
+      "name": "S3: 'cleaning' vs 'housekeeping'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 823.5874176025391,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Tests home service synonyms"
+      }
+    },
+    {
+      "name": "S4: Exact same service (baseline)",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 778.5928249359131,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Baseline - identical services should match"
+      }
+    },
+    {
+      "name": "S5: Different service domain",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 430.01317977905273,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Education vs health should not match"
+      }
+    },
+    {
+      "name": "S6: Same domain, different service",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 39952.25667953491,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Plumber vs electrician should not match"
+      }
+    },
+    {
+      "name": "S7: Both seekers (same subintent)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 0.31638145446777344,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Both seeking cannot match"
+      }
+    },
+    {
+      "name": "S8: Math tutor vs Science tutor",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 4853.18660736084,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Subject mismatch should not match"
+      }
+    }
+  ],
+  "generated_at": "2026-02-13T17:35:38.821771"
+}

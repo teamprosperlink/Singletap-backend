@@ -87,10 +87,10 @@ class IngestionClients:
             self.qdrant = QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT)
             print(f"✓ Connected to Qdrant (local): {QDRANT_HOST}:{QDRANT_PORT}")
 
-        # Embedding model (lazy import to avoid slow startup)
-        from sentence_transformers import SentenceTransformer
+        # Embedding model (shared singleton to avoid duplicate loading)
+        from embedding.model_provider import get_embedding_model
         print(f"Loading embedding model: {EMBEDDING_MODEL}...")
-        self.embedding_model = SentenceTransformer(EMBEDDING_MODEL)
+        self.embedding_model = get_embedding_model()
         print(f"✓ Loaded embedding model: {EMBEDDING_MODEL} ({EMBEDDING_DIM}D)")
 
 

@@ -574,13 +574,15 @@ def transform_location(target_location: Dict, location_mode: str) -> Union[str, 
     Transform NEW location format to OLD format.
 
     NEW:
-        target_location: {"name": "bangalore"}
+        target_location: {"name": "bangalore", "coordinates": {"lat": ..., "lng": ...}, "canonical_name": "..."}
         location_mode: "explicit"
 
     OLD:
-        location: "bangalore"  (simple string)
+        location: "bangalore"  (simple string, no coordinates)
         OR
-        location: {"origin": "delhi", "destination": "mumbai"}  (for route mode)
+        location: {"name": "bangalore", "coordinates": {...}, "canonical_name": "..."}  (with geocoding data)
+        OR
+        location: {"origin": "delhi", "destination": "mumbai", ...}  (for route mode)
 
     Args:
         target_location: NEW format location object
@@ -594,14 +596,31 @@ def transform_location(target_location: Dict, location_mode: str) -> Union[str, 
 
     # Handle route mode (has origin + destination)
     if "origin" in target_location and "destination" in target_location:
-        return {
+        route = {
             "origin": normalize_string(target_location.get("origin", "")),
             "destination": normalize_string(target_location.get("destination", ""))
         }
+        # Preserve coordinate data from canonicalization if available
+        for key in ("origin_coordinates", "destination_coordinates",
+                     "origin_canonical", "destination_canonical"):
+            if key in target_location:
+                route[key] = target_location[key]
+        return route
 
     # Handle simple name-based location
     name = target_location.get("name", "")
-    return normalize_string(name) if name else ""
+    if not name:
+        return ""
+
+    # If coordinates were added by canonicalization, preserve them as dict
+    if "coordinates" in target_location and target_location["coordinates"]:
+        location_dict = {"name": normalize_string(name)}
+        location_dict["coordinates"] = target_location["coordinates"]
+        if "canonical_name" in target_location:
+            location_dict["canonical_name"] = target_location["canonical_name"]
+        return location_dict
+
+    return normalize_string(name)
 
 
 def transform_items(new_items: List[Dict]) -> List[Dict]:

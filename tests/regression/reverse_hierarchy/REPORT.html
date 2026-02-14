@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Report - Reverse Hierarchy Test Suite</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 8px 8px 0 0; }
+        .header h1 { font-size: 24px; margin-bottom: 10px; }
+        .header .timestamp { opacity: 0.8; font-size: 14px; }
+        .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; padding: 20px; background: #fafafa; }
+        .summary-card { background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .summary-card .value { font-size: 32px; font-weight: bold; }
+        .summary-card .label { color: #666; font-size: 14px; margin-top: 5px; }
+        .summary-card.passed .value { color: #22c55e; }
+        .summary-card.failed .value { color: #ef4444; }
+        .summary-card.errors .value { color: #f59e0b; }
+        .content { padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; font-weight: 600; color: #333; }
+        .status-pass { background: #f0fdf4; }
+        .status-fail { background: #fef2f2; }
+        .status-error { background: #fffbeb; }
+        .status-skip { background: #f5f5f5; }
+        .status { font-weight: bold; }
+        .status-pass .status { color: #22c55e; }
+        .status-fail .status { color: #ef4444; }
+        .status-error .status { color: #f59e0b; }
+        .error-info { padding: 10px; background: #fef2f2; border-left: 3px solid #ef4444; font-size: 13px; color: #991b1b; }
+        .info-section { margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; }
+        .info-section h3 { margin-bottom: 15px; color: #333; }
+        .info-table { width: auto; }
+        .info-table td:first-child { font-weight: 600; padding-right: 20px; color: #666; }
+        .footer { padding: 20px; text-align: center; color: #666; font-size: 12px; border-top: 1px solid #eee; }
+        .progress-bar { height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; margin-top: 10px; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #22c55e, #16a34a); transition: width 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Reverse Hierarchy Test Suite</h1>
+            <div class="timestamp">Generated: 2026-02-13 18:53:40</div>
+        </div>
+
+        <div class="summary">
+            <div class="summary-card">
+                <div class="value">8</div>
+                <div class="label">Total Tests</div>
+            </div>
+            <div class="summary-card passed">
+                <div class="value">8</div>
+                <div class="label">Passed</div>
+            </div>
+            <div class="summary-card failed">
+                <div class="value">0</div>
+                <div class="label">Failed</div>
+            </div>
+            <div class="summary-card errors">
+                <div class="value">0</div>
+                <div class="label">Errors</div>
+            </div>
+            <div class="summary-card">
+                <div class="value">100.0%</div>
+                <div class="label">Pass Rate</div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 100.0%"></div></div>
+            </div>
+            <div class="summary-card">
+                <div class="value">4485.71s</div>
+                <div class="label">Duration</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>Test Results</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Name</th>
+                        <th>Status</th>
+                        <th>Expected</th>
+                        <th>Actual</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr class="status-pass">
+                <td>RH1: dog (broad buyer) -> puppy (specific seller) = MATCH</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>23175.84 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>RH2: doctor (broad buyer) -> dentist (specific seller) = MATCH</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>2680.04 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>RH3: book (broad buyer) -> novel (specific seller) = MATCH</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>22594.60 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>RH4: vehicle (broad buyer) -> car (specific seller) = MATCH</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>74466.23 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>RH5: smartphone (broad buyer) -> iphone (specific seller) = MATCH</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>2259.37 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>RH6: puppy (specific buyer) -> dog (broad seller) = NO MATCH</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>5788.30 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>RH7: dentist (specific buyer) -> doctor (broad seller) = NO MATCH</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>46252.20 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>RH8: iphone (specific buyer) -> smartphone (broad seller) = NO MATCH</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>4308497.55 ms</td>
+            </tr>
+            
+            
+                </tbody>
+            </table>
+
+            
+            <div class="info-section">
+                <h3>Hardware Information</h3>
+                <table class="info-table">
+                    <tr><td>OS</td><td>Windows 11</td></tr>
+                    <tr><td>CPU</td><td>ARMv8 (64-bit) Family 8 Model 1 Revision 201, Qualcomm Technologies Inc (8 cores)</td></tr>
+                    <tr><td>Memory</td><td>15.61 GB</td></tr>
+                    <tr><td>Python</td><td>3.13.12</td></tr>
+                </table>
+            </div>
+            
+        </div>
+
+        <div class="footer">
+            <p>Singletap Backend Test Report | Duration: 4485.71s | 2026-02-13T17:38:54.296471 to 2026-02-13T18:53:40.011260</p>
+        </div>
+    </div>
+</body>
+</html>
+        

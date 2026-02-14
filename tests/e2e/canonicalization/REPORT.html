@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Report - E2E Canonicalization + Matching Test Suite</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 8px 8px 0 0; }
+        .header h1 { font-size: 24px; margin-bottom: 10px; }
+        .header .timestamp { opacity: 0.8; font-size: 14px; }
+        .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; padding: 20px; background: #fafafa; }
+        .summary-card { background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .summary-card .value { font-size: 32px; font-weight: bold; }
+        .summary-card .label { color: #666; font-size: 14px; margin-top: 5px; }
+        .summary-card.passed .value { color: #22c55e; }
+        .summary-card.failed .value { color: #ef4444; }
+        .summary-card.errors .value { color: #f59e0b; }
+        .content { padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; font-weight: 600; color: #333; }
+        .status-pass { background: #f0fdf4; }
+        .status-fail { background: #fef2f2; }
+        .status-error { background: #fffbeb; }
+        .status-skip { background: #f5f5f5; }
+        .status { font-weight: bold; }
+        .status-pass .status { color: #22c55e; }
+        .status-fail .status { color: #ef4444; }
+        .status-error .status { color: #f59e0b; }
+        .error-info { padding: 10px; background: #fef2f2; border-left: 3px solid #ef4444; font-size: 13px; color: #991b1b; }
+        .info-section { margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; }
+        .info-section h3 { margin-bottom: 15px; color: #333; }
+        .info-table { width: auto; }
+        .info-table td:first-child { font-weight: 600; padding-right: 20px; color: #666; }
+        .footer { padding: 20px; text-align: center; color: #666; font-size: 12px; border-top: 1px solid #eee; }
+        .progress-bar { height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; margin-top: 10px; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #22c55e, #16a34a); transition: width 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>E2E Canonicalization + Matching Test Suite</h1>
+            <div class="timestamp">Generated: 2026-02-13 17:35:38</div>
+        </div>
+
+        <div class="summary">
+            <div class="summary-card">
+                <div class="value">18</div>
+                <div class="label">Total Tests</div>
+            </div>
+            <div class="summary-card passed">
+                <div class="value">18</div>
+                <div class="label">Passed</div>
+            </div>
+            <div class="summary-card failed">
+                <div class="value">0</div>
+                <div class="label">Failed</div>
+            </div>
+            <div class="summary-card errors">
+                <div class="value">0</div>
+                <div class="label">Errors</div>
+            </div>
+            <div class="summary-card">
+                <div class="value">100.0%</div>
+                <div class="label">Pass Rate</div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 100.0%"></div></div>
+            </div>
+            <div class="summary-card">
+                <div class="value">308.96s</div>
+                <div class="label">Duration</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>Test Results</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Name</th>
+                        <th>Status</th>
+                        <th>Expected</th>
+                        <th>Actual</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr class="status-pass">
+                <td>P1: 'used' vs 'second hand' smartphone</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>17067.70 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>P2: 'laptop' vs 'notebook' (computing devices)</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>1258.50 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>P3: 'red' vs 'scarlet' clothing</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>35165.45 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>P4: 'automobile' vs 'car'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>1325.86 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>P5: Exact same terms (baseline)</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>1392.49 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>P6: Different domain (electronics vs furniture)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>502.98 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>P7: Same domain, different item type</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>50027.22 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>P8: Same item, different brand</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>47410.00 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>P9: Same subintent (both sellers)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>0.32 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>P10: 'new' vs 'used' condition</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>43569.64 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>S1: 'tutoring' vs 'coaching' (education)</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>59139.30 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>S2: 'plumber' vs 'plumbing' service</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>5258.09 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>S3: 'cleaning' vs 'housekeeping'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>823.59 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>S4: Exact same service (baseline)</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>778.59 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>S5: Different service domain</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>430.01 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>S6: Same domain, different service</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>39952.26 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>S7: Both seekers (same subintent)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>0.32 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>S8: Math tutor vs Science tutor</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>4853.19 ms</td>
+            </tr>
+            
+            
+                </tbody>
+            </table>
+
+            
+            <div class="info-section">
+                <h3>Hardware Information</h3>
+                <table class="info-table">
+                    <tr><td>OS</td><td>Windows 11</td></tr>
+                    <tr><td>CPU</td><td>ARMv8 (64-bit) Family 8 Model 1 Revision 201, Qualcomm Technologies Inc (8 cores)</td></tr>
+                    <tr><td>Memory</td><td>15.61 GB</td></tr>
+                    <tr><td>Python</td><td>3.13.12</td></tr>
+                </table>
+            </div>
+            
+        </div>
+
+        <div class="footer">
+            <p>Singletap Backend Test Report | Duration: 308.96s | 2026-02-13T17:30:29.864852 to 2026-02-13T17:35:38.820871</p>
+        </div>
+    </div>
+</body>
+</html>
+        

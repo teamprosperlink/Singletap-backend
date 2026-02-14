@@ -1,0 +1,331 @@
+{
+  "suite_name": "Semantic Implies Integration Test Suite",
+  "summary": {
+    "total_tests": 23,
+    "passed": 22,
+    "failed": 1,
+    "errors": 0,
+    "skipped": 0,
+    "pass_rate": "95.7%",
+    "duration_seconds": 340.016
+  },
+  "timing": {
+    "start_time": "2026-02-13T17:14:23.662025",
+    "end_time": "2026-02-13T17:20:03.677554",
+    "duration_seconds": 340.016
+  },
+  "environment": {
+    "hardware": {
+      "cpu": {
+        "processor": "ARMv8 (64-bit) Family 8 Model 1 Revision 201, Qualcomm Technologies Inc",
+        "architecture": "ARM64",
+        "cores": 8
+      },
+      "memory": {
+        "total_gb": 15.61
+      },
+      "os": {
+        "system": "Windows",
+        "release": "11",
+        "version": "10.0.26100",
+        "platform": "Windows-11-10.0.26100-SP0"
+      },
+      "python": {
+        "version": "3.13.12",
+        "implementation": "CPython",
+        "compiler": "MSC v.1944 64 bit (AMD64)"
+      },
+      "captured_at": "2026-02-13T17:14:23.661151"
+    },
+    "infrastructure": {
+      "type": "Local Development",
+      "environment_variables": {
+        "USE_NEW_PIPELINE": "1",
+        "USE_HYBRID_SCORER": "0",
+        "BABELNET_API_KEY": "***SET***"
+      },
+      "working_directory": "D:\\vriddhi-github\\Singletap-backend",
+      "user": "bhand"
+    }
+  },
+  "metadata": {},
+  "test_cases": [
+    {
+      "name": "EXACT1: 'car' == 'car'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.008821487426757812,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Exact same string should match"
+      }
+    },
+    {
+      "name": "EXACT2: 'Car' == 'car' (case insensitive)",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.00476837158203125,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Case differences should still match"
+      }
+    },
+    {
+      "name": "EXACT3: '  car  ' == 'car' (whitespace)",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.0021457672119140625,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Extra whitespace should be trimmed"
+      }
+    },
+    {
+      "name": "SYN1: 'sofa' implies 'couch'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.011920928955078125,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Furniture synonyms"
+      }
+    },
+    {
+      "name": "SYN2: 'couch' implies 'sofa'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.0057220458984375,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Symmetric synonym relationship"
+      }
+    },
+    {
+      "name": "SYN3: 'used' implies 'second hand'",
+      "status": "FAIL",
+      "expected": true,
+      "actual": false,
+      "duration_ms": 84277.8651714325,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Condition synonyms"
+      }
+    },
+    {
+      "name": "SYN4: 'laptop' implies 'notebook'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.01049041748046875,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Computing device synonyms"
+      }
+    },
+    {
+      "name": "SYN5: 'automobile' implies 'car'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.004291534423828125,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Vehicle synonyms"
+      }
+    },
+    {
+      "name": "HIER1: 'puppy' implies 'dog'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 1468.2815074920654,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Specific (puppy) satisfies broad (dog)"
+      }
+    },
+    {
+      "name": "HIER2: 'dentist' implies 'doctor'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 1451.7059326171875,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Specific profession satisfies broad category"
+      }
+    },
+    {
+      "name": "HIER3: 'novel' implies 'book'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 34058.82000923157,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Specific item type satisfies broad category"
+      }
+    },
+    {
+      "name": "HIER4: 'iphone' implies 'smartphone'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 1731.3032150268555,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Brand implies category"
+      }
+    },
+    {
+      "name": "HIER5: 'car' implies 'vehicle'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 32083.827257156372,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Specific implies general"
+      }
+    },
+    {
+      "name": "HIER_NEG1: 'dog' does NOT imply 'puppy'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 2094.3989753723145,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Broad (dog) does not satisfy specific (puppy)"
+      }
+    },
+    {
+      "name": "HIER_NEG2: 'doctor' does NOT imply 'dentist'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 12457.585334777832,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "General doctor does not satisfy specific dentist"
+      }
+    },
+    {
+      "name": "HIER_NEG3: 'book' does NOT imply 'novel'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 1501.6121864318848,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "General book does not satisfy specific novel"
+      }
+    },
+    {
+      "name": "HIER_NEG4: 'smartphone' does NOT imply 'iphone'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 53542.863845825195,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Category does not imply specific brand"
+      }
+    },
+    {
+      "name": "HIER_NEG5: 'vehicle' does NOT imply 'car'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 21852.235078811646,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "General does not imply specific"
+      }
+    },
+    {
+      "name": "DIFF1: 'cat' does NOT imply 'dog'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 2001.7595291137695,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Different animals"
+      }
+    },
+    {
+      "name": "DIFF2: 'plumber' does NOT imply 'electrician'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 1733.1461906433105,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Different professions"
+      }
+    },
+    {
+      "name": "DIFF3: 'sedan' does NOT imply 'truck'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 31583.420515060425,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Different vehicle types"
+      }
+    },
+    {
+      "name": "DIFF4: 'yoga' does NOT imply 'pilates'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 13706.9993019104,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Different fitness activities"
+      }
+    },
+    {
+      "name": "DIFF5: 'laptop' does NOT imply 'refrigerator'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 44468.86444091797,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Completely different product categories"
+      }
+    }
+  ],
+  "generated_at": "2026-02-13T17:20:03.678355"
+}

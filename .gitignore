@@ -10,6 +10,17 @@ venv/
 # Log files
 *.log
 
+# Downloaded models (GlossBERT, LLM, sentence-transformers, etc.)
+models/
+
+# NLTK data (downloaded corpora - wordnet, punkt, etc.)
+nltk_data/
+
+# Cache files
+.pytest_cache/
+geocoding_cache.json
+*.cache
+
 # Test outputs
 canonicalization_test_results.json
 
@@ -22,3 +33,21 @@ legacy/
 
 # Qdrant binary
 qdrant_standalone/
+
+# Temporary test data files
+t*.json
+nul
+onto*.txt
+
+# Debug scripts (contain test data, not needed in repo)
+debug_*.py
+check_*.py
+test_fresh_*.py
+test_path_a_*.py
+test_synsets.py
+
+# PDF documents
+*.pdf
+
+# Temporary notes
+without\ wsd\ fine\ tuning.txt

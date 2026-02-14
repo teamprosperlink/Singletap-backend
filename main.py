@@ -6,7 +6,6 @@ import uuid
 import json
 from openai import OpenAI
 import asyncio
-import numpy as np
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -18,6 +17,7 @@ from pipeline.ingestion_pipeline import IngestionClients, ingest_listing
 from pipeline.retrieval_service import RetrievalClients, retrieve_candidates
 from matching.listing_matcher_v2 import listing_matches_v2
 from embedding.embedding_builder import build_embedding_text
+from canonicalization.orchestrator import canonicalize_listing
 
 app = FastAPI(title="Vriddhi Matching Engine API", version="2.0")
 
@@ -78,6 +78,20 @@ async def initialize_services():
             await asyncio.to_thread(retrieval_clients.initialize)
             print("✅ Retrieval clients initialized")
 
+            # Initialize OntologyStore with Supabase client (loads persisted concepts)
+            print("🔄 Initializing OntologyStore...")
+            from canonicalization.ontology_store import get_ontology_store
+            ontology_store = get_ontology_store()
+            ontology_store.initialize(ingestion_clients.supabase)
+            data = ontology_store.load_from_db()
+            # Inject persisted ontology into the resolver
+            from canonicalization.orchestrator import _get_categorical_resolver
+            resolver = _get_categorical_resolver()
+            resolver._synonym_registry.update(data.get("synonym_registry", {}))
+            resolver._concept_paths.update(data.get("concept_paths", {}))
+            print(f"✅ OntologyStore initialized ({len(data.get('synonym_registry', {}))} synonyms, "
+                  f"{len(data.get('concept_paths', {}))} paths)")
+
             is_initialized = True
             print("✅ ALL clients initialized successfully")
         else:
@@ -108,16 +122,144 @@ def check_service_health():
 
 def semantic_implies(candidate_val: str, required_val: str) -> bool:
     """
-    Check if candidate_val semantically implies required_val using embeddings.
+    Check if candidate_val implies required_val.
+
+    Uses multiple strategies:
+    1. Exact match (after canonicalization with BabelNet enrichment)
+    1.5. Curated synonyms (laptop/notebook, cleaning/housekeeping)
+    2. WordNet hierarchy check (is required_val an ancestor?)
+    2.5. WordNet synset overlap (true synonyms)
+    3. Morphological matching (same stem - plumber/plumbing)
+    4. BabelNet exact synonym check
+
+    With BabelNet enrichment during canonicalization, synonyms like
+    tutor/coach should already have the same concept_id.
     """
-    if not ingestion_clients.embedding_model:
-        return candidate_val.lower() == required_val.lower()
-        
-    v1 = ingestion_clients.embedding_model.encode(candidate_val)
-    v2 = ingestion_clients.embedding_model.encode(required_val)
-    
-    sim = np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
-    return float(sim) > 0.82
+    c, r = candidate_val.lower().strip(), required_val.lower().strip()
+    if c == r:
+        return True
+
+    # Strategy 1.5: Curated synonyms (common synonyms not in same WordNet synset)
+    # These are semantically identical but WordNet has them in different synsets
+    CURATED_SYNONYMS = {
+        frozenset({"laptop", "notebook"}),
+        frozenset({"cleaning", "housekeeping", "housework"}),
+        frozenset({"couch", "sofa"}),
+        frozenset({"automobile", "car", "auto"}),
+        frozenset({"phone", "telephone", "cellphone", "mobile"}),
+        frozenset({"apartment", "flat"}),
+    }
+    for syn_group in CURATED_SYNONYMS:
+        if c in syn_group and r in syn_group:
+            return True
+
+    # Strategy 1.6: Wikidata hierarchy check (dynamic, not hardcoded)
+    # Uses P31 (instance of) and P279 (subclass of) to check if candidate is a type of required
+    # Example: dentist is a type of doctor, iphone is a type of smartphone
+    try:
+        from services.external.wikidata_wrapper import get_wikidata_client
+        wikidata = get_wikidata_client()
+        if wikidata.is_subclass_of(c, r, max_depth=3):
+            return True
+    except Exception:
+        # Wikidata may timeout or fail - continue to other strategies
+        pass
+
+    # Strategy 2: WordNet hierarchy check (is required_val an ancestor of candidate_val?)
+    try:
+        from canonicalization.orchestrator import _get_categorical_resolver
+        resolver = _get_categorical_resolver()
+        if resolver.is_ancestor(r, c):
+            return True
+    except Exception:
+        pass
+
+    # Strategy 2.5: WordNet synonym check (are they in the same synset?)
+    # Handles cases like laptop/notebook, cleaning/housekeeping
+    try:
+        from nltk.corpus import wordnet as wn
+        c_synsets = set(wn.synsets(c.replace(" ", "_")))
+        r_synsets = set(wn.synsets(r.replace(" ", "_")))
+        # Check if they share any synset (true synonyms)
+        if c_synsets & r_synsets:
+            return True
+        # Check if candidate is a lemma in any of required's synsets
+        for syn in r_synsets:
+            lemma_names = {lem.name().lower().replace("_", " ") for lem in syn.lemmas()}
+            if c in lemma_names:
+                return True
+        # Check if required is a lemma in any of candidate's synsets
+        for syn in c_synsets:
+            lemma_names = {lem.name().lower().replace("_", " ") for lem in syn.lemmas()}
+            if r in lemma_names:
+                return True
+    except Exception:
+        pass
+
+    # Strategy 3: Morphological matching (shared root)
+    # Handles cases like plumber/plumbing, cleaning/cleaner
+    try:
+        # Get the first word of each
+        c_word = c.split()[0]
+        r_word = r.split()[0]
+
+        # Check if one is a prefix of the other (min 4 chars)
+        min_len = min(len(c_word), len(r_word))
+        if min_len >= 4:
+            # Find longest common prefix
+            common_prefix = ""
+            for i in range(min_len):
+                if c_word[i] == r_word[i]:
+                    common_prefix += c_word[i]
+                else:
+                    break
+            # If common prefix is at least 5 chars (e.g., "plumb" from plumber/plumbing)
+            if len(common_prefix) >= 5:
+                return True
+
+        # Also check WordNet derivationally related forms
+        from nltk.corpus import wordnet as wn
+        c_synsets = wn.synsets(c_word)
+        r_synsets = wn.synsets(r_word)
+        if c_synsets and r_synsets:
+            # Check if they share any derivationally related lemmas
+            c_derivations = set()
+            for syn in c_synsets[:2]:
+                for lemma in syn.lemmas():
+                    for df in lemma.derivationally_related_forms():
+                        c_derivations.add(df.name().lower())
+            for syn in r_synsets[:2]:
+                for lemma in syn.lemmas():
+                    if lemma.name().lower() in c_derivations:
+                        return True
+    except Exception:
+        pass
+
+    # Strategy 4: BabelNet EXACT synonym check
+    # Only matches if candidate is an EXACT synonym of required
+    # (no partial word matching to avoid false positives like "doctor" matching "dental doctor")
+    try:
+        from services.external.babelnet_wrapper import get_babelnet_client
+        import os
+        api_key = os.getenv("BABELNET_API_KEY", "")
+        if api_key and len(c) >= 3 and len(r) >= 3:
+            bn = get_babelnet_client()
+
+            # Check if candidate appears as exact synonym of required
+            r_synonyms = bn.get_synonyms(r)
+            r_synonyms_lower = [s.lower().strip() for s in r_synonyms]
+            if c in r_synonyms_lower:
+                return True
+
+            # Check if required appears as exact synonym of candidate
+            c_synonyms = bn.get_synonyms(c)
+            c_synonyms_lower = [s.lower().strip() for s in c_synonyms]
+            if r in c_synonyms_lower:
+                return True
+    except Exception:
+        pass
+
+    return False
 
 class ListingRequest(BaseModel):
     listing: Dict[str, Any]
@@ -164,10 +306,13 @@ def ping():
 async def ingest_endpoint(request: ListingRequest):
     check_service_health()
     try:
-        # 1. Normalize
-        listing_old = normalize_and_validate_v2(request.listing)
-        
-        # 2. Ingest
+        # 1. Canonicalize
+        canonical_listing = canonicalize_listing(request.listing)
+
+        # 2. Normalize
+        listing_old = normalize_and_validate_v2(canonical_listing)
+
+        # 3. Ingest
         listing_id, _ = ingest_listing(ingestion_clients, listing_old, verbose=True)
         
         return {
@@ -345,8 +490,11 @@ async def extract_and_normalize_endpoint(request: QueryRequest):
         # Step 1: Extract NEW schema
         extracted_listing = extract_from_query(request.query)
 
-        # Step 2: Normalize to OLD schema
-        normalized_listing = normalize_and_validate_v2(extracted_listing)
+        # Step 2: Canonicalize
+        canonical_listing_data = canonicalize_listing(extracted_listing)
+
+        # Step 3: Normalize to OLD schema
+        normalized_listing = normalize_and_validate_v2(canonical_listing_data)
 
         return {
             "status": "success",
@@ -395,9 +543,13 @@ async def extract_and_match_endpoint(request: DualQueryRequest):
         extracted_a = extract_from_query(request.query_a)
         extracted_b = extract_from_query(request.query_b)
 
-        # Step 2: Normalize both
-        listing_a_old = normalize_and_validate_v2(extracted_a)
-        listing_b_old = normalize_and_validate_v2(extracted_b)
+        # Step 2: Canonicalize both
+        canonical_a = canonicalize_listing(extracted_a)
+        canonical_b = canonicalize_listing(extracted_b)
+
+        # Step 3: Normalize both
+        listing_a_old = normalize_and_validate_v2(canonical_a)
+        listing_b_old = normalize_and_validate_v2(canonical_b)
 
         # Step 3: Match with semantic implication
         is_match = listing_matches_v2(listing_a_old, listing_b_old, implies_fn=semantic_implies)
@@ -458,10 +610,13 @@ async def search_and_match_endpoint(request: SearchAndMatchRequest):
 
         extracted_json = extract_from_query(request.query)
 
-        # Step 2: Normalize
-        normalized_query = normalize_and_validate_v2(extracted_json)
+        # Step 2: Canonicalize
+        canonical_json = canonicalize_listing(extracted_json)
 
-        # Step 3: Search database for candidates
+        # Step 3: Normalize
+        normalized_query = normalize_and_validate_v2(canonical_json)
+
+        # Step 4: Search database for candidates
         print(f"🔎 Searching database...")
         candidate_ids = retrieve_candidates(
             retrieval_clients,
@@ -592,8 +747,9 @@ async def search_and_match_direct_endpoint(request: StoreListingRequest):
     check_service_health()
 
     try:
-        # Step 1: Normalize (skip GPT extraction)
-        normalized_query = normalize_and_validate_v2(request.listing_json)
+        # Step 1: Canonicalize + Normalize (skip GPT extraction)
+        canonical_query = canonicalize_listing(request.listing_json)
+        normalized_query = normalize_and_validate_v2(canonical_query)
 
         # Step 2: Search database for candidates
         candidate_ids = retrieve_candidates(
@@ -692,8 +848,9 @@ async def store_listing_endpoint(request: StoreListingRequest):
     try:
         print(f"\n💾 Store Listing for user: {request.user_id}")
 
-        # Step 1: Validate and normalize
-        normalized_listing = normalize_and_validate_v2(request.listing_json)
+        # Step 1: Canonicalize and normalize
+        canonical_store = canonicalize_listing(request.listing_json)
+        normalized_listing = normalize_and_validate_v2(canonical_store)
 
         # Step 2: Ingest (stores in Supabase + Qdrant)
         listing_id = str(uuid.uuid4())

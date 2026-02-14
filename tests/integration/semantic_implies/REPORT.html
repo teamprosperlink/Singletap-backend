@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Report - Semantic Implies Integration Test Suite</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 8px 8px 0 0; }
+        .header h1 { font-size: 24px; margin-bottom: 10px; }
+        .header .timestamp { opacity: 0.8; font-size: 14px; }
+        .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; padding: 20px; background: #fafafa; }
+        .summary-card { background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .summary-card .value { font-size: 32px; font-weight: bold; }
+        .summary-card .label { color: #666; font-size: 14px; margin-top: 5px; }
+        .summary-card.passed .value { color: #22c55e; }
+        .summary-card.failed .value { color: #ef4444; }
+        .summary-card.errors .value { color: #f59e0b; }
+        .content { padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; font-weight: 600; color: #333; }
+        .status-pass { background: #f0fdf4; }
+        .status-fail { background: #fef2f2; }
+        .status-error { background: #fffbeb; }
+        .status-skip { background: #f5f5f5; }
+        .status { font-weight: bold; }
+        .status-pass .status { color: #22c55e; }
+        .status-fail .status { color: #ef4444; }
+        .status-error .status { color: #f59e0b; }
+        .error-info { padding: 10px; background: #fef2f2; border-left: 3px solid #ef4444; font-size: 13px; color: #991b1b; }
+        .info-section { margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; }
+        .info-section h3 { margin-bottom: 15px; color: #333; }
+        .info-table { width: auto; }
+        .info-table td:first-child { font-weight: 600; padding-right: 20px; color: #666; }
+        .footer { padding: 20px; text-align: center; color: #666; font-size: 12px; border-top: 1px solid #eee; }
+        .progress-bar { height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; margin-top: 10px; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #22c55e, #16a34a); transition: width 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Semantic Implies Integration Test Suite</h1>
+            <div class="timestamp">Generated: 2026-02-13 17:20:03</div>
+        </div>
+
+        <div class="summary">
+            <div class="summary-card">
+                <div class="value">23</div>
+                <div class="label">Total Tests</div>
+            </div>
+            <div class="summary-card passed">
+                <div class="value">22</div>
+                <div class="label">Passed</div>
+            </div>
+            <div class="summary-card failed">
+                <div class="value">1</div>
+                <div class="label">Failed</div>
+            </div>
+            <div class="summary-card errors">
+                <div class="value">0</div>
+                <div class="label">Errors</div>
+            </div>
+            <div class="summary-card">
+                <div class="value">95.7%</div>
+                <div class="label">Pass Rate</div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 95.65217391304348%"></div></div>
+            </div>
+            <div class="summary-card">
+                <div class="value">340.02s</div>
+                <div class="label">Duration</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>Test Results</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Name</th>
+                        <th>Status</th>
+                        <th>Expected</th>
+                        <th>Actual</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr class="status-pass">
+                <td>EXACT1: 'car' == 'car'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>0.01 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>EXACT2: 'Car' == 'car' (case insensitive)</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>0.00 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>EXACT3: '  car  ' == 'car' (whitespace)</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>0.00 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>SYN1: 'sofa' implies 'couch'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>0.01 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>SYN2: 'couch' implies 'sofa'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>0.01 ms</td>
+            </tr>
+            
+            
+            <tr class="status-fail">
+                <td>SYN3: 'used' implies 'second hand'</td>
+                <td class="status">FAIL</td>
+                <td>True</td>
+                <td>False</td>
+                <td>84277.87 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>SYN4: 'laptop' implies 'notebook'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>0.01 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>SYN5: 'automobile' implies 'car'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>0.00 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>HIER1: 'puppy' implies 'dog'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>1468.28 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>HIER2: 'dentist' implies 'doctor'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>1451.71 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>HIER3: 'novel' implies 'book'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>34058.82 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>HIER4: 'iphone' implies 'smartphone'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>1731.30 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>HIER5: 'car' implies 'vehicle'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>32083.83 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>HIER_NEG1: 'dog' does NOT imply 'puppy'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>2094.40 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>HIER_NEG2: 'doctor' does NOT imply 'dentist'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>12457.59 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>HIER_NEG3: 'book' does NOT imply 'novel'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>1501.61 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>HIER_NEG4: 'smartphone' does NOT imply 'iphone'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>53542.86 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>HIER_NEG5: 'vehicle' does NOT imply 'car'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>21852.24 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>DIFF1: 'cat' does NOT imply 'dog'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>2001.76 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>DIFF2: 'plumber' does NOT imply 'electrician'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>1733.15 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>DIFF3: 'sedan' does NOT imply 'truck'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>31583.42 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>DIFF4: 'yoga' does NOT imply 'pilates'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>13707.00 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>DIFF5: 'laptop' does NOT imply 'refrigerator'</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>44468.86 ms</td>
+            </tr>
+            
+            
+                </tbody>
+            </table>
+
+            
+            <div class="info-section">
+                <h3>Hardware Information</h3>
+                <table class="info-table">
+                    <tr><td>OS</td><td>Windows 11</td></tr>
+                    <tr><td>CPU</td><td>ARMv8 (64-bit) Family 8 Model 1 Revision 201, Qualcomm Technologies Inc (8 cores)</td></tr>
+                    <tr><td>Memory</td><td>15.61 GB</td></tr>
+                    <tr><td>Python</td><td>3.13.12</td></tr>
+                </table>
+            </div>
+            
+        </div>
+
+        <div class="footer">
+            <p>Singletap Backend Test Report | Duration: 340.02s | 2026-02-13T17:14:23.662025 to 2026-02-13T17:20:03.677554</p>
+        </div>
+    </div>
+</body>
+</html>
+        

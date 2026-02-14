@@ -1,0 +1,151 @@
+{
+  "suite_name": "Reverse Hierarchy Test Suite",
+  "summary": {
+    "total_tests": 8,
+    "passed": 8,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "pass_rate": "100.0%",
+    "duration_seconds": 4485.715
+  },
+  "timing": {
+    "start_time": "2026-02-13T17:38:54.296471",
+    "end_time": "2026-02-13T18:53:40.011260",
+    "duration_seconds": 4485.715
+  },
+  "environment": {
+    "hardware": {
+      "cpu": {
+        "processor": "ARMv8 (64-bit) Family 8 Model 1 Revision 201, Qualcomm Technologies Inc",
+        "architecture": "ARM64",
+        "cores": 8
+      },
+      "memory": {
+        "total_gb": 15.61
+      },
+      "os": {
+        "system": "Windows",
+        "release": "11",
+        "version": "10.0.26100",
+        "platform": "Windows-11-10.0.26100-SP0"
+      },
+      "python": {
+        "version": "3.13.12",
+        "implementation": "CPython",
+        "compiler": "MSC v.1944 64 bit (AMD64)"
+      },
+      "captured_at": "2026-02-13T17:38:54.295699"
+    },
+    "infrastructure": {
+      "type": "Local Development",
+      "environment_variables": {
+        "USE_NEW_PIPELINE": "1",
+        "USE_HYBRID_SCORER": "0",
+        "BABELNET_API_KEY": "***SET***"
+      },
+      "working_directory": "D:\\vriddhi-github\\Singletap-backend",
+      "user": "bhand"
+    }
+  },
+  "metadata": {},
+  "test_cases": [
+    {
+      "name": "RH1: dog (broad buyer) -> puppy (specific seller) = MATCH",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 23175.844192504883,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "A puppy IS a dog, so buyer wanting dog should match seller with puppy"
+      }
+    },
+    {
+      "name": "RH2: doctor (broad buyer) -> dentist (specific seller) = MATCH",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 2680.0427436828613,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "A dentist IS a type of doctor, so buyer wanting doctor should match dentist"
+      }
+    },
+    {
+      "name": "RH3: book (broad buyer) -> novel (specific seller) = MATCH",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 22594.60210800171,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "A novel IS a type of book, so buyer wanting book should match novel"
+      }
+    },
+    {
+      "name": "RH4: vehicle (broad buyer) -> car (specific seller) = MATCH",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 74466.22514724731,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "A car IS a vehicle, so buyer wanting vehicle should match car"
+      }
+    },
+    {
+      "name": "RH5: smartphone (broad buyer) -> iphone (specific seller) = MATCH",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 2259.3727111816406,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "An iPhone IS a smartphone, so buyer wanting smartphone should match iPhone"
+      }
+    },
+    {
+      "name": "RH6: puppy (specific buyer) -> dog (broad seller) = NO MATCH",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 5788.301706314087,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Not every dog is a puppy - buyer wants puppy specifically"
+      }
+    },
+    {
+      "name": "RH7: dentist (specific buyer) -> doctor (broad seller) = NO MATCH",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 46252.204179763794,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Not every doctor is a dentist - buyer wants dentist specifically"
+      }
+    },
+    {
+      "name": "RH8: iphone (specific buyer) -> smartphone (broad seller) = NO MATCH",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 4308497.554779053,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Not every smartphone is an iPhone - buyer wants iPhone specifically"
+      }
+    }
+  ],
+  "generated_at": "2026-02-13T18:53:40.012518"
+}

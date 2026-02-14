@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Report - Matching Robustness Test Suite</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 8px 8px 0 0; }
+        .header h1 { font-size: 24px; margin-bottom: 10px; }
+        .header .timestamp { opacity: 0.8; font-size: 14px; }
+        .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; padding: 20px; background: #fafafa; }
+        .summary-card { background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .summary-card .value { font-size: 32px; font-weight: bold; }
+        .summary-card .label { color: #666; font-size: 14px; margin-top: 5px; }
+        .summary-card.passed .value { color: #22c55e; }
+        .summary-card.failed .value { color: #ef4444; }
+        .summary-card.errors .value { color: #f59e0b; }
+        .content { padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; font-weight: 600; color: #333; }
+        .status-pass { background: #f0fdf4; }
+        .status-fail { background: #fef2f2; }
+        .status-error { background: #fffbeb; }
+        .status-skip { background: #f5f5f5; }
+        .status { font-weight: bold; }
+        .status-pass .status { color: #22c55e; }
+        .status-fail .status { color: #ef4444; }
+        .status-error .status { color: #f59e0b; }
+        .error-info { padding: 10px; background: #fef2f2; border-left: 3px solid #ef4444; font-size: 13px; color: #991b1b; }
+        .info-section { margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; }
+        .info-section h3 { margin-bottom: 15px; color: #333; }
+        .info-table { width: auto; }
+        .info-table td:first-child { font-weight: 600; padding-right: 20px; color: #666; }
+        .footer { padding: 20px; text-align: center; color: #666; font-size: 12px; border-top: 1px solid #eee; }
+        .progress-bar { height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; margin-top: 10px; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #22c55e, #16a34a); transition: width 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Matching Robustness Test Suite</h1>
+            <div class="timestamp">Generated: 2026-02-13 17:38:28</div>
+        </div>
+
+        <div class="summary">
+            <div class="summary-card">
+                <div class="value">20</div>
+                <div class="label">Total Tests</div>
+            </div>
+            <div class="summary-card passed">
+                <div class="value">20</div>
+                <div class="label">Passed</div>
+            </div>
+            <div class="summary-card failed">
+                <div class="value">0</div>
+                <div class="label">Failed</div>
+            </div>
+            <div class="summary-card errors">
+                <div class="value">0</div>
+                <div class="label">Errors</div>
+            </div>
+            <div class="summary-card">
+                <div class="value">100.0%</div>
+                <div class="label">Pass Rate</div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 100.0%"></div></div>
+            </div>
+            <div class="summary-card">
+                <div class="value">134.51s</div>
+                <div class="label">Duration</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>Test Results</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Name</th>
+                        <th>Status</th>
+                        <th>Expected</th>
+                        <th>Actual</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr class="status-pass">
+                <td>R1: 'sofa' vs 'couch' (furniture synonyms)</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>14288.16 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R2: 'apartment' vs 'flat' (real estate synonyms)</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>404.49 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R3: 'puppy' vs 'dog' (specific buyer, broad seller = NO MATCH)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>11872.57 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R4: 'physician' vs 'doctor' (healthcare synonyms)</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>395.20 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R5: 'bicycle' vs 'bike' (abbreviation synonym)</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>404.74 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R6: 'guitar' buyer vs 'acoustic guitar' seller = MATCH</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>1778.62 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R7: 'hairdresser' vs 'hair stylist' (beauty synonyms)</td>
+                <td class="status">PASS</td>
+                <td>True</td>
+                <td>True</td>
+                <td>411.67 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R8: 'farmer' vs 'farm worker' (different roles = NO MATCH)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>12707.88 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R9: 'novel' vs 'book' (specific buyer, broad seller = NO MATCH)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>35586.43 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R10: 'gym trainer' vs 'fitness instructor' (specific vs broad = NO MATCH)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>1420.01 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R11: 'cat' vs 'dog' (different pets = NO MATCH)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>1370.44 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R12: 'carpenter' vs 'painter' (different trades = NO MATCH)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>26333.46 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R13: 'table' furniture vs 'table reservation' (different domains = NO MATCH)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>663.96 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R14: Both buyers for sofa (same subintent = NO MATCH)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>0.25 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R15: 'yoga' vs 'pilates' instructor (different specialties = NO MATCH)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>8219.73 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R16: Orange fruit vs Orange t-shirt (different contexts = NO MATCH)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>875.23 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R17: 'piano' product vs 'piano lessons' service (different intents = NO MATCH)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>849.57 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R18: 'driving lessons' vs 'delivery driving' (different services = NO MATCH)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>381.61 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R19: 'sedan' vs 'truck' (different vehicle types = NO MATCH)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>11294.90 ms</td>
+            </tr>
+            
+            
+            <tr class="status-pass">
+                <td>R20: 'dentist' buyer vs 'doctor' seller (specific vs broad = NO MATCH)</td>
+                <td class="status">PASS</td>
+                <td>False</td>
+                <td>False</td>
+                <td>5249.49 ms</td>
+            </tr>
+            
+            
+                </tbody>
+            </table>
+
+            
+            <div class="info-section">
+                <h3>Hardware Information</h3>
+                <table class="info-table">
+                    <tr><td>OS</td><td>Windows 11</td></tr>
+                    <tr><td>CPU</td><td>ARMv8 (64-bit) Family 8 Model 1 Revision 201, Qualcomm Technologies Inc (8 cores)</td></tr>
+                    <tr><td>Memory</td><td>15.61 GB</td></tr>
+                    <tr><td>Python</td><td>3.13.12</td></tr>
+                </table>
+            </div>
+            
+        </div>
+
+        <div class="footer">
+            <p>Singletap Backend Test Report | Duration: 134.51s | 2026-02-13T17:36:14.075921 to 2026-02-13T17:38:28.584990</p>
+        </div>
+    </div>
+</body>
+</html>
+        

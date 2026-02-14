@@ -1,72 +1,117 @@
 """
-PHASE 2.X: LOCATION MATCHING (V2 - SIMPLIFIED)
+PHASE 2.X: LOCATION MATCHING (V3 - GEOCODING ENHANCED)
 
 Responsibility:
-- Match locations using simple name-based equality
+- Match locations using coordinate-based distance calculation
 - Handle location exclusions
 - Support all 5 location modes (near_me, explicit, target_only, route, global)
+- Fall back to string matching if geocoding fails
 
 NEW Schema Location Structure:
-- target_location: {"name": "bangalore"} OR {"origin": "X", "destination": "Y"}
+- target_location: {"name": "bangalore", "coordinates": {"lat": 12.9716, "lng": 77.5946}}
 - location_match_mode: "near_me" | "explicit" | "target_only" | "route" | "global"
 - location_exclusions: ["whitefield", "airport"]
 
-Simplified Logic:
-- No distance/zone/accessibility constraints
-- Simple name equality checks
-- Exclusion list matching
+Matching Logic:
+1. If coordinates available -> use haversine distance (configurable threshold)
+2. Fall back to canonical name matching
+3. Final fallback to string equality
+4. Exclusion list matching
 
 Authority: GLOBAL_REFERENCE_CONTEXT.md (NEW schema)
-Dependencies: None
-
-Author: Claude (Location Matcher V2)
-Date: 2026-01-13
+Dependencies: services.external.geocoding_service
 """
 
 from typing import Dict, List, Union, Optional
+from services.external.geocoding_service import get_geocoding_service
 
 
 # ============================================================================
-# LOCATION MATCHING (SIMPLIFIED)
+# CONFIGURATION
+# ============================================================================
+
+# Default distance threshold for "same location" matching (in km)
+DEFAULT_MAX_DISTANCE_KM = 50.0
+
+
+# ============================================================================
+# COORDINATE-BASED MATCHING
+# ============================================================================
+
+def match_location_by_coordinates(
+    location1: Union[str, Dict],
+    location2: Union[str, Dict],
+    max_distance_km: float = DEFAULT_MAX_DISTANCE_KM
+) -> Optional[bool]:
+    """
+    Match locations using coordinate-based distance calculation.
+
+    Returns:
+        True if within distance threshold
+        False if outside distance threshold
+        None if either location cannot be geocoded (trigger fallback)
+    """
+    geocoding = get_geocoding_service()
+
+    coords1 = _get_coordinates(location1, geocoding)
+    coords2 = _get_coordinates(location2, geocoding)
+
+    if coords1 is None or coords2 is None:
+        return None
+
+    distance = geocoding._haversine_distance(
+        coords1["lat"], coords1["lng"],
+        coords2["lat"], coords2["lng"]
+    )
+
+    return distance <= max_distance_km
+
+
+def _get_coordinates(
+    location: Union[str, Dict, None],
+    geocoding
+) -> Optional[Dict]:
+    """Get coordinates for a location (from pre-computed dict or geocoding API)."""
+    if not location:
+        return None
+
+    if isinstance(location, dict):
+        if "coordinates" in location and location["coordinates"]:
+            return location["coordinates"]
+
+        name = location.get("name") or location.get("canonical_name")
+        if name:
+            return geocoding.geocode(name)
+
+        return None
+
+    if isinstance(location, str) and location.strip():
+        return geocoding.geocode(location)
+
+    return None
+
+
+# ============================================================================
+# LOCATION MATCHING (HYBRID: COORDINATES + STRING FALLBACK)
 # ============================================================================
 
 def match_location_simple(
     required_location: Union[str, Dict],
     candidate_location: Union[str, Dict],
     required_exclusions: List[str],
-    candidate_exclusions: List[str]
+    candidate_exclusions: List[str],
+    max_distance_km: float = DEFAULT_MAX_DISTANCE_KM
 ) -> bool:
     """
-    Simple name-based location matching.
+    Hybrid location matching: coordinates -> canonical name -> string fallback.
 
     Matching Rules:
-    1. If required_location empty → always match (no location requirement)
-    2. Name equality: required name == candidate name
-    3. Exclusions: candidate not in required exclusions, required not in candidate exclusions
-
-    Args:
-        required_location: Required location (string or dict with name/origin/destination)
-        candidate_location: Candidate location (string or dict)
-        required_exclusions: Locations that requester excludes
-        candidate_exclusions: Locations that candidate excludes
-
-    Returns:
-        True if location matches, False otherwise
-
-    Examples:
-        >>> match_location_simple("bangalore", "bangalore", [], [])
-        True
-
-        >>> match_location_simple("bangalore", "delhi", [], [])
-        False
-
-        >>> match_location_simple("bangalore", "bangalore", ["whitefield"], [])
-        True  # bangalore not in exclusions
-
-        >>> match_location_simple("whitefield", "whitefield", ["whitefield"], [])
-        False  # whitefield is in required exclusions
+    1. If required_location empty -> always match (no location requirement)
+    2. Try coordinate-based matching (if geocoding available)
+    3. Fall back to canonical name matching
+    4. Final fallback to string equality
+    5. Check exclusions: candidate not in required exclusions, vice versa
     """
-    # Normalize inputs
     required_name = _extract_location_name(required_location)
     candidate_name = _extract_location_name(candidate_location)
 
@@ -74,79 +119,174 @@ def match_location_simple(
     if not required_name:
         return True
 
-    # Rule 2: Name equality
-    if required_name != candidate_name:
-        return False
+    # Rule 2: Try coordinate-based matching first
+    coord_match = match_location_by_coordinates(
+        required_location,
+        candidate_location,
+        max_distance_km
+    )
+
+    if coord_match is not None:
+        if not coord_match:
+            return False
+        # Coordinates match - continue to check exclusions
+    else:
+        # Coordinate matching failed - fall back to name matching
+        canonical_match = _match_canonical_names(required_location, candidate_location)
+
+        if canonical_match is not None:
+            if not canonical_match:
+                return False
+        else:
+            # Final fallback: simple string equality
+            if required_name != candidate_name:
+                return False
 
     # Rule 3: Check exclusions
-    # Candidate location must not be in requester's exclusions
-    if candidate_name in required_exclusions:
+    if _is_location_in_exclusions(candidate_location, required_exclusions):
         return False
 
-    # Requester's location must not be in candidate's exclusions
-    if required_name in candidate_exclusions:
+    if _is_location_in_exclusions(required_location, candidate_exclusions):
         return False
 
     return True
+
+
+def _match_canonical_names(
+    location1: Union[str, Dict],
+    location2: Union[str, Dict]
+) -> Optional[bool]:
+    """Match locations using canonical names from geocoding."""
+    canonical1 = _get_canonical_name(location1)
+    canonical2 = _get_canonical_name(location2)
+
+    if canonical1 is None or canonical2 is None:
+        return None
+
+    return canonical1.lower() == canonical2.lower()
+
+
+def _get_canonical_name(location: Union[str, Dict, None]) -> Optional[str]:
+    """Get canonical name for a location."""
+    if not location:
+        return None
+
+    if isinstance(location, dict):
+        if "canonical_name" in location and location["canonical_name"]:
+            return location["canonical_name"]
+
+    return None
+
+
+def _is_location_in_exclusions(
+    location: Union[str, Dict],
+    exclusions: List[str]
+) -> bool:
+    """Check if a location is in the exclusion list."""
+    if not exclusions:
+        return False
+
+    location_name = _extract_location_name(location)
+
+    # Simple string match first
+    if location_name in exclusions:
+        return True
+
+    # Try canonical name match
+    canonical = _get_canonical_name(location)
+    if canonical and canonical.lower() in exclusions:
+        return True
+
+    # Try coordinate-based exclusion check
+    for excluded_name in exclusions:
+        coord_match = match_location_by_coordinates(
+            location,
+            excluded_name,
+            max_distance_km=DEFAULT_MAX_DISTANCE_KM
+        )
+        if coord_match is True:
+            return True
+
+    return False
 
 
 def match_location_route(
     required_route: Dict,
     candidate_route: Dict,
     required_exclusions: List[str],
-    candidate_exclusions: List[str]
+    candidate_exclusions: List[str],
+    max_distance_km: float = DEFAULT_MAX_DISTANCE_KM
 ) -> bool:
     """
-    Match route-based locations (origin → destination).
+    Match route-based locations (origin -> destination) using coordinates.
 
-    For route mode, both origin and destination must match.
-
-    Args:
-        required_route: Required route {"origin": "X", "destination": "Y"}
-        candidate_route: Candidate route {"origin": "A", "destination": "B"}
-        required_exclusions: Location exclusions from requester
-        candidate_exclusions: Location exclusions from candidate
-
-    Returns:
-        True if routes match, False otherwise
-
-    Examples:
-        >>> match_location_route(
-        ...     {"origin": "bangalore", "destination": "goa"},
-        ...     {"origin": "bangalore", "destination": "goa"},
-        ...     [], []
-        ... )
-        True
-
-        >>> match_location_route(
-        ...     {"origin": "bangalore", "destination": "goa"},
-        ...     {"origin": "delhi", "destination": "goa"},
-        ...     [], []
-        ... )
-        False
+    For route mode, both origin and destination must match within distance threshold.
     """
-    # Extract origins and destinations
-    req_origin = required_route.get("origin", "").lower().strip()
-    req_dest = required_route.get("destination", "").lower().strip()
-    cand_origin = candidate_route.get("origin", "").lower().strip()
-    cand_dest = candidate_route.get("destination", "").lower().strip()
+    req_origin_loc = _build_route_point_location(required_route, "origin")
+    req_dest_loc = _build_route_point_location(required_route, "destination")
+    cand_origin_loc = _build_route_point_location(candidate_route, "origin")
+    cand_dest_loc = _build_route_point_location(candidate_route, "destination")
 
-    # Both origin and destination must match
-    if req_origin != cand_origin:
-        return False
-    if req_dest != cand_dest:
+    # Match origin
+    origin_match = _match_route_points(req_origin_loc, cand_origin_loc, max_distance_km)
+    if not origin_match:
         return False
 
-    # Check exclusions for both origin and destination
-    for location in [cand_origin, cand_dest]:
-        if location in required_exclusions:
-            return False
+    # Match destination
+    dest_match = _match_route_points(req_dest_loc, cand_dest_loc, max_distance_km)
+    if not dest_match:
+        return False
 
-    for location in [req_origin, req_dest]:
-        if location in candidate_exclusions:
-            return False
+    # Check exclusions
+    if _is_location_in_exclusions(cand_origin_loc, required_exclusions):
+        return False
+    if _is_location_in_exclusions(cand_dest_loc, required_exclusions):
+        return False
+    if _is_location_in_exclusions(req_origin_loc, candidate_exclusions):
+        return False
+    if _is_location_in_exclusions(req_dest_loc, candidate_exclusions):
+        return False
 
     return True
+
+
+def _build_route_point_location(route: Dict, point_type: str) -> Dict:
+    """Build a location dict from route point (origin or destination)."""
+    location = {}
+
+    name = route.get(point_type, "")
+    if name:
+        location["name"] = name.lower().strip() if isinstance(name, str) else name
+
+    coord_key = f"{point_type}_coordinates"
+    if coord_key in route and route[coord_key]:
+        location["coordinates"] = route[coord_key]
+
+    canonical_key = f"{point_type}_canonical"
+    if canonical_key in route and route[canonical_key]:
+        location["canonical_name"] = route[canonical_key]
+
+    return location
+
+
+def _match_route_points(
+    point1: Dict,
+    point2: Dict,
+    max_distance_km: float
+) -> bool:
+    """Match two route points using coordinate matching with string fallback."""
+    coord_match = match_location_by_coordinates(point1, point2, max_distance_km)
+    if coord_match is not None:
+        return coord_match
+
+    canonical_match = _match_canonical_names(point1, point2)
+    if canonical_match is not None:
+        return canonical_match
+
+    name1 = _extract_location_name(point1)
+    name2 = _extract_location_name(point2)
+
+    return name1 == name2
 
 
 def match_location_v2(
@@ -155,42 +295,29 @@ def match_location_v2(
     required_exclusions: List[str],
     candidate_location: Union[str, Dict],
     candidate_mode: str,
-    candidate_exclusions: List[str]
+    candidate_exclusions: List[str],
+    max_distance_km: float = DEFAULT_MAX_DISTANCE_KM
 ) -> bool:
     """
-    V2 location matching with mode support.
+    V3 location matching with mode support and coordinate-based distance.
 
     Modes:
-    - near_me: Match if no explicit location, or if locations match
-    - explicit: Strict name matching required
-    - target_only: Match any candidate (requester moving to target)
-    - route: Both origin and destination must match
+    - near_me: Match if locations within distance threshold
+    - explicit: Strict coordinate/name matching required
+    - target_only: Match any candidate at/near target
+    - route: Both origin and destination must match (within threshold)
     - global: Always match (remote/anywhere)
-
-    Args:
-        required_location: Requester's location
-        required_mode: Requester's location mode
-        required_exclusions: Requester's location exclusions
-        candidate_location: Candidate's location
-        candidate_mode: Candidate's location mode
-        candidate_exclusions: Candidate's location exclusions
-
-    Returns:
-        True if locations compatible, False otherwise
     """
     # Normalize modes
     required_mode = required_mode.lower().strip() if required_mode else "near_me"
     candidate_mode = candidate_mode.lower().strip() if candidate_mode else "near_me"
 
-    # Mode: global (remote/anywhere)
-    # Always matches regardless of location
+    # Mode: global
     if required_mode == "global" or candidate_mode == "global":
         return True
 
     # Mode: route
-    # Both must have route structure
     if required_mode == "route" or candidate_mode == "route":
-        # Check if both have route structure
         req_is_route = isinstance(required_location, dict) and "origin" in required_location
         cand_is_route = isinstance(candidate_location, dict) and "origin" in candidate_location
 
@@ -199,28 +326,25 @@ def match_location_v2(
                 required_location,
                 candidate_location,
                 required_exclusions,
-                candidate_exclusions
+                candidate_exclusions,
+                max_distance_km
             )
         else:
-            # Route mode but missing route structure → no match
             return False
 
     # Mode: target_only
-    # Requester is moving to target, will match any candidate at target
     if required_mode == "target_only":
-        # Just check requester's target isn't in candidate's exclusions
-        required_name = _extract_location_name(required_location)
-        if required_name and required_name in candidate_exclusions:
+        if _is_location_in_exclusions(required_location, candidate_exclusions):
             return False
         return True
 
     # Mode: explicit or near_me
-    # Use simple name-based matching
     return match_location_simple(
         required_location,
         candidate_location,
         required_exclusions,
-        candidate_exclusions
+        candidate_exclusions,
+        max_distance_km
     )
 
 
@@ -229,28 +353,7 @@ def match_location_v2(
 # ============================================================================
 
 def _extract_location_name(location: Union[str, Dict, None]) -> str:
-    """
-    Extract location name from location object or string.
-
-    Args:
-        location: Location (string or dict with "name" field)
-
-    Returns:
-        Normalized location name (lowercase, trimmed)
-
-    Examples:
-        >>> _extract_location_name("Bangalore")
-        'bangalore'
-
-        >>> _extract_location_name({"name": "Bangalore"})
-        'bangalore'
-
-        >>> _extract_location_name(None)
-        ''
-
-        >>> _extract_location_name({})
-        ''
-    """
+    """Extract location name from location object or string."""
     if not location:
         return ""
 
@@ -265,23 +368,21 @@ def _extract_location_name(location: Union[str, Dict, None]) -> str:
 
 
 def normalize_location_exclusions(exclusions: List[str]) -> List[str]:
-    """
-    Normalize location exclusions to lowercase, trimmed strings.
-
-    Args:
-        exclusions: List of location exclusions
-
-    Returns:
-        Normalized list
-
-    Examples:
-        >>> normalize_location_exclusions(["Whitefield", "  Airport  "])
-        ['whitefield', 'airport']
-    """
+    """Normalize location exclusions to lowercase, trimmed strings."""
     if not exclusions:
         return []
 
-    return [e.lower().strip() for e in exclusions if e]
+    result = []
+    for e in exclusions:
+        if not e:
+            continue
+        if isinstance(e, dict) and "concept_id" in e:
+            concept_id = e.get("concept_id", "")
+            if concept_id:
+                result.append(str(concept_id).lower().strip())
+        elif isinstance(e, str):
+            result.append(e.lower().strip())
+    return result
 
 
 # ============================================================================
@@ -292,30 +393,17 @@ def match_location_constraints(
     required_location_obj: Dict,
     candidate_other_obj: Dict,
     location_exclusions: List[str] = None,
-    other_location_exclusions: List[str] = None
+    other_location_exclusions: List[str] = None,
+    max_distance_km: float = None
 ) -> bool:
     """
     Compatibility wrapper for OLD schema location matching interface.
 
-    Maps OLD interface to NEW v2 matching logic.
-
-    OLD schema format (after transformation from NEW):
-    {
-        "location": "bangalore",  # string or dict
-        "locationmode": "explicit",
-        "locationexclusions": ["whitefield"]
-    }
-
-    Args:
-        required_location_obj: Dict with "location", "locationmode", "locationexclusions"
-        candidate_other_obj: Dict with "location", "locationmode", "locationexclusions"
-        location_exclusions: Optional override for required exclusions
-        other_location_exclusions: Optional override for candidate exclusions
-
-    Returns:
-        True if locations match, False otherwise
+    Maps OLD interface to V3 matching logic with coordinate support.
     """
-    # Extract from dicts
+    if max_distance_km is None:
+        max_distance_km = DEFAULT_MAX_DISTANCE_KM
+
     required_location = required_location_obj.get("location", "")
     required_mode = required_location_obj.get("locationmode", "near_me")
     required_exclusions = location_exclusions or required_location_obj.get("locationexclusions", [])
@@ -324,16 +412,15 @@ def match_location_constraints(
     candidate_mode = candidate_other_obj.get("locationmode", "near_me")
     candidate_exclusions = other_location_exclusions or candidate_other_obj.get("locationexclusions", [])
 
-    # Normalize exclusions
     required_exclusions = normalize_location_exclusions(required_exclusions)
     candidate_exclusions = normalize_location_exclusions(candidate_exclusions)
 
-    # Call v2 matching
     return match_location_v2(
         required_location,
         required_mode,
         required_exclusions,
         candidate_location,
         candidate_mode,
-        candidate_exclusions
+        candidate_exclusions,
+        max_distance_km
     )

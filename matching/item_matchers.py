@@ -71,7 +71,7 @@ def _exact_match_only(candidate_value: str, required_value: str) -> bool:
 # M-07: ITEM TYPE EQUALITY RULE
 # ============================================================================
 
-def match_item_type(required_item: Item, candidate_item: Item) -> bool:
+def match_item_type(required_item: Item, candidate_item: Item, implies_fn: ImplicationFn = None) -> bool:
     """
     Check if item types match.
 
@@ -87,27 +87,18 @@ def match_item_type(required_item: Item, candidate_item: Item) -> bool:
 
     Pass Condition:
         normalize(required.type) = normalize(candidate.type)
+        OR implies_fn(candidate.type, required.type) = True
 
     Fail Condition:
-        required.type ≠ candidate.type
+        required.type ≠ candidate.type AND no semantic implication
 
     Args:
         required_item: Item from listing A (what user wants)
         candidate_item: Item from listing B (what is offered)
+        implies_fn: Optional semantic implication function for type matching
 
     Returns:
         True if types match, False otherwise
-
-    Examples:
-        match_item_type(
-            {"type": "smartphone", ...},
-            {"type": "smartphone", ...}
-        ) → True
-
-        match_item_type(
-            {"type": "smartphone", ...},
-            {"type": "laptop", ...}
-        ) → False
 
     Raises:
         KeyError: If "type" field missing (programmer error - Phase 2.1 should prevent)
@@ -120,7 +111,14 @@ def match_item_type(required_item: Item, candidate_item: Item) -> bool:
         raise KeyError("Candidate item missing 'type' field (programmer error)")
 
     # M-07: Type equality (case-insensitive, already normalized)
-    return required_item["type"] == candidate_item["type"]
+    if required_item["type"] == candidate_item["type"]:
+        return True
+
+    # Fallback: semantic implication for type matching (canonicalization)
+    if implies_fn is not None:
+        return implies_fn(candidate_item["type"], required_item["type"])
+
+    return False
 
 
 # ============================================================================
@@ -482,7 +480,7 @@ def item_matches(
         ) → False
     """
     # M-07: Type must match (short-circuit on failure)
-    if not match_item_type(required_item, candidate_item):
+    if not match_item_type(required_item, candidate_item, implies_fn):
         return False
 
     # M-08: Categorical subset (short-circuit on failure)

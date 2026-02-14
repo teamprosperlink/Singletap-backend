@@ -1,0 +1,319 @@
+{
+  "suite_name": "Preprocessor Unit Test Suite",
+  "summary": {
+    "total_tests": 22,
+    "passed": 22,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "pass_rate": "100.0%",
+    "duration_seconds": 3.28
+  },
+  "timing": {
+    "start_time": "2026-02-13T17:14:07.141921",
+    "end_time": "2026-02-13T17:14:10.422100",
+    "duration_seconds": 3.28
+  },
+  "environment": {
+    "hardware": {
+      "cpu": {
+        "processor": "ARMv8 (64-bit) Family 8 Model 1 Revision 201, Qualcomm Technologies Inc",
+        "architecture": "ARM64",
+        "cores": 8
+      },
+      "memory": {
+        "total_gb": 15.61
+      },
+      "os": {
+        "system": "Windows",
+        "release": "11",
+        "version": "10.0.26100",
+        "platform": "Windows-11-10.0.26100-SP0"
+      },
+      "python": {
+        "version": "3.13.12",
+        "implementation": "CPython",
+        "compiler": "MSC v.1944 64 bit (AMD64)"
+      },
+      "captured_at": "2026-02-13T17:14:07.139406"
+    },
+    "infrastructure": {
+      "type": "Local Development",
+      "environment_variables": {
+        "USE_NEW_PIPELINE": "1",
+        "USE_HYBRID_SCORER": "0",
+        "BABELNET_API_KEY": "***SET***"
+      },
+      "working_directory": "D:\\vriddhi-github\\Singletap-backend",
+      "user": "bhand"
+    }
+  },
+  "metadata": {},
+  "test_cases": [
+    {
+      "name": "ABBR1: 'ac' -> 'air conditioning'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.12969970703125,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Common abbreviation expansion"
+      }
+    },
+    {
+      "name": "ABBR2: 'tv' -> 'television'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 3279.296398162842,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Common abbreviation expansion"
+      }
+    },
+    {
+      "name": "ABBR3: 'pc' -> 'personal computer'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.1354217529296875,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Common abbreviation expansion"
+      }
+    },
+    {
+      "name": "ABBR4: 'suv' -> 'sport utility vehicle'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.009298324584960938,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Vehicle abbreviation expansion"
+      }
+    },
+    {
+      "name": "ABBR5: 'ssd' -> 'solid state drive'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.0069141387939453125,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Tech abbreviation expansion"
+      }
+    },
+    {
+      "name": "MWE1: 'barely used' -> 'used'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.024318695068359375,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Reduces multi-word expression to core meaning"
+      }
+    },
+    {
+      "name": "MWE2: 'brand new' -> 'new'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.015020370483398438,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Reduces emphasis phrase to core meaning"
+      }
+    },
+    {
+      "name": "MWE3: 'mint condition' -> 'new'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.010728836059570312,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Maps condition phrase to standard term"
+      }
+    },
+    {
+      "name": "MWE4: 'pre-owned' -> 'used'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.009059906005859375,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Maps euphemism to standard term"
+      }
+    },
+    {
+      "name": "MWE5: 'gently used' -> 'used'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.010013580322265625,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Reduces qualified phrase to core meaning"
+      }
+    },
+    {
+      "name": "SPELL1: 'colour' -> 'color'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.011205673217773438,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "British to American spelling"
+      }
+    },
+    {
+      "name": "SPELL2: 'grey' -> 'gray'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.01049041748046875,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "British to American spelling"
+      }
+    },
+    {
+      "name": "SPELL3: 'tyre' -> 'tire'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.010967254638671875,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "British to American spelling"
+      }
+    },
+    {
+      "name": "SPELL4: 'aluminium' -> 'aluminum'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.008344650268554688,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "British to American spelling"
+      }
+    },
+    {
+      "name": "SPELL5: 'centre' -> 'center'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.008821487426757812,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "British to American spelling"
+      }
+    },
+    {
+      "name": "COMP1: 'second hand' -> 'secondhand' (registry)",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.06318092346191406,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Spaces removed for registry lookup"
+      }
+    },
+    {
+      "name": "COMP2: 'second-hand' -> 'secondhand' (registry)",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.0057220458984375,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Hyphens removed for registry lookup"
+      }
+    },
+    {
+      "name": "COMP3: 'air_conditioning' -> 'airconditioning' (registry)",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.003337860107421875,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Underscores removed for registry lookup"
+      }
+    },
+    {
+      "name": "DEM1: 'indian' + nationality -> 'india'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.018358230590820312,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Demonym resolved when attribute is nationality"
+      }
+    },
+    {
+      "name": "DEM2: 'french' + origin -> 'france'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.012159347534179688,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Demonym resolved when attribute is origin"
+      }
+    },
+    {
+      "name": "DEM3: 'japanese' + country -> 'japan'",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.010728836059570312,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Demonym resolved when attribute is country"
+      }
+    },
+    {
+      "name": "DEM4: 'indian' + food (no resolution)",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 0.011205673217773438,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Demonym NOT resolved when attribute is not nationality-related"
+      }
+    }
+  ],
+  "generated_at": "2026-02-13T17:14:10.426562"
+}

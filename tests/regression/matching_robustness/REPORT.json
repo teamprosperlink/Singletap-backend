@@ -1,0 +1,295 @@
+{
+  "suite_name": "Matching Robustness Test Suite",
+  "summary": {
+    "total_tests": 20,
+    "passed": 20,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "pass_rate": "100.0%",
+    "duration_seconds": 134.509
+  },
+  "timing": {
+    "start_time": "2026-02-13T17:36:14.075921",
+    "end_time": "2026-02-13T17:38:28.584990",
+    "duration_seconds": 134.509
+  },
+  "environment": {
+    "hardware": {
+      "cpu": {
+        "processor": "ARMv8 (64-bit) Family 8 Model 1 Revision 201, Qualcomm Technologies Inc",
+        "architecture": "ARM64",
+        "cores": 8
+      },
+      "memory": {
+        "total_gb": 15.61
+      },
+      "os": {
+        "system": "Windows",
+        "release": "11",
+        "version": "10.0.26100",
+        "platform": "Windows-11-10.0.26100-SP0"
+      },
+      "python": {
+        "version": "3.13.12",
+        "implementation": "CPython",
+        "compiler": "MSC v.1944 64 bit (AMD64)"
+      },
+      "captured_at": "2026-02-13T17:36:14.075142"
+    },
+    "infrastructure": {
+      "type": "Local Development",
+      "environment_variables": {
+        "USE_NEW_PIPELINE": "1",
+        "USE_HYBRID_SCORER": "0",
+        "BABELNET_API_KEY": "***SET***"
+      },
+      "working_directory": "D:\\vriddhi-github\\Singletap-backend",
+      "user": "bhand"
+    }
+  },
+  "metadata": {},
+  "test_cases": [
+    {
+      "name": "R1: 'sofa' vs 'couch' (furniture synonyms)",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 14288.161993026733,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Tests that sofa and couch are recognized as synonyms"
+      }
+    },
+    {
+      "name": "R2: 'apartment' vs 'flat' (real estate synonyms)",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 404.48856353759766,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Tests that apartment and flat are recognized as synonyms"
+      }
+    },
+    {
+      "name": "R3: 'puppy' vs 'dog' (specific buyer, broad seller = NO MATCH)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 11872.573852539062,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Buyer wants puppy but seller only offers dog (not every dog is a puppy)"
+      }
+    },
+    {
+      "name": "R4: 'physician' vs 'doctor' (healthcare synonyms)",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 395.19596099853516,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Tests that physician and doctor are recognized as synonyms"
+      }
+    },
+    {
+      "name": "R5: 'bicycle' vs 'bike' (abbreviation synonym)",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 404.74414825439453,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Tests that bicycle and bike are recognized as the same"
+      }
+    },
+    {
+      "name": "R6: 'guitar' buyer vs 'acoustic guitar' seller = MATCH",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 1778.615951538086,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Broad buyer (guitar) should match specific seller (acoustic guitar)"
+      }
+    },
+    {
+      "name": "R7: 'hairdresser' vs 'hair stylist' (beauty synonyms)",
+      "status": "PASS",
+      "expected": true,
+      "actual": true,
+      "duration_ms": 411.67473793029785,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Tests that hairdresser and hair stylist are synonyms"
+      }
+    },
+    {
+      "name": "R8: 'farmer' vs 'farm worker' (different roles = NO MATCH)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 12707.883596420288,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Farmer and farm worker are different roles"
+      }
+    },
+    {
+      "name": "R9: 'novel' vs 'book' (specific buyer, broad seller = NO MATCH)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 35586.43102645874,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Buyer wants novel but seller only offers book (not every book is a novel)"
+      }
+    },
+    {
+      "name": "R10: 'gym trainer' vs 'fitness instructor' (specific vs broad = NO MATCH)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 1420.0067520141602,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Gym trainer is specific, fitness instructor is broader"
+      }
+    },
+    {
+      "name": "R11: 'cat' vs 'dog' (different pets = NO MATCH)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 1370.4414367675781,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Cat and dog are completely different pets"
+      }
+    },
+    {
+      "name": "R12: 'carpenter' vs 'painter' (different trades = NO MATCH)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 26333.455562591553,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Carpenter and painter are different construction trades"
+      }
+    },
+    {
+      "name": "R13: 'table' furniture vs 'table reservation' (different domains = NO MATCH)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 663.9635562896729,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Same word but completely different meanings and domains"
+      }
+    },
+    {
+      "name": "R14: Both buyers for sofa (same subintent = NO MATCH)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 0.24962425231933594,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Two buyers cannot match - need complementary subintents"
+      }
+    },
+    {
+      "name": "R15: 'yoga' vs 'pilates' instructor (different specialties = NO MATCH)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 8219.73466873169,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Yoga and pilates are different fitness disciplines"
+      }
+    },
+    {
+      "name": "R16: Orange fruit vs Orange t-shirt (different contexts = NO MATCH)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 875.2262592315674,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Orange as fruit vs orange as color on t-shirt"
+      }
+    },
+    {
+      "name": "R17: 'piano' product vs 'piano lessons' service (different intents = NO MATCH)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 849.571704864502,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Buying a piano is different from seeking piano lessons"
+      }
+    },
+    {
+      "name": "R18: 'driving lessons' vs 'delivery driving' (different services = NO MATCH)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 381.6111087799072,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Learning to drive vs providing delivery service"
+      }
+    },
+    {
+      "name": "R19: 'sedan' vs 'truck' (different vehicle types = NO MATCH)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 11294.897317886353,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Sedan and truck are different vehicle categories"
+      }
+    },
+    {
+      "name": "R20: 'dentist' buyer vs 'doctor' seller (specific vs broad = NO MATCH)",
+      "status": "PASS",
+      "expected": false,
+      "actual": false,
+      "duration_ms": 5249.492645263672,
+      "error_message": null,
+      "stack_trace": null,
+      "metadata": {
+        "description": "Buyer wants dentist specifically, seller offers general doctor"
+      }
+    }
+  ],
+  "generated_at": "2026-02-13T17:38:28.585909"
+}
