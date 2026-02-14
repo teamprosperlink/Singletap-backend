@@ -1,0 +1,722 @@
+{
+  "timestamp": "2026-02-14T10:58:33.128687",
+  "total_tests": 30,
+  "passed": 0,
+  "failed": 1,
+  "errors": 29,
+  "test_results": [
+    {
+      "id": "P01",
+      "category": "Product - Technology & Electronics",
+      "query": "selling my used MacBook Pro with 16GB RAM and 512GB SSD for 80k",
+      "expected": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "type": "laptop",
+        "categorical_keys": [
+          "brand",
+          "condition"
+        ],
+        "has_numeric": true
+      },
+      "actual": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "technology & electronics"
+        ],
+        "items": [
+          {
+            "type": "laptop",
+            "categorical": {
+              "condition": "used",
+              "brand": "apple",
+              "model": "macbook pro"
+            },
+            "range": {
+              "capacity": [
+                {
+                  "type": "memory",
+                  "min": 16,
+                  "max": 16,
+                  "unit": "gb"
+                },
+                {
+                  "type": "storage",
+                  "min": 512,
+                  "max": 512,
+                  "unit": "gb"
+                }
+              ],
+              "cost": [
+                {
+                  "type": "price",
+                  "min": 80000,
+                  "max": 80000,
+                  "unit": "local"
+                }
+              ]
+            }
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "self_attributes": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is offering to sell a tangible item. A MacBook Pro was extracted as the item type, with condition marked as used. The memory and storage capacities were extracted as exact values, and the price was captured as a fixed amount. No location was explicitly mentioned, so local matching applies."
+      },
+      "passed": false,
+      "issues": [
+        "Domain mismatch: got ['technology & electronics'], expected ['Technology & Electronics']"
+      ]
+    },
+    {
+      "id": "P02",
+      "category": "Product - Pets & Animals",
+      "query": "looking to buy a golden retriever puppy under 25000",
+      "expected": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "type": "puppy",
+        "categorical_keys": [
+          "breed"
+        ],
+        "has_numeric": true
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "P03",
+      "category": "Product - Automotive & Vehicles",
+      "query": "want to buy a second hand Toyota Fortuner diesel automatic under 20 lakhs",
+      "expected": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "type": "car",
+        "categorical_keys": [
+          "brand",
+          "model",
+          "condition",
+          "fuel",
+          "transmission"
+        ],
+        "has_numeric": true
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "P04",
+      "category": "Product - Real Estate & Property",
+      "query": "2BHK furnished flat for rent in Koramangala around 30k per month",
+      "expected": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Real Estate & Property"
+        ],
+        "type": "apartment",
+        "categorical_keys": [
+          "furnishing"
+        ],
+        "has_numeric": true
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "P05",
+      "category": "Product - Fashion & Apparel",
+      "query": "selling brand new Nike Air Jordan size 10 for 15000",
+      "expected": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Fashion & Apparel"
+        ],
+        "type": "shoes",
+        "categorical_keys": [
+          "brand",
+          "condition"
+        ],
+        "has_numeric": true
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "P06",
+      "category": "Product - Home & Furniture",
+      "query": "need a wooden dining table with 6 chairs budget 50k",
+      "expected": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Home & Furniture"
+        ],
+        "type": "dining table",
+        "has_numeric": true
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "P07",
+      "category": "Product - Healthcare & Wellness",
+      "query": "looking for a treadmill with at least 3HP motor",
+      "expected": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain_contains": "Healthcare",
+        "type": "treadmill",
+        "has_numeric": true
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "P08",
+      "category": "Product - Sports & Outdoors",
+      "query": "selling my Trek mountain bike 21 speed gear for 35000",
+      "expected": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Sports & Outdoors"
+        ],
+        "type": "bicycle",
+        "categorical_keys": [
+          "brand"
+        ],
+        "has_numeric": true
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "P09",
+      "category": "Product - Books, Media & Entertainment",
+      "query": "want to buy Harry Potter complete book set under 3000",
+      "expected": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Books, Media & Entertainment"
+        ],
+        "type": "book",
+        "has_numeric": true
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "P10",
+      "category": "Product - Beauty & Cosmetics",
+      "query": "selling MAC lipstick collection 10 pieces for 5000",
+      "expected": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Beauty & Cosmetics"
+        ],
+        "type": "lipstick",
+        "categorical_keys": [
+          "brand"
+        ],
+        "has_numeric": true
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "S01",
+      "category": "Service - Construction & Trades",
+      "query": "need a Kannada speaking plumber urgently in Jayanagar",
+      "expected": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Construction & Trades"
+        ],
+        "type": "plumbing",
+        "other_party_language": "kannada"
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "S02",
+      "category": "Service - Education & Training",
+      "query": "looking for a math tutor for 10th grade CBSE with 5 years experience",
+      "expected": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Education & Training"
+        ],
+        "type": "tutoring",
+        "has_experience_constraint": true
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "S03",
+      "category": "Service - Personal Services",
+      "query": "I am a professional makeup artist with 8 years experience available for weddings",
+      "expected": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "type": "makeup",
+        "has_self_attributes": true
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "S04",
+      "category": "Service - Finance, Insurance & Legal",
+      "query": "need a CA for GST filing and tax consultation",
+      "expected": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Finance, Insurance & Legal"
+        ],
+        "type_contains": [
+          "accounting",
+          "tax",
+          "consultation"
+        ]
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "S05",
+      "category": "Service - Repair & Maintenance Services",
+      "query": "AC repair needed urgently, Samsung split AC not cooling",
+      "expected": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Repair & Maintenance Services"
+        ],
+        "type_contains": [
+          "repair",
+          "ac"
+        ]
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "S06",
+      "category": "Service - Transportation & Logistics",
+      "query": "need a driver for daily office commute in Bangalore",
+      "expected": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Transportation & Logistics"
+        ],
+        "type": "driver"
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "S07",
+      "category": "Service - Marketing, Advertising & Design",
+      "query": "I'm a graphic designer with expertise in logo design and branding",
+      "expected": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Marketing, Advertising & Design"
+        ],
+        "type_contains": [
+          "design",
+          "graphic"
+        ]
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "S08",
+      "category": "Service - Hospitality, Travel & Accommodation",
+      "query": "looking for a caterer for 200 guests wedding reception",
+      "expected": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain_contains": "Hospitality",
+        "type": "catering"
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "M01",
+      "category": "Mutual - Roommates",
+      "query": "I am a 25 year old female IT professional looking for a female roommate in Koramangala, non-smoker preferred",
+      "expected": {
+        "intent": "mutual",
+        "subintent": "connect",
+        "primary_mutual_category": [
+          "Roommates"
+        ],
+        "has_self_attributes": true,
+        "has_other_party_preferences": true
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "M02",
+      "category": "Mutual - Fitness",
+      "query": "looking for a gym buddy in HSR Layout, morning 6am workout",
+      "expected": {
+        "intent": "mutual",
+        "subintent": "connect",
+        "primary_mutual_category": [
+          "Fitness"
+        ]
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "M03",
+      "category": "Mutual - Travel",
+      "query": "anyone interested in a Ladakh bike trip next month?",
+      "expected": {
+        "intent": "mutual",
+        "subintent": "connect",
+        "primary_mutual_category_contains": [
+          "Travel",
+          "Adventure"
+        ]
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "M04",
+      "category": "Mutual - Professional",
+      "query": "looking for a technical cofounder for my AI startup",
+      "expected": {
+        "intent": "mutual",
+        "subintent": "connect",
+        "primary_mutual_category": [
+          "Professional"
+        ]
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "M05",
+      "category": "Mutual - Study",
+      "query": "UPSC aspirants study group forming in Rajajinagar",
+      "expected": {
+        "intent": "mutual",
+        "subintent": "connect",
+        "primary_mutual_category": [
+          "Study"
+        ]
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "E01",
+      "category": "Edge Case - Compound Type Decomposition",
+      "query": "selling a Persian cat 6 months old",
+      "expected": {
+        "intent": "product",
+        "subintent": "sell",
+        "type": "cat",
+        "categorical_keys": [
+          "breed"
+        ],
+        "breed_value": "persian"
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "E02",
+      "category": "Edge Case - Polysemy Resolution",
+      "query": "need a notebook for coding under 60k",
+      "expected": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "type": "laptop",
+        "has_numeric": true
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "E03",
+      "category": "Edge Case - Fuzzy Quantity",
+      "query": "looking for a developer with around 5 years experience",
+      "expected": {
+        "intent": "service",
+        "subintent": "seek",
+        "has_experience_range": true
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "E04",
+      "category": "Edge Case - Life-Stage Noun",
+      "query": "want to adopt a labrador puppy",
+      "expected": {
+        "intent": "product",
+        "subintent": "buy",
+        "type": "puppy",
+        "categorical_keys": [
+          "breed"
+        ],
+        "breed_value": "labrador"
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "E05",
+      "category": "Edge Case - Multiplier Expansion",
+      "query": "selling plot in Whitefield for 1.5 crore",
+      "expected": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Real Estate & Property"
+        ],
+        "price_value": 15000000
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "E06",
+      "category": "Edge Case - Breed as Standalone",
+      "query": "selling a beagle with all vaccinations done",
+      "expected": {
+        "intent": "product",
+        "subintent": "sell",
+        "type": "dog",
+        "categorical_keys": [
+          "breed"
+        ],
+        "breed_value": "beagle"
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    },
+    {
+      "id": "E07",
+      "category": "Edge Case - Multiple Items",
+      "query": "selling iPhone 14 Pro and AirPods Pro together for 90k",
+      "expected": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "multiple_items": true,
+        "has_numeric": true
+      },
+      "actual": {
+        "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      },
+      "passed": false,
+      "issues": [
+        "API Error: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=30)"
+      ]
+    }
+  ],
+  "summary_by_category": {
+    "Product": {
+      "passed": 0,
+      "failed": 10,
+      "total": 10
+    },
+    "Service": {
+      "passed": 0,
+      "failed": 8,
+      "total": 8
+    },
+    "Mutual": {
+      "passed": 0,
+      "failed": 5,
+      "total": 5
+    },
+    "Edge Case": {
+      "passed": 0,
+      "failed": 7,
+      "total": 7
+    }
+  }
+}

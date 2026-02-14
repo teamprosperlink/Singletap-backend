@@ -3,7 +3,24 @@ GLOBAL_REFERENCE_CONTEXT.md
 # VRIDDHI — GLOBAL REFERENCE CONTEXT# (READ-ONLY · NEVER EDITED · INJECTED INTO EVERY STAGE)
 
 
-### domains must follow these don't invent newer domains try to fit in this 
+### domains must follow these don't invent newer domains try to fit in this
+
+----------------------------------------------------------------
+DOMAIN FORMAT RULES (CRITICAL FOR MATCHING)
+----------------------------------------------------------------
+
+EXACT FORMAT: Use LOWERCASE with & symbol (for deterministic matching)
+- ✅ "pets & animals" (CORRECT - lowercase, full name)
+- ✅ "technology & electronics" (CORRECT - lowercase)
+- ❌ "pets" (WRONG - use full domain name)
+- ❌ "Pets & Animals" (WRONG - use lowercase)
+- ❌ "Pets and Animals" (WRONG - use & not "and")
+
+Output format: Array with exact lowercase string
+- ✅ domain: ["pets & animals"]
+- ✅ domain: ["technology & electronics"]
+- ❌ domain: ["Technology & Electronics"]
+- ❌ domain: ["pets"]
 
 10. FIXED DOMAIN/CATEGORY LISTS
 
@@ -1343,6 +1360,97 @@ skill_exchange
 
 language_exchange
 
+5.1.1 Compound Type Decomposition (MANDATORY)
+
+When a query contains a compound phrase (modifier + noun), ALWAYS decompose:
+
+LINGUISTIC RULE (HEAD-FINAL):
+In English, compound nouns are HEAD-FINAL. The LAST/RIGHTMOST noun is the "head" (what it IS).
+Preceding words are MODIFIERS (properties/attributes of it).
+
+DECOMPOSITION PROCESS:
+1. Identify the RIGHTMOST/HEAD noun → this becomes `type`
+2. Identify MODIFYING words (adjectives, qualifying nouns) → these become `categorical` attributes
+3. Apply market noun standardization to `type` if needed
+
+| Query Phrase | type | categorical |
+|--------------|------|-------------|
+| "golden retriever puppy" | puppy | categorical: { breed: "golden retriever" } |
+| "Persian cat" | cat | categorical: { breed: "persian" } |
+| "Apple iPhone" | smartphone | categorical: { brand: "apple" } |
+| "used Dell laptop" | laptop | categorical: { brand: "dell", condition: "used" } |
+| "red BMW sedan" | sedan | categorical: { brand: "bmw", color: "red" } |
+| "3 month old labrador" | dog | categorical: { breed: "labrador" }, range: { time: [{ type: "age", min: 3, max: 3, unit: "months" }] } |
+| "second hand Toyota car" | car | categorical: { brand: "toyota", condition: "used" } |
+
+CoT Decision Gate (INTERNAL ONLY):
+Q1: Is this a compound phrase (multiple words describing one thing)?
+Q2: What is the RIGHTMOST noun? → This is the HEAD/type
+Q3: What words MODIFY the head? → These go to categorical
+Q4: Does the head need market noun standardization? (e.g., "iPhone" alone → "smartphone")
+
+❌ NEVER put the full compound in type:
+- ❌ type: "golden retriever puppy"
+- ❌ type: "Apple iPhone"
+- ❌ type: "used Dell laptop"
+
+✔️ ALWAYS decompose:
+- ✔️ type: "puppy", categorical: { breed: "golden retriever" }
+- ✔️ type: "smartphone", categorical: { brand: "apple" }
+- ✔️ type: "laptop", categorical: { brand: "dell", condition: "used" }
+
+----------------------------------------------------------------
+5.1.2 LIFE-STAGE NOUNS (ANIMAL/HUMAN AGE TERMS)
+----------------------------------------------------------------
+
+Life-stage words ARE the type (they encode both species + age semantically):
+
+| Term | Type | Implicit Age | DO NOT add age constraint |
+|------|------|--------------|---------------------------|
+| "puppy" | puppy | <1 year | Puppy already implies young dog |
+| "kitten" | kitten | <1 year | Kitten already implies young cat |
+| "calf" | calf | <1 year | Calf already implies young cow |
+| "foal" | foal | <1 year | Foal already implies young horse |
+| "lamb" | lamb | <1 year | Lamb already implies young sheep |
+| "infant" | infant | 0-1 year | Type encodes age |
+| "toddler" | toddler | 1-3 years | Type encodes age |
+
+RULE: Life-stage nouns are VALID types. Do NOT decompose further.
+- ✅ "golden retriever puppy" → type: "puppy", breed: "golden retriever"
+- ✅ "labrador puppy" → type: "puppy", breed: "labrador"
+- ✅ "puppy" → type: "puppy" (no breed specified)
+- ❌ "puppy" → type: "dog", age: "young" (WRONG - redundant)
+
+WHEN AGE IS EXPLICITLY STATED, ADD IT:
+- "3 month old puppy" → type: "puppy", range: { time: [{ type: "age", min: 3, max: 3, unit: "months" }] }
+- "6 week kitten" → type: "kitten", range: { time: [{ type: "age", min: 6, max: 6, unit: "weeks" }] }
+
+BREED-AS-STANDALONE RESOLUTION:
+When only breed name is given, infer species type:
+- "labrador" → type: "dog", breed: "labrador" (labrador is a dog breed)
+- "persian" → type: "cat", breed: "persian" (persian is a cat breed)
+- "holstein" → type: "cow", breed: "holstein" (holstein is a cow breed)
+
+----------------------------------------------------------------
+5.1.3 CATEGORICAL KEY SELECTION (DOMAIN-SPECIFIC)
+----------------------------------------------------------------
+
+Different domains use different attribute keys for sub-classification:
+
+| Domain | Key | Usage |
+|--------|-----|-------|
+| Pets & Animals | breed | Animal variety (labrador, persian, beagle) |
+| Automotive & Vehicles | brand + model | Manufacturer + product line (toyota camry) |
+| Technology & Electronics | brand + model | Manufacturer + product line (apple iphone) |
+| Fashion & Apparel | brand | Manufacturer (nike, adidas) |
+| Real Estate & Property | property_type | Type of property (apartment, villa) |
+
+RULE: Use domain-appropriate keys, not invented ones.
+- ✅ categorical: { breed: "labrador" } (for pets)
+- ✅ categorical: { brand: "toyota", model: "camry" } (for vehicles)
+- ❌ categorical: { type: "labrador" } (wrong key for pets)
+- ❌ categorical: { variety: "golden retriever" } (invented key)
+
 5.2 Polysemy Handling (MANDATORY)
 
 CoT Decision Gate (USED FOR GENERATION, NOT OUTPUT)
@@ -1353,9 +1461,47 @@ Q3: Does the surrounding language clarify the base noun?
 → Map to the BASE MARKET NOUN
 
 
-✔️ “leakage in pipes” → plumbing
-✔️ “cracked phone” → smartphone
-✔️ “math teacher” → tutoring
+✔️ "leakage in pipes" → plumbing
+✔️ "cracked phone" → smartphone
+✔️ "math teacher" → tutoring
+
+----------------------------------------------------------------
+5.2.1 POLYSEMY RESOLUTION TABLE (COMMON AMBIGUOUS WORDS)
+----------------------------------------------------------------
+
+Use DOMAIN + CONTEXT to resolve ambiguous words deterministically:
+
+| Word | Domain/Context | Resolves To | Type |
+|------|----------------|-------------|------|
+| "notebook" | Technology & Electronics | laptop | laptop |
+| "notebook" | Office & Stationery | paper notebook | notebook |
+| "tablet" | Technology & Electronics | tablet computer | tablet |
+| "tablet" | Healthcare & Wellness | medicine tablet | medication |
+| "mouse" | Technology & Electronics | computer mouse | mouse |
+| "mouse" | Pets & Animals | rodent pet | mouse |
+| "coach" | Transportation & Logistics | bus/vehicle | coach |
+| "coach" | Education & Training | trainer/mentor | coaching |
+| "driver" | Technology & Electronics | software driver | driver |
+| "driver" | Transportation & Logistics | vehicle operator | driver |
+| "plant" | Agriculture & Farming | vegetation | plant |
+| "plant" | Manufacturing & Production | factory | factory |
+| "watch" | Fashion & Apparel | wristwatch | watch |
+| "watch" | Entertainment & Events | to view | (verb - ignore) |
+| "cell" | Technology & Electronics | mobile phone | smartphone |
+| "cell" | Healthcare & Wellness | biological cell | (not a product) |
+| "mac" | Technology & Electronics | Apple computer | laptop |
+| "mac" | Food & Beverage | macaroni | (context-dependent) |
+
+RESOLUTION PRIORITY:
+1. Explicit domain keyword in query → use that domain
+2. Co-occurring context words → infer domain
+3. Default to most common market meaning
+
+EXAMPLES:
+- "need a notebook for coding" → domain: Technology & Electronics → type: "laptop"
+- "need a notebook for notes" → domain: Office & Stationery → type: "notebook"
+- "mouse for gaming" → domain: Technology & Electronics → type: "mouse" (computer)
+- "pet mouse" → domain: Pets & Animals → type: "mouse" (animal)
 
 6. Attributes (INSIDE items)
 
@@ -1492,10 +1638,39 @@ Example 1
 
 Example 2
 
-“need someonewho fix  pipe leakage”
+"need someonewho fix  pipe leakage"
 
 "items": [
   { "type": "plumbing" }
+]
+
+Example 3 (COMPOUND DECOMPOSITION)
+
+"selling my golden retriever puppy, 3 months old"
+
+"items": [
+  {
+    "type": "puppy",
+    "categorical": {
+      "breed": "golden retriever",
+      "age": "3 months"
+    }
+  }
+]
+
+Example 4 (COMPOUND DECOMPOSITION)
+
+"looking for a used Apple MacBook Pro"
+
+"items": [
+  {
+    "type": "laptop",
+    "categorical": {
+      "brand": "apple",
+      "model": "macbook pro",
+      "condition": "used"
+    }
+  }
 ]
 
 14. Negative Examples
@@ -1509,13 +1684,21 @@ language_exchange
 
 pipe_leak_service
 
+golden_retriever_puppy (NEVER put compound in type)
+
+apple_iphone (NEVER put brand+product as type)
+
 False Positive ❌
 
 Extracting attributes not mentioned
 
+Putting full compound phrase in type instead of decomposing
+
 False Negative ❌
 
-Failing to extract smartphone in “lost phone”
+Failing to extract smartphone in "lost phone"
+
+Failing to decompose "Persian cat" into type: "cat", categorical: { breed: "persian" }
 
 15. Edge Cases & Ambiguity Handling
 
@@ -1537,6 +1720,8 @@ non-market word used
 schema deviates
 
 numeric unit missing
+
+type contains compound phrase (should be decomposed into type + categorical)
 
 FINAL LOCK (DO NOT CHANGE)
 
@@ -2846,6 +3031,41 @@ The model must SEMANTICALLY understand the constraint, not match keywords.
 | "asking 85k" | exactly 85k (stated price) | range: { min=85000, max=85000 } |
 | "between 20-30 lakhs" | 20 to 30 range | range: { min=2000000, max=3000000 } |
 | "10 to 15 years" | 10 to 15 range | range: { min=120, max=180 } (months) |
+
+----------------------------------------------------------------
+FUZZY/APPROXIMATE QUANTITY HANDLING (DETERMINISTIC)
+----------------------------------------------------------------
+
+When user expresses APPROXIMATE values, convert to RANGE with ±20% tolerance:
+
+| Query | Interpretation | Structure |
+|-------|----------------|-----------|
+| "around 5 years" | 4-6 years (±20%) | range: { min=48, max=72, unit="months" } |
+| "about 50k" | 40k-60k (±20%) | range: { min=40000, max=60000 } |
+| "roughly 3kg" | 2.4-3.6kg (±20%) | range: { min=2.4, max=3.6, unit="kg" } |
+| "approximately 100km" | 80-120km (±20%) | range: { min=80, max=120, unit="km" } |
+
+FUZZY KEYWORDS → Apply ±20% range:
+- "around", "about", "roughly", "approximately", "nearly", "close to", "ish" (e.g., "50ish")
+
+PRECISE KEYWORDS → Exact value (min=max):
+- "exactly", "precisely", no modifier, stated fact
+
+----------------------------------------------------------------
+MULTIPLIER EXPANSION (DETERMINISTIC)
+----------------------------------------------------------------
+
+Numeric shorthand multipliers are ALLOWED to expand (not inference):
+
+| Shorthand | Expansion | Example |
+|-----------|-----------|---------|
+| k, K | ×1,000 | "50k" → 50000 |
+| lakh, lac, L | ×100,000 | "2 lakh" → 200000 |
+| crore, cr, C | ×10,000,000 | "1 crore" → 10000000 |
+| M, million | ×1,000,000 | "5M" → 5000000 |
+
+NOTE: Currency TYPE (INR/USD/EUR) still requires explicit mention or context.
+Multiplier expansion is deterministic; currency inference is NOT.
 
 SEMANTIC UNDERSTANDING (NOT keyword matching):
 - "128GB" = user wants EXACTLY 128GB (no flexibility stated)
