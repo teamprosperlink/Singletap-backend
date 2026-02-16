@@ -12,6 +12,9 @@ Coordinates all resolution steps:
 
 from typing import Dict, Any, Optional, List
 from copy import deepcopy
+from src.utils.logging import get_logger
+
+log = get_logger(__name__)
 from src.core.canonicalization.resolvers.generic_categorical_resolver import GenericCategoricalResolver
 from src.core.canonicalization.resolvers.quantitative_resolver import QuantitativeResolver
 from src.core.canonicalization.resolvers.type_resolver import get_type_resolver
@@ -40,7 +43,7 @@ def canonicalize_listing(
     Returns:
         Canonical NEW schema with resolved values
     """
-    print("🔄 Starting canonicalization...")
+    log.info("Starting canonicalization...", emoji="sync")
 
     canonical_listing = deepcopy(listing)
 
@@ -51,14 +54,14 @@ def canonicalize_listing(
     try:
         # 1. Canonicalize domain (if using GPC/UNSPSC)
         if "domain" in canonical_listing and canonical_listing["domain"]:
-            print("  → Canonicalizing domain...")
+            log.debug("Canonicalizing domain...")
             canonical_listing["domain"] = _canonicalize_domain(
                 canonical_listing["domain"]
             )
 
         # 2. Canonicalize items
         if "items" in canonical_listing and canonical_listing["items"]:
-            print(f"  → Canonicalizing {len(canonical_listing['items'])} items...")
+            log.debug("Canonicalizing items", count=len(canonical_listing["items"]))
             canonical_listing["items"] = _canonicalize_items(
                 canonical_listing["items"],
                 categorical_resolver,
@@ -67,7 +70,7 @@ def canonicalize_listing(
 
         # 3. Canonicalize item_exclusions
         if "item_exclusions" in canonical_listing and canonical_listing["item_exclusions"]:
-            print("  → Canonicalizing item_exclusions...")
+            log.debug("Canonicalizing item_exclusions...")
             canonical_listing["item_exclusions"] = _canonicalize_exclusions(
                 canonical_listing["item_exclusions"],
                 categorical_resolver
@@ -75,7 +78,7 @@ def canonicalize_listing(
 
         # 4. Canonicalize other_party_preferences
         if "other_party_preferences" in canonical_listing and canonical_listing["other_party_preferences"]:
-            print("  → Canonicalizing other_party_preferences...")
+            log.debug("Canonicalizing other_party_preferences...")
             canonical_listing["other_party_preferences"] = _canonicalize_preferences(
                 canonical_listing["other_party_preferences"],
                 categorical_resolver,
@@ -84,7 +87,7 @@ def canonicalize_listing(
 
         # 5. Canonicalize other_party_exclusions
         if "other_party_exclusions" in canonical_listing and canonical_listing["other_party_exclusions"]:
-            print("  → Canonicalizing other_party_exclusions...")
+            log.debug("Canonicalizing other_party_exclusions...")
             canonical_listing["other_party_exclusions"] = _canonicalize_exclusions(
                 canonical_listing["other_party_exclusions"],
                 categorical_resolver
@@ -92,7 +95,7 @@ def canonicalize_listing(
 
         # 6. Canonicalize self_attributes
         if "self_attributes" in canonical_listing and canonical_listing["self_attributes"]:
-            print("  → Canonicalizing self_attributes...")
+            log.debug("Canonicalizing self_attributes...")
             canonical_listing["self_attributes"] = _canonicalize_preferences(
                 canonical_listing["self_attributes"],
                 categorical_resolver,
@@ -101,7 +104,7 @@ def canonicalize_listing(
 
         # 7. Canonicalize self_exclusions
         if "self_exclusions" in canonical_listing and canonical_listing["self_exclusions"]:
-            print("  → Canonicalizing self_exclusions...")
+            log.debug("Canonicalizing self_exclusions...")
             canonical_listing["self_exclusions"] = _canonicalize_exclusions(
                 canonical_listing["self_exclusions"],
                 categorical_resolver
@@ -110,21 +113,22 @@ def canonicalize_listing(
         # 8. Canonicalize target_location (future: use geocoding API)
         # For now, just lowercase
         if "target_location" in canonical_listing and canonical_listing["target_location"]:
-            print("  → Canonicalizing location...")
+            log.debug("Canonicalizing location...")
             _canonicalize_location(canonical_listing["target_location"])
 
         # 9. Canonicalize location_exclusions (just lowercase for now)
         if "location_exclusions" in canonical_listing and canonical_listing["location_exclusions"]:
-            print("  → Canonicalizing location_exclusions...")
+            log.debug("Canonicalizing location_exclusions...")
             canonical_listing["location_exclusions"] = [
                 loc.lower() for loc in canonical_listing["location_exclusions"]
             ]
 
-        print("✅ Canonicalization complete!")
+        log.info("Canonicalization complete!", emoji="success")
         return canonical_listing
 
     except Exception as e:
-        print(f"⚠️  Canonicalization error: {e}. Returning original listing.")
+        log.warning("Canonicalization error. Returning original listing.",
+                    emoji="warning", error=str(e))
         return listing
 
 

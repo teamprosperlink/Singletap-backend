@@ -11,6 +11,57 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
+# ============================================================================
+# EXTRACTION MODE CONFIGURATION
+# ============================================================================
+# Two extraction architectures available:
+#
+# 1. GPT-ONLY (default): Uses GPT-4o-mini for extraction
+#    - Fast (~5-15s per query)
+#    - 100% accuracy on test cases
+#    - Set: EXTRACTION_MODE=gpt (or leave unset)
+#
+# 2. HYBRID (GPT + NuExtract): GPT extracts, NuExtract validates
+#    - Slower (~45-60s on CPU, ~10s with GPU)
+#    - Adds schema validation layer
+#    - Set: EXTRACTION_MODE=hybrid
+#    - Requires: Ollama running with nuextract model
+#
+# Optional: Skip NuExtract validation in hybrid mode
+#    - SKIP_NUEXTRACT=1 runs hybrid extractor but skips Level 2
+#    - Useful for testing or when Ollama is unavailable
+#
+# Legacy flag (backward compatible):
+#    USE_HYBRID_EXTRACTION=1 is equivalent to EXTRACTION_MODE=hybrid
+#
+# Examples:
+#    EXTRACTION_MODE=gpt                    # GPT only (default)
+#    EXTRACTION_MODE=hybrid                 # GPT + NuExtract validation
+#    EXTRACTION_MODE=hybrid SKIP_NUEXTRACT=1  # Hybrid extractor, skip validation
+# ============================================================================
+
+EXTRACTION_MODE = os.environ.get("EXTRACTION_MODE", "gpt").lower()
+SKIP_NUEXTRACT = os.environ.get("SKIP_NUEXTRACT", "0").lower() in ("1", "true", "yes")
+
+# Backward compatibility: USE_HYBRID_EXTRACTION=1 enables hybrid mode
+if os.environ.get("USE_HYBRID_EXTRACTION", "0").lower() in ("1", "true", "yes"):
+    EXTRACTION_MODE = "hybrid"
+
+USE_HYBRID_EXTRACTION = (EXTRACTION_MODE == "hybrid")
+
+# Import structured logging
+from src.utils.logging import get_logger, configure_structlog
+
+# Import distributed tracing
+from src.utils.tracing import init_tracing, shutdown_tracing, get_tracer, traced
+
+# Import error tracking
+from src.utils.sentry import init_sentry
+
+# Configure structlog (can set json_output=True for production)
+configure_structlog(json_output=False, log_level="INFO")
+log = get_logger(__name__)
+
 # Import project modules
 from schema.schema_normalizer_v2 import normalize_and_validate_v2
 from pipeline.ingestion_pipeline import IngestionClients, ingest_listing
@@ -19,6 +70,10 @@ from matching.listing_matcher_v2 import listing_matches_v2
 from embedding.embedding_builder import build_embedding_text
 from canonicalization.orchestrator import canonicalize_listing
 
+# Import hybrid extractor (optional - used when USE_HYBRID_EXTRACTION=1)
+if USE_HYBRID_EXTRACTION:
+    from src.core.extraction.hybrid_extractor import HybridExtractor
+
 app = FastAPI(title="Vriddhi Matching Engine API", version="2.0")
 
 # Global clients
@@ -26,6 +81,7 @@ ingestion_clients = IngestionClients()
 retrieval_clients = RetrievalClients()
 openai_client = None
 extraction_prompt = None
+hybrid_extractor = None  # Used when USE_HYBRID_EXTRACTION=1
 is_initialized = False
 init_error = None
 
@@ -37,7 +93,7 @@ def load_extraction_prompt():
         with open(prompt_path, "r", encoding="utf-8") as f:
             return f.read()
     except Exception as e:
-        print(f"⚠️ Warning: Could not load extraction prompt: {e}")
+        log.warning("Could not load extraction prompt", emoji="warning", error=str(e))
         return None
 
 # Initialize OpenAI client
@@ -47,39 +103,61 @@ def initialize_openai():
     if api_key:
         return OpenAI(api_key=api_key)
     else:
-        print("⚠️ Warning: OPENAI_API_KEY not set. Extraction endpoint will not work.")
+        log.warning("OPENAI_API_KEY not set. Extraction endpoint will not work.", emoji="warning")
         return None
 
 async def initialize_services():
     """Run initialization in a background thread to allow instant server startup."""
-    global is_initialized, init_error, openai_client, extraction_prompt
-    print("⏳ Starting background initialization...")
-    print(f"🌍 SUPABASE_URL: {'SET' if os.environ.get('SUPABASE_URL') else 'NOT SET'}")
-    print(f"🔑 OPENAI_API_KEY: {'SET' if os.environ.get('OPENAI_API_KEY') else 'NOT SET'}")
+    global is_initialized, init_error, openai_client, extraction_prompt, hybrid_extractor
+    log.info("Starting background initialization...", emoji="loading")
+    if USE_HYBRID_EXTRACTION:
+        mode_desc = "GPT + NuExtract validation" if not SKIP_NUEXTRACT else "Hybrid (NuExtract skipped)"
+    else:
+        mode_desc = "GPT only"
+    log.info("Extraction mode configured", emoji="config",
+             EXTRACTION_MODE=EXTRACTION_MODE,
+             SKIP_NUEXTRACT=SKIP_NUEXTRACT if USE_HYBRID_EXTRACTION else "N/A",
+             mode_description=mode_desc)
+    log.info("Environment check", emoji="config",
+             SUPABASE_URL="SET" if os.environ.get("SUPABASE_URL") else "NOT SET",
+             OPENAI_API_KEY="SET" if os.environ.get("OPENAI_API_KEY") else "NOT SET")
 
     try:
         # Initialize OpenAI client (fast, non-blocking)
-        print("📝 Initializing OpenAI client...")
+        log.info("Initializing OpenAI client...", emoji="db")
         openai_client = initialize_openai()
-        print("✅ OpenAI client ready")
+        log.info("OpenAI client ready", emoji="success")
 
         # Load extraction prompt (fast, non-blocking)
-        print("📄 Loading extraction prompt...")
+        log.info("Loading extraction prompt...", emoji="doc")
         extraction_prompt = load_extraction_prompt()
-        print(f"✅ Extraction prompt loaded ({len(extraction_prompt) if extraction_prompt else 0} chars)")
+        log.info("Extraction prompt loaded", emoji="success",
+                 chars=len(extraction_prompt) if extraction_prompt else 0)
+
+        # Initialize hybrid extractor if enabled
+        if USE_HYBRID_EXTRACTION:
+            mode_desc = "GPT + NuExtract" if not SKIP_NUEXTRACT else "GPT only (NuExtract skipped)"
+            log.info(f"Initializing HybridExtractor ({mode_desc})...", emoji="sync")
+            hybrid_extractor = HybridExtractor(skip_nuextract=SKIP_NUEXTRACT)
+            if hybrid_extractor.initialize():
+                log.info("HybridExtractor initialized", emoji="success",
+                         skip_nuextract=SKIP_NUEXTRACT)
+            else:
+                log.warning("HybridExtractor initialization failed, falling back to GPT-only", emoji="warning")
+                hybrid_extractor = None
 
         if os.environ.get("SUPABASE_URL"):
             # Run heavy init calls in a separate thread
-            print("🔄 Initializing ingestion clients (in background)...")
+            log.info("Initializing ingestion clients (in background)...", emoji="sync")
             await asyncio.to_thread(ingestion_clients.initialize)
-            print("✅ Ingestion clients initialized")
+            log.info("Ingestion clients initialized", emoji="success")
 
-            print("🔄 Initializing retrieval clients (in background)...")
+            log.info("Initializing retrieval clients (in background)...", emoji="sync")
             await asyncio.to_thread(retrieval_clients.initialize)
-            print("✅ Retrieval clients initialized")
+            log.info("Retrieval clients initialized", emoji="success")
 
             # Initialize OntologyStore with Supabase client (loads persisted concepts)
-            print("🔄 Initializing OntologyStore...")
+            log.info("Initializing OntologyStore...", emoji="sync")
             from canonicalization.ontology_store import get_ontology_store
             ontology_store = get_ontology_store()
             ontology_store.initialize(ingestion_clients.supabase)
@@ -89,29 +167,45 @@ async def initialize_services():
             resolver = _get_categorical_resolver()
             resolver._synonym_registry.update(data.get("synonym_registry", {}))
             resolver._concept_paths.update(data.get("concept_paths", {}))
-            print(f"✅ OntologyStore initialized ({len(data.get('synonym_registry', {}))} synonyms, "
-                  f"{len(data.get('concept_paths', {}))} paths)")
+            log.info("OntologyStore initialized", emoji="success",
+                     synonyms=len(data.get("synonym_registry", {})),
+                     paths=len(data.get("concept_paths", {})))
 
             is_initialized = True
-            print("✅ ALL clients initialized successfully")
+            log.info("ALL clients initialized successfully", emoji="success")
         else:
-            print("⚠️ SUPABASE_URL not set. Skipping database/vector clients.")
+            log.warning("SUPABASE_URL not set. Skipping database/vector clients.", emoji="warning")
             is_initialized = True  # Mark as initialized for extraction endpoints
-            print("✅ Server ready (extraction-only mode)")
+            log.info("Server ready (extraction-only mode)", emoji="success")
     except Exception as e:
         init_error = str(e)
-        print(f"❌ Error initializing clients: {e}")
-        import traceback
-        traceback.print_exc()
+        log.error("Error initializing clients", emoji="error", error=str(e), exc_info=True)
 
 @app.on_event("startup")
 async def startup_event():
     """Start server immediately, run initialization in background."""
-    print("🚀 FastAPI server starting...")
-    print(f"📍 Server should be available on port {os.environ.get('PORT', '8000')}")
+    log.info("FastAPI server starting...", emoji="start")
+    log.info("Server should be available", emoji="location",
+             port=os.environ.get("PORT", "8000"))
+
+    # Initialize Sentry error tracking (should be first!)
+    init_sentry()
+
+    # Initialize distributed tracing (Jaeger/Grafana via OpenTelemetry)
+    init_tracing(app)
+    log.info("Observability initialized (Sentry + Tracing)", emoji="trace")
+
     # Start initialization as a fire-and-forget background task
     asyncio.create_task(initialize_services())
-    print("✅ Server startup complete (initialization running in background)")
+    log.info("Server startup complete (initialization running in background)", emoji="success")
+
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """Cleanup on server shutdown."""
+    log.info("FastAPI server shutting down...", emoji="stop")
+    shutdown_tracing()
+    log.info("Server shutdown complete", emoji="success")
 
 def check_service_health():
     """Helper to check if services are ready."""
@@ -280,7 +374,7 @@ class SearchAndMatchRequest(BaseModel):
     user_id: str
 
 class StoreListingRequest(BaseModel):
-    listing_json: Dict[str, Any]
+    query: str
     user_id: str
     match_id: Optional[str] = None
 
@@ -343,9 +437,7 @@ async def search_endpoint(request: ListingRequest, limit: int = 10):
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
-        print(f"❌ Error in /search endpoint: {e}")
-        import traceback
-        traceback.print_exc()
+        log.error("Error in /search endpoint", emoji="error", error=str(e), exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/match")
@@ -386,7 +478,10 @@ async def normalize_endpoint(request: ListingRequest):
 
 def extract_from_query(query: str) -> Dict[str, Any]:
     """
-    Extract structured NEW schema from natural language query using GPT API.
+    Extract structured NEW schema from natural language query.
+
+    Uses hybrid extraction (GPT + NuExtract) when USE_HYBRID_EXTRACTION=1,
+    otherwise uses GPT-only extraction.
 
     Args:
         query: Natural language query (e.g., "need a plumber who speaks kannada")
@@ -395,8 +490,27 @@ def extract_from_query(query: str) -> Dict[str, Any]:
         Structured NEW schema dictionary
 
     Raises:
-        HTTPException: If OpenAI client not initialized or API call fails
+        HTTPException: If extraction fails
     """
+    # Use hybrid extractor if available and enabled
+    if USE_HYBRID_EXTRACTION and hybrid_extractor:
+        try:
+            log.info("Using hybrid extraction (GPT + NuExtract)", emoji="hybrid")
+            result = hybrid_extractor.extract(query)
+            if result.success and result.final_json:
+                log.info("Hybrid extraction success", emoji="success",
+                         fallback_used=result.fallback_used,
+                         total_ms=f"{result.total_latency_ms:.0f}")
+                return result.final_json
+            else:
+                log.warning("Hybrid extraction failed, falling back to GPT-only", emoji="warning",
+                            error=result.gpt_error or result.nuextract_error)
+                # Fall through to GPT-only extraction
+        except Exception as e:
+            log.warning("Hybrid extraction error, falling back to GPT-only", emoji="warning", error=str(e))
+            # Fall through to GPT-only extraction
+
+    # GPT-only extraction (default or fallback)
     if not openai_client:
         raise HTTPException(
             status_code=503,
@@ -605,8 +719,8 @@ async def search_and_match_endpoint(request: SearchAndMatchRequest):
 
     try:
         # Step 1: GPT Extraction
-        print(f"\n🔍 Search and Match for user: {request.user_id}")
-        print(f"📝 Query: {request.query}")
+        log.info("Search and Match request", emoji="search",
+                 user_id=request.user_id, query=request.query)
 
         extracted_json = extract_from_query(request.query)
 
@@ -617,7 +731,7 @@ async def search_and_match_endpoint(request: SearchAndMatchRequest):
         normalized_query = normalize_and_validate_v2(canonical_json)
 
         # Step 4: Search database for candidates
-        print(f"🔎 Searching database...")
+        log.info("Searching database...", emoji="filter")
         candidate_ids = retrieve_candidates(
             retrieval_clients,
             normalized_query,
@@ -625,7 +739,7 @@ async def search_and_match_endpoint(request: SearchAndMatchRequest):
             verbose=True
         )
 
-        print(f"📊 Found {len(candidate_ids)} candidates")
+        log.info("Found candidates", emoji="data", count=len(candidate_ids))
 
         # Step 4: Boolean match each candidate
         matched_listings = []
@@ -637,7 +751,7 @@ async def search_and_match_endpoint(request: SearchAndMatchRequest):
             intent = normalized_query.get("intent")
             table_name = f"{intent}_listings"
 
-            print(f"🔍 Fetching candidates from {table_name}...")
+            log.info("Fetching candidates from table", emoji="search", table=table_name)
 
             for listing_id in candidate_ids:
                 try:
@@ -667,7 +781,8 @@ async def search_and_match_endpoint(request: SearchAndMatchRequest):
                             matched_listing_ids.append(listing_id)
 
                 except Exception as e:
-                    print(f"⚠️ Error fetching/matching listing {listing_id}: {e}")
+                    log.warning("Error fetching/matching listing", emoji="warning",
+                                listing_id=listing_id, error=str(e))
                     continue
 
         # Step 5: Store query as a listing and create match records
@@ -676,12 +791,12 @@ async def search_and_match_endpoint(request: SearchAndMatchRequest):
 
         # Auto-store the query as a listing to get a listing_a_id
         query_listing_id, _ = ingest_listing(ingestion_clients, normalized_query, user_id=request.user_id, verbose=True)
-        print(f"✅ Query stored as listing: {query_listing_id}")
+        log.info("Query stored as listing", emoji="success", listing_id=query_listing_id)
 
         # Insert one match record per matched listing
         match_ids = []
         if has_matches:
-            print(f"💾 Storing {match_count} match records...")
+            log.info("Storing match records...", emoji="store", count=match_count)
             for matched in matched_listings:
                 match_row = {
                     "listing_a_id": query_listing_id,
@@ -698,8 +813,8 @@ async def search_and_match_endpoint(request: SearchAndMatchRequest):
                     if resp.data:
                         match_ids.append(resp.data[0]["match_id"])
                 except Exception as e:
-                    print(f"⚠️ Error storing match record: {e}")
-            print(f"✅ Stored {len(match_ids)} match records")
+                    log.warning("Error storing match record", emoji="warning", error=str(e))
+            log.info("Stored match records", emoji="success", count=len(match_ids))
 
         return {
             "status": "success",
@@ -716,9 +831,7 @@ async def search_and_match_endpoint(request: SearchAndMatchRequest):
     except HTTPException:
         raise
     except Exception as e:
-        print(f"❌ Error in search-and-match: {e}")
-        import traceback
-        traceback.print_exc()
+        log.error("Error in search-and-match", emoji="error", error=str(e), exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -795,7 +908,8 @@ async def search_and_match_direct_endpoint(request: StoreListingRequest):
                             seen_user_ids.add(candidate_user_id)  # Mark as seen
 
             except Exception as e:
-                print(f"⚠️ Error fetching/matching listing {listing_id}: {e}")
+                log.warning("Error fetching/matching listing", emoji="warning",
+                            listing_id=listing_id, error=str(e))
                 continue
 
         has_matches = len(matched_listings) > 0
@@ -812,44 +926,48 @@ async def search_and_match_direct_endpoint(request: StoreListingRequest):
     except HTTPException:
         raise
     except Exception as e:
-        print(f"❌ Error in search-and-match-direct: {e}")
-        import traceback
-        traceback.print_exc()
+        log.error("Error in search-and-match-direct", emoji="error", error=str(e), exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.post("/store-listing")
 async def store_listing_endpoint(request: StoreListingRequest):
     """
-    NEW ENDPOINT: Store listing in database for future matching.
+    Store listing in database for future matching.
 
     Flow:
-    1. Validate listing JSON
-    2. Normalize to OLD format
-    3. Store in appropriate listings table (with user_id and optional match_id)
-    4. Generate embedding
-    5. Store embedding in Qdrant
-    6. Return listing_id
+    1. GPT Extraction (natural language -> structured JSON)
+    2. Canonicalize (units, currency, ontology)
+    3. Normalize to OLD format
+    4. Store in appropriate listings table (with user_id and optional match_id)
+    5. Generate embedding
+    6. Store embedding in Qdrant
+    7. Return listing_id and extracted_json
 
     This endpoint ONLY stores. It does NOT search or match.
 
     Input:
-        - listing_json: Complete listing JSON (NEW schema format)
+        - query: Natural language query
         - user_id: User who owns this listing
         - match_id: Optional reference to matches table (if from search)
 
     Output:
         - listing_id: UUID of stored listing
+        - extracted_json: GPT-extracted structured JSON
         - intent: Product/Service/Mutual
         - message: Confirmation
     """
     check_service_health()
 
     try:
-        print(f"\n💾 Store Listing for user: {request.user_id}")
+        log.info("Store Listing request", emoji="store", user_id=request.user_id, query=request.query)
 
-        # Step 1: Canonicalize and normalize
-        canonical_store = canonicalize_listing(request.listing_json)
+        # Step 1: GPT Extraction (natural language -> structured JSON)
+        extracted_json = extract_from_query(request.query)
+        log.info("GPT extraction complete", emoji="success", intent=extracted_json.get("intent"))
+
+        # Step 2: Canonicalize and normalize
+        canonical_store = canonicalize_listing(extracted_json)
         normalized_listing = normalize_and_validate_v2(canonical_store)
 
         # Step 2: Ingest (stores in Supabase + Qdrant)
@@ -870,9 +988,9 @@ async def store_listing_endpoint(request: StoreListingRequest):
             "data": normalized_listing
         }
 
-        print(f"📝 Storing in {table_name}...")
+        log.info("Storing in table...", emoji="db", table=table_name)
         ingestion_clients.supabase.table(table_name).insert(data).execute()
-        print(f"✅ Stored in Supabase with listing_id: {listing_id}")
+        log.info("Stored in Supabase", emoji="success", listing_id=listing_id)
 
         # Step 3: Generate and store embedding in Qdrant
         embedding_text = build_embedding_text(normalized_listing)
@@ -900,17 +1018,19 @@ async def store_listing_endpoint(request: StoreListingRequest):
             payload=payload
         )
 
-        print(f"🔢 Storing embedding in {collection_name}...")
+        log.info("Storing embedding in collection...", emoji="vector", collection=collection_name)
         ingestion_clients.qdrant.upsert(
             collection_name=collection_name,
             points=[point]
         )
-        print(f"✅ Stored in Qdrant")
+        log.info("Stored in Qdrant", emoji="success")
 
         return {
             "status": "success",
             "listing_id": listing_id,
             "user_id": request.user_id,
+            "query": request.query,
+            "extracted_json": extracted_json,
             "intent": intent,
             "match_id": request.match_id,
             "message": f"Listing stored successfully. It will be visible to future searches."
@@ -919,7 +1039,5 @@ async def store_listing_endpoint(request: StoreListingRequest):
     except HTTPException:
         raise
     except Exception as e:
-        print(f"❌ Error in store-listing: {e}")
-        import traceback
-        traceback.print_exc()
+        log.error("Error in store-listing", emoji="error", error=str(e), exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))

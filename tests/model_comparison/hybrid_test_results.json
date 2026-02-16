@@ -1,0 +1,224 @@
+{
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "pass_rate": 100.0,
+    "intent_accuracy": 100.0,
+    "subintent_accuracy": 100.0
+  },
+  "tests": [
+    {
+      "query": "Looking to buy a Dell laptop in Bangalore under 50000",
+      "description": "Product buy with brand, location, max price",
+      "expected_intent": "product",
+      "expected_subintent": "buy",
+      "actual_intent": "product",
+      "actual_subintent": "buy",
+      "intent_correct": true,
+      "subintent_correct": true,
+      "passed": true,
+      "latency_ms": {
+        "total": 20615.17095565796,
+        "gpt": 20615.08083343506,
+        "nuextract": 0.0
+      },
+      "fallback_used": false,
+      "final_json": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "technology & electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "laptop",
+            "categorical": {
+              "brand": "dell"
+            },
+            "max": {
+              "cost": [
+                {
+                  "type": "price",
+                  "value": 50000,
+                  "unit": "local"
+                }
+              ]
+            }
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": [],
+        "self_attributes": {},
+        "self_exclusions": [],
+        "target_location": {
+          "name": "bangalore"
+        },
+        "location_match_mode": "explicit",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product purchase because the user is seeking to buy a tangible item. A Dell laptop was extracted as the item type, with a maximum price constraint of 50000 captured from the stated budget. Bangalore was identified as the target location for the purchase."
+      }
+    },
+    {
+      "query": "Selling HP laptop starting 40000 in Bangalore",
+      "description": "Product sell with brand, min price, location",
+      "expected_intent": "product",
+      "expected_subintent": "sell",
+      "actual_intent": "product",
+      "actual_subintent": "sell",
+      "intent_correct": true,
+      "subintent_correct": true,
+      "passed": true,
+      "latency_ms": {
+        "total": 17070.792198181152,
+        "gpt": 17070.743560791016,
+        "nuextract": 0.0
+      },
+      "fallback_used": false,
+      "final_json": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "technology & electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "laptop",
+            "categorical": {
+              "brand": "hp"
+            },
+            "min": {
+              "cost": [
+                {
+                  "type": "price",
+                  "value": 40000,
+                  "unit": "local"
+                }
+              ]
+            }
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": [],
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {
+          "name": "bangalore"
+        },
+        "location_match_mode": "explicit",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is looking to sell a tangible item, specifically an HP laptop. The item type was extracted as 'laptop' with the brand specified as 'HP'. A minimum price constraint was extracted from the stated starting price of 40000. The location was explicitly mentioned as Bangalore."
+      }
+    },
+    {
+      "query": "Looking for a plumber in Bangalore who speaks Kannada",
+      "description": "Service seek with language requirement",
+      "expected_intent": "service",
+      "expected_subintent": "seek",
+      "actual_intent": "service",
+      "actual_subintent": "seek",
+      "intent_correct": true,
+      "subintent_correct": true,
+      "passed": true,
+      "latency_ms": {
+        "total": 16733.635187149048,
+        "gpt": 16733.591318130493,
+        "nuextract": 0.0
+      },
+      "fallback_used": false,
+      "final_json": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "construction & trades"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "plumbing"
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {
+          "identity": [
+            {
+              "type": "language",
+              "value": "kannada"
+            }
+          ]
+        },
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {
+          "name": "bangalore"
+        },
+        "location_match_mode": "explicit",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking professional assistance. Plumbing was extracted as the service item, with Kannada language preference noted for the plumber. Bangalore was identified as the explicit location for the service request."
+      }
+    },
+    {
+      "query": "I am a plumber in Bangalore, charge 500 per hour",
+      "description": "Service provide - 'I am a X' pattern",
+      "expected_intent": "service",
+      "expected_subintent": "provide",
+      "actual_intent": "service",
+      "actual_subintent": "provide",
+      "intent_correct": true,
+      "subintent_correct": true,
+      "passed": true,
+      "latency_ms": {
+        "total": 16677.533626556396,
+        "gpt": 16677.488327026367,
+        "nuextract": 0.0
+      },
+      "fallback_used": false,
+      "final_json": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "construction & trades"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "plumbing"
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": [],
+        "self_attributes": {
+          "identity": [
+            {
+              "type": "profession",
+              "value": "plumber"
+            },
+            {
+              "type": "location",
+              "value": "bangalore"
+            }
+          ],
+          "min": {
+            "cost": [
+              {
+                "type": "hourly rate",
+                "value": 500,
+                "unit": "local"
+              }
+            ]
+          }
+        },
+        "self_exclusions": [],
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service offer because the user is providing plumbing services. Plumbing was extracted as the service item type. The user explicitly stated their profession as a plumber and their location as Bangalore. The hourly rate of 500 was captured as a minimum cost constraint. No exclusions or additional location details were specified, so local matching applies."
+      }
+    }
+  ]
+}

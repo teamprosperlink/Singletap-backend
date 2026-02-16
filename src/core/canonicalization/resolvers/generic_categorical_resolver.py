@@ -23,6 +23,9 @@ from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
 from src.services.external.conceptnet_wrapper import get_conceptnet_client
 from src.services.external.wikidata_wrapper import get_wikidata_client
+from src.utils.logging import get_logger
+
+log = get_logger(__name__)
 
 
 @dataclass
@@ -166,7 +169,8 @@ class GenericCategoricalResolver:
             return None
 
         except Exception as e:
-            print(f"⚠️  ConceptNet resolution error for '{value}': {e}")
+            log.warning("ConceptNet resolution error", emoji="warning",
+                        value=value, error=str(e))
             return None
 
     def _resolve_via_wikidata(self, value: str) -> Optional[OntologyNode]:
@@ -224,7 +228,8 @@ class GenericCategoricalResolver:
             )
 
         except Exception as e:
-            print(f"⚠️  Wikidata resolution error for '{value}': {e}")
+            log.warning("Wikidata resolution error", emoji="warning",
+                        value=value, error=str(e))
             return None
 
     def _create_simple_node(

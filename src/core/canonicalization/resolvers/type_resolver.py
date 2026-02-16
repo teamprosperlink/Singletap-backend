@@ -31,6 +31,9 @@ import os
 from typing import Dict, List, Optional, Any
 from dataclasses import dataclass
 from pathlib import Path
+from src.utils.logging import get_logger
+
+log = get_logger(__name__)
 
 
 @dataclass
@@ -98,7 +101,7 @@ class TypeResolver:
     def _load_hierarchy(self, filepath: str) -> Dict[str, Any]:
         """Load hierarchy from JSON file."""
         if not os.path.exists(filepath):
-            print(f"Warning: Type hierarchy file not found: {filepath}")
+            log.warning("Type hierarchy file not found", emoji="warning", filepath=filepath)
             return {}
 
         try:
@@ -108,7 +111,7 @@ class TypeResolver:
                 data.pop("_metadata", None)
                 return data
         except Exception as e:
-            print(f"Warning: Failed to load type hierarchy: {e}")
+            log.warning("Failed to load type hierarchy", emoji="warning", error=str(e))
             return {}
 
     def _build_alias_map(self) -> Dict[str, str]:

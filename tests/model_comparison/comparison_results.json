@@ -1,0 +1,15 @@
+{
+  "test_queries": [
+    "Looking to buy a Dell laptop in Bangalore under 50000",
+    "Want to purchase iPhone 15 Pro in Delhi, budget 90000",
+    "Need 3 kg fresh organic vegetables in Mumbai under 500 rupees"
+  ],
+  "gpt_results": {
+    "model": "gpt-4o",
+    "success_rate": 0.0,
+    "completeness_rate": 0.0,
+    "avg_latency_ms": 0.0,
+    "extractions": []
+  },
+  "local_results": {}
+}

@@ -17,6 +17,9 @@ from qdrant_client import QdrantClient
 from sentence_transformers import SentenceTransformer, CrossEncoder
 
 from .settings import settings
+from src.utils.logging import get_logger
+
+log = get_logger(__name__)
 
 
 class DatabaseClients:
@@ -61,7 +64,7 @@ class DatabaseClients:
             ValueError: If required environment variables are missing
         """
         if self.initialized:
-            print("⚠️ Clients already initialized, skipping...")
+            log.warning("Clients already initialized, skipping...", emoji="warning")
             return
 
         # Initialize Supabase
@@ -71,7 +74,7 @@ class DatabaseClients:
             )
 
         self.supabase = create_client(settings.supabase_url, settings.supabase_key)
-        print(f"✅ Connected to Supabase: {settings.supabase_url}")
+        log.info("Connected to Supabase", emoji="success", url=settings.supabase_url)
 
         # Initialize Qdrant Cloud
         if not settings.qdrant_endpoint or not settings.qdrant_api_key:
@@ -83,26 +86,27 @@ class DatabaseClients:
             url=settings.qdrant_endpoint,
             api_key=settings.qdrant_api_key
         )
-        print(f"✅ Connected to Qdrant Cloud: {settings.qdrant_endpoint}")
+        log.info("Connected to Qdrant Cloud", emoji="success", endpoint=settings.qdrant_endpoint)
 
         # Initialize Embedding Model (BAAI/bge-*)
-        print(f"🚀 Loading embedding model: {settings.embedding_model_name}...")
+        log.info("Loading embedding model...", emoji="start", model=settings.embedding_model_name)
         self.embedding_model = SentenceTransformer(settings.embedding_model_name)
         dim = self.embedding_model.get_sentence_embedding_dimension()
-        print(f"✅ Loaded embedding model: {settings.embedding_model_name} ({dim}D)")
+        log.info("Loaded embedding model", emoji="success",
+                 model=settings.embedding_model_name, dimension=dim)
 
         # Initialize Reranker (optional, only if enabled)
         if settings.use_reranker:
-            print(f"🚀 Loading reranker model: {settings.reranker_model_name}...")
+            log.info("Loading reranker model...", emoji="start", model=settings.reranker_model_name)
             self.reranker = CrossEncoder(settings.reranker_model_name)
-            print(f"✅ Loaded reranker model: {settings.reranker_model_name}")
-            print(f"   Reranker will be applied to top-{settings.reranker_top_k} candidates")
+            log.info("Loaded reranker model", emoji="success",
+                     model=settings.reranker_model_name, top_k=settings.reranker_top_k)
         else:
             self.reranker = None
-            print("ℹ️ Reranker disabled (set use_reranker=True in settings to enable)")
+            log.info("Reranker disabled (set use_reranker=True in settings to enable)", emoji="info")
 
         self.initialized = True
-        print("✅ All database clients initialized successfully")
+        log.info("All database clients initialized successfully", emoji="success")
 
     def close(self):
         """Close all client connections (if needed)"""
@@ -110,7 +114,7 @@ class DatabaseClients:
         # but this method is here for future cleanup needs
         self.initialized = False
         self.reranker = None
-        print("✅ All database clients closed")
+        log.info("All database clients closed", emoji="success")
 
     def get_embedding_dimension(self) -> int:
         """

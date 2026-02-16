@@ -1,13 +1,17 @@
 """
-Standardized logging utilities for Vriddhi Matching Engine.
+Structured logging utilities for Vriddhi Matching Engine.
 
-Provides consistent logging with emoji indicators across all modules.
-Consolidates 398+ logging statements into reusable helpers.
+Uses structlog for structured, contextual logging with emoji indicators.
+Provides consistent logging across all modules with JSON output capability.
 """
 
 import logging
+import sys
 from enum import Enum
-from typing import Optional
+from typing import Any, Optional
+
+import structlog
+from structlog.typing import Processor
 
 
 class LogEmoji(Enum):
@@ -25,101 +29,203 @@ class LogEmoji(Enum):
     SEMANTIC = "🧠"
     BOOLEAN = "⚖️"
     LOCATION = "📍"
+    LOADING = "⏳"
+    CONFIG = "🌍"
+    KEY = "🔑"
+    DOC = "📄"
+    SYNC = "🔄"
+    DATA = "📊"
+    DB = "📝"
+    VECTOR = "🔢"
 
 
-def setup_logger(name: str, level=logging.INFO) -> logging.Logger:
+def add_emoji_processor(
+    logger: logging.Logger, method_name: str, event_dict: dict[str, Any]
+) -> dict[str, Any]:
     """
-    Create a standardized logger with consistent formatting.
+    Structlog processor that prepends emoji to log messages based on emoji key.
+
+    Usage:
+        log.info("Server starting", emoji="start")
+        # Output: 🚀 Server starting
+    """
+    emoji_key = event_dict.pop("emoji", None)
+    if emoji_key:
+        emoji_map = {
+            "start": LogEmoji.START.value,
+            "success": LogEmoji.SUCCESS.value,
+            "error": LogEmoji.ERROR.value,
+            "warning": LogEmoji.WARNING.value,
+            "info": LogEmoji.INFO.value,
+            "search": LogEmoji.SEARCH.value,
+            "store": LogEmoji.STORE.value,
+            "match": LogEmoji.MATCH.value,
+            "extract": LogEmoji.EXTRACT.value,
+            "filter": LogEmoji.FILTER.value,
+            "semantic": LogEmoji.SEMANTIC.value,
+            "boolean": LogEmoji.BOOLEAN.value,
+            "location": LogEmoji.LOCATION.value,
+            "loading": LogEmoji.LOADING.value,
+            "config": LogEmoji.CONFIG.value,
+            "key": LogEmoji.KEY.value,
+            "doc": LogEmoji.DOC.value,
+            "sync": LogEmoji.SYNC.value,
+            "data": LogEmoji.DATA.value,
+            "db": LogEmoji.DB.value,
+            "vector": LogEmoji.VECTOR.value,
+        }
+        emoji = emoji_map.get(emoji_key, "")
+        if emoji:
+            event_dict["event"] = f"{emoji} {event_dict.get('event', '')}"
+    return event_dict
+
+
+def configure_structlog(
+    json_output: bool = False,
+    log_level: str = "INFO",
+    include_timestamp: bool = True
+) -> None:
+    """
+    Configure structlog with consistent settings for the application.
+
+    Args:
+        json_output: If True, output logs as JSON (for production/cloud logging)
+        log_level: Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+        include_timestamp: If True, include timestamp in logs
+    """
+    # Shared processors for both dev and prod
+    shared_processors: list[Processor] = [
+        structlog.contextvars.merge_contextvars,
+        structlog.stdlib.add_log_level,
+        structlog.stdlib.add_logger_name,
+        structlog.stdlib.PositionalArgumentsFormatter(),
+        add_emoji_processor,
+        structlog.processors.StackInfoRenderer(),
+        structlog.processors.UnicodeDecoder(),
+    ]
+
+    if include_timestamp:
+        shared_processors.insert(0, structlog.processors.TimeStamper(fmt="iso"))
+
+    if json_output:
+        # Production: JSON output for structured log aggregation
+        shared_processors.append(structlog.processors.format_exc_info)
+        shared_processors.append(structlog.processors.JSONRenderer())
+    else:
+        # Development: Console-friendly colored output
+        shared_processors.append(structlog.dev.ConsoleRenderer(
+            colors=True,
+            exception_formatter=structlog.dev.plain_traceback,
+        ))
+
+    # Configure structlog
+    structlog.configure(
+        processors=shared_processors,
+        wrapper_class=structlog.stdlib.BoundLogger,
+        context_class=dict,
+        logger_factory=structlog.stdlib.LoggerFactory(),
+        cache_logger_on_first_use=True,
+    )
+
+    # Configure stdlib logging to work with structlog
+    logging.basicConfig(
+        format="%(message)s",
+        stream=sys.stdout,
+        level=getattr(logging, log_level.upper(), logging.INFO),
+    )
+
+
+def get_logger(name: Optional[str] = None) -> structlog.stdlib.BoundLogger:
+    """
+    Get a structlog logger instance.
 
     Args:
         name: Logger name (typically __name__ of the module)
-        level: Logging level (default: INFO)
 
     Returns:
-        Configured logger instance
+        Configured structlog BoundLogger instance
+
+    Usage:
+        from src.utils.logging import get_logger
+
+        log = get_logger(__name__)
+        log.info("Server starting", emoji="start", port=8000)
+        log.error("Connection failed", emoji="error", error=str(e))
     """
-    logger = logging.getLogger(name)
-    logger.setLevel(level)
-
-    # Only add handler if logger doesn't have one
-    if not logger.handlers:
-        handler = logging.StreamHandler()
-        formatter = logging.Formatter(
-            '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-        )
-        handler.setFormatter(formatter)
-        logger.addHandler(handler)
-
-    return logger
+    return structlog.get_logger(name)
 
 
-def log_start(logger: logging.Logger, msg: str):
+# Convenience functions for common log operations
+def log_start(log: structlog.stdlib.BoundLogger, msg: str, **kwargs: Any) -> None:
     """Log a start/initialization message"""
-    logger.info(f"{LogEmoji.START.value} {msg}")
+    log.info(msg, emoji="start", **kwargs)
 
 
-def log_success(logger: logging.Logger, msg: str):
+def log_success(log: structlog.stdlib.BoundLogger, msg: str, **kwargs: Any) -> None:
     """Log a success message"""
-    logger.info(f"{LogEmoji.SUCCESS.value} {msg}")
+    log.info(msg, emoji="success", **kwargs)
 
 
-def log_error(logger: logging.Logger, msg: str, exc_info: bool = False):
-    """
-    Log an error message
-
-    Args:
-        logger: Logger instance
-        msg: Error message
-        exc_info: Include exception traceback (default: False)
-    """
-    logger.error(f"{LogEmoji.ERROR.value} {msg}", exc_info=exc_info)
+def log_error(
+    log: structlog.stdlib.BoundLogger,
+    msg: str,
+    exc_info: bool = False,
+    **kwargs: Any
+) -> None:
+    """Log an error message"""
+    log.error(msg, emoji="error", exc_info=exc_info, **kwargs)
 
 
-def log_warning(logger: logging.Logger, msg: str):
+def log_warning(log: structlog.stdlib.BoundLogger, msg: str, **kwargs: Any) -> None:
     """Log a warning message"""
-    logger.warning(f"{LogEmoji.WARNING.value} {msg}")
+    log.warning(msg, emoji="warning", **kwargs)
 
 
-def log_info(logger: logging.Logger, msg: str):
+def log_info(log: structlog.stdlib.BoundLogger, msg: str, **kwargs: Any) -> None:
     """Log an info message"""
-    logger.info(f"{LogEmoji.INFO.value} {msg}")
+    log.info(msg, emoji="info", **kwargs)
 
 
-def log_search(logger: logging.Logger, msg: str):
+def log_search(log: structlog.stdlib.BoundLogger, msg: str, **kwargs: Any) -> None:
     """Log a search operation"""
-    logger.info(f"{LogEmoji.SEARCH.value} {msg}")
+    log.info(msg, emoji="search", **kwargs)
 
 
-def log_store(logger: logging.Logger, msg: str):
+def log_store(log: structlog.stdlib.BoundLogger, msg: str, **kwargs: Any) -> None:
     """Log a storage operation"""
-    logger.info(f"{LogEmoji.STORE.value} {msg}")
+    log.info(msg, emoji="store", **kwargs)
 
 
-def log_match(logger: logging.Logger, msg: str):
+def log_match(log: structlog.stdlib.BoundLogger, msg: str, **kwargs: Any) -> None:
     """Log a matching operation"""
-    logger.info(f"{LogEmoji.MATCH.value} {msg}")
+    log.info(msg, emoji="match", **kwargs)
 
 
-def log_extract(logger: logging.Logger, msg: str):
+def log_extract(log: structlog.stdlib.BoundLogger, msg: str, **kwargs: Any) -> None:
     """Log an extraction operation (GPT)"""
-    logger.info(f"{LogEmoji.EXTRACT.value} {msg}")
+    log.info(msg, emoji="extract", **kwargs)
 
 
-def log_filter(logger: logging.Logger, msg: str):
+def log_filter(log: structlog.stdlib.BoundLogger, msg: str, **kwargs: Any) -> None:
     """Log a filtering operation"""
-    logger.info(f"{LogEmoji.FILTER.value} {msg}")
+    log.info(msg, emoji="filter", **kwargs)
 
 
-def log_semantic(logger: logging.Logger, msg: str):
+def log_semantic(log: structlog.stdlib.BoundLogger, msg: str, **kwargs: Any) -> None:
     """Log a semantic matching operation"""
-    logger.info(f"{LogEmoji.SEMANTIC.value} {msg}")
+    log.info(msg, emoji="semantic", **kwargs)
 
 
-def log_boolean(logger: logging.Logger, msg: str):
+def log_boolean(log: structlog.stdlib.BoundLogger, msg: str, **kwargs: Any) -> None:
     """Log a boolean matching operation"""
-    logger.info(f"{LogEmoji.BOOLEAN.value} {msg}")
+    log.info(msg, emoji="boolean", **kwargs)
 
 
-def log_location(logger: logging.Logger, msg: str):
+def log_location(log: structlog.stdlib.BoundLogger, msg: str, **kwargs: Any) -> None:
     """Log a location matching operation"""
-    logger.info(f"{LogEmoji.LOCATION.value} {msg}")
+    log.info(msg, emoji="location", **kwargs)
+
+
+# Initialize structlog with default settings on module import
+# Can be reconfigured later with configure_structlog()
+configure_structlog(json_output=False, log_level="INFO")

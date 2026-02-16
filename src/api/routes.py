@@ -10,6 +10,17 @@ from typing import Dict, Any, List, Optional
 import uuid
 import numpy as np
 
+# Import structured logging
+from src.utils.logging import get_logger
+
+# Import distributed tracing
+from src.utils.tracing import get_tracer, add_span_attributes, record_exception
+
+log = get_logger(__name__)
+
+# Get tracer for this module
+tracer = get_tracer(__name__)
+
 # Import from new modular structure
 from src.core.schema import normalize_and_validate_v2
 from src.core.matching import listing_matches_v2
@@ -143,26 +154,35 @@ def extract_with_gpt(query: str) -> Dict[str, Any]:
 
     Uses global state for openai_client and extraction_prompt.
     """
-    if not _openai_client:
-        raise HTTPException(
-            status_code=503,
-            detail="OpenAI API not configured. Set OPENAI_API_KEY environment variable."
-        )
+    with tracer.start_as_current_span("gpt-extraction") as span:
+        add_span_attributes(span, query_length=len(query))
 
-    if not _extraction_prompt:
-        raise HTTPException(
-            status_code=500,
-            detail="Extraction prompt not loaded. Check prompt/GLOBAL_REFERENCE_CONTEXT.md exists."
-        )
+        if not _openai_client:
+            span.set_attribute("error.type", "openai_not_configured")
+            raise HTTPException(
+                status_code=503,
+                detail="OpenAI API not configured. Set OPENAI_API_KEY environment variable."
+            )
 
-    try:
-        return extract_from_query(
-            query=query,
-            openai_client=_openai_client,
-            extraction_prompt=_extraction_prompt
-        )
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Extraction failed: {str(e)}")
+        if not _extraction_prompt:
+            span.set_attribute("error.type", "prompt_not_loaded")
+            raise HTTPException(
+                status_code=500,
+                detail="Extraction prompt not loaded. Check prompt/GLOBAL_REFERENCE_CONTEXT.md exists."
+            )
+
+        try:
+            result = extract_from_query(
+                query=query,
+                openai_client=_openai_client,
+                extraction_prompt=_extraction_prompt
+            )
+            span.set_attribute("extraction.success", True)
+            span.set_attribute("extraction.intent", result.get("intent", "unknown"))
+            return result
+        except Exception as e:
+            record_exception(span, e, "GPT extraction failed")
+            raise HTTPException(status_code=500, detail=f"Extraction failed: {str(e)}")
 
 
 # ============================================================================
@@ -194,7 +214,7 @@ class SearchAndMatchRequest(BaseModel):
 
 
 class StoreListingRequest(BaseModel):
-    listing_json: Dict[str, Any]
+    query: str
     user_id: str
     match_id: Optional[str] = None
 
@@ -281,9 +301,7 @@ async def search_endpoint(request: ListingRequest, limit: int = 10):
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
-        print(f"❌ Error in /search endpoint: {e}")
-        import traceback
-        traceback.print_exc()
+        log.error("Error in /search endpoint", emoji="error", error=str(e), exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -459,116 +477,134 @@ async def search_and_match_endpoint(request: SearchAndMatchRequest):
     """
     check_service_health()
 
-    try:
-        # Step 1: GPT Extraction
-        print(f"\n🔍 Search and Match for user: {request.user_id}")
-        print(f"📝 Query: {request.query}")
+    with tracer.start_as_current_span("search-and-match") as root_span:
+        add_span_attributes(root_span, user_id=request.user_id, query_length=len(request.query))
 
-        extracted_json = extract_with_gpt(request.query)
-
-        # Step 2: Canonicalize (units, currency, ontology)
-        canonical_json = canonicalize_listing(extracted_json)
-
-        # Step 3: Normalize
-        normalized_query = normalize_and_validate_v2(canonical_json)
-
-        # Step 3: Search database for candidates
-        print(f"🔎 Searching database...")
-        candidate_ids = retrieve_candidates(
-            db_clients,
-            normalized_query,
-            limit=100,
-            verbose=True
-        )
-
-        print(f"📊 Found {len(candidate_ids)} candidates")
-
-        # Step 4: Boolean match each candidate
-        matched_listings = []
-        matched_user_ids = []
-        matched_listing_ids = []
-
-        if candidate_ids:
-            # Fetch candidates from Supabase
-            intent = normalized_query.get("intent")
-            table_name = f"{intent}_listings"
-
-            print(f"🔍 Fetching candidates from {table_name}...")
-
-            for listing_id in candidate_ids:
-                try:
-                    # Fetch from Supabase
-                    response = db_clients.supabase.table(table_name).select("*").eq("id", listing_id).execute()
-
-                    if response.data and len(response.data) > 0:
-                        candidate_row = response.data[0]
-                        candidate_data = candidate_row["data"]
-                        candidate_user_id = candidate_row.get("user_id")
-
-                        # Boolean match with ontology resolver
-                        is_match = listing_matches_v2(
-                            normalized_query,
-                            candidate_data,
-                            implies_fn=semantic_implies,
-                            ontology_resolver=_ontology_resolver
-                        )
-
-                        if is_match:
-                            matched_listings.append({
-                                "listing_id": listing_id,
-                                "user_id": candidate_user_id,
-                                "data": candidate_data
-                            })
-                            if candidate_user_id:
-                                matched_user_ids.append(candidate_user_id)
-                            matched_listing_ids.append(listing_id)
-
-                except Exception as e:
-                    print(f"⚠️ Error fetching/matching listing {listing_id}: {e}")
-                    continue
-
-        # Step 5: Store in matches table
-        match_id = str(uuid.uuid4())
-        has_matches = len(matched_listings) > 0
-        match_count = len(matched_listings)
-
-        matches_data = {
-            "match_id": match_id,
-            "query_user_id": request.user_id,
-            "query_text": request.query,
-            "query_json": extracted_json,
-            "has_matches": has_matches,
-            "match_count": match_count,
-            "matched_user_ids": matched_user_ids,
-            "matched_listing_ids": matched_listing_ids
-        }
-
-        print(f"💾 Storing search history in matches table...")
         try:
-            db_clients.supabase.table("matches").insert(matches_data).execute()
-            print(f"✅ Stored with match_id: {match_id}")
-        except Exception as history_err:
-            print(f"⚠️ Could not store search history (non-fatal): {history_err}")
-            # Search results are still returned even if history storage fails
+            # Step 1: GPT Extraction
+            log.info("Search and Match request", emoji="search",
+                     user_id=request.user_id, query=request.query)
 
-        return {
-            "status": "success",
-            "match_id": match_id,
-            "query_text": request.query,
-            "query_json": extracted_json,
-            "has_matches": has_matches,
-            "match_count": match_count,
-            "matched_listings": matched_listings,
-            "message": f"Found {match_count} matches" if has_matches else "No matches found. You can store your query for future matching."
-        }
+            extracted_json = extract_with_gpt(request.query)
+            root_span.set_attribute("extraction.intent", extracted_json.get("intent", "unknown"))
 
-    except HTTPException:
-        raise
-    except Exception as e:
-        print(f"❌ Error in search-and-match: {e}")
-        import traceback
-        traceback.print_exc()
-        raise HTTPException(status_code=500, detail=str(e))
+            # Step 2: Canonicalize (units, currency, ontology)
+            with tracer.start_as_current_span("canonicalization") as canon_span:
+                canonical_json = canonicalize_listing(extracted_json)
+                canon_span.set_attribute("canonicalization.success", True)
+
+            # Step 3: Normalize
+            normalized_query = normalize_and_validate_v2(canonical_json)
+
+            # Step 4: Search database for candidates
+            with tracer.start_as_current_span("vector-search") as search_span:
+                log.info("Searching database...", emoji="filter")
+                candidate_ids = retrieve_candidates(
+                    db_clients,
+                    normalized_query,
+                    limit=100,
+                    verbose=True
+                )
+                search_span.set_attribute("candidates.count", len(candidate_ids))
+
+            log.info("Found candidates", emoji="data", count=len(candidate_ids))
+
+            # Step 5: Boolean match each candidate
+            matched_listings = []
+            matched_user_ids = []
+            matched_listing_ids = []
+
+            with tracer.start_as_current_span("boolean-matching") as match_span:
+                if candidate_ids:
+                    # Fetch candidates from Supabase
+                    intent = normalized_query.get("intent")
+                    table_name = f"{intent}_listings"
+                    match_span.set_attribute("matching.table", table_name)
+
+                    log.info("Fetching candidates from table", emoji="search", table=table_name)
+
+                    for listing_id in candidate_ids:
+                        try:
+                            # Fetch from Supabase
+                            response = db_clients.supabase.table(table_name).select("*").eq("id", listing_id).execute()
+
+                            if response.data and len(response.data) > 0:
+                                candidate_row = response.data[0]
+                                candidate_data = candidate_row["data"]
+                                candidate_user_id = candidate_row.get("user_id")
+
+                                # Boolean match with ontology resolver
+                                is_match = listing_matches_v2(
+                                    normalized_query,
+                                    candidate_data,
+                                    implies_fn=semantic_implies,
+                                    ontology_resolver=_ontology_resolver
+                                )
+
+                                if is_match:
+                                    matched_listings.append({
+                                        "listing_id": listing_id,
+                                        "user_id": candidate_user_id,
+                                        "data": candidate_data
+                                    })
+                                    if candidate_user_id:
+                                        matched_user_ids.append(candidate_user_id)
+                                    matched_listing_ids.append(listing_id)
+
+                        except Exception as e:
+                            log.warning("Error fetching/matching listing", emoji="warning",
+                                        listing_id=listing_id, error=str(e))
+                            continue
+
+                match_span.set_attribute("matching.matches_found", len(matched_listings))
+
+            # Step 6: Store in matches table
+            match_id = str(uuid.uuid4())
+            has_matches = len(matched_listings) > 0
+            match_count = len(matched_listings)
+
+            # Add final metrics to root span
+            root_span.set_attribute("result.has_matches", has_matches)
+            root_span.set_attribute("result.match_count", match_count)
+            root_span.set_attribute("result.match_id", match_id)
+
+            matches_data = {
+                "match_id": match_id,
+                "query_user_id": request.user_id,
+                "query_text": request.query,
+                "query_json": extracted_json,
+                "has_matches": has_matches,
+                "match_count": match_count,
+                "matched_user_ids": matched_user_ids,
+                "matched_listing_ids": matched_listing_ids
+            }
+
+            log.info("Storing search history in matches table...", emoji="store")
+            try:
+                db_clients.supabase.table("matches").insert(matches_data).execute()
+                log.info("Stored search history", emoji="success", match_id=match_id)
+            except Exception as history_err:
+                log.warning("Could not store search history (non-fatal)", emoji="warning",
+                            error=str(history_err))
+                # Search results are still returned even if history storage fails
+
+            return {
+                "status": "success",
+                "match_id": match_id,
+                "query_text": request.query,
+                "query_json": extracted_json,
+                "has_matches": has_matches,
+                "match_count": match_count,
+                "matched_listings": matched_listings,
+                "message": f"Found {match_count} matches" if has_matches else "No matches found. You can store your query for future matching."
+            }
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            record_exception(root_span, e, "Search and match failed")
+            log.error("Error in search-and-match", emoji="error", error=str(e), exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.post("/search-and-match-direct")
@@ -643,7 +679,8 @@ async def search_and_match_direct_endpoint(request: StoreListingRequest):
                             seen_user_ids.add(candidate_user_id)  # Mark as seen
 
             except Exception as e:
-                print(f"⚠️ Error fetching/matching listing {listing_id}: {e}")
+                log.warning("Error fetching/matching listing", emoji="warning",
+                            listing_id=listing_id, error=str(e))
                 continue
 
         has_matches = len(matched_listings) > 0
@@ -660,9 +697,7 @@ async def search_and_match_direct_endpoint(request: StoreListingRequest):
     except HTTPException:
         raise
     except Exception as e:
-        print(f"❌ Error in search-and-match-direct: {e}")
-        import traceback
-        traceback.print_exc()
+        log.error("Error in search-and-match-direct", emoji="error", error=str(e), exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -672,24 +707,29 @@ async def store_listing_endpoint(request: StoreListingRequest):
     Store listing in database for future matching.
 
     Flow:
-    1. Validate listing JSON
-    2. Normalize to OLD format
-    3. Store in appropriate listings table (with user_id and optional match_id)
-    4. Generate embedding
-    5. Store embedding in Qdrant
-    6. Return listing_id
+    1. GPT Extraction (natural language -> structured JSON)
+    2. Canonicalize (units, currency, ontology)
+    3. Normalize to OLD format
+    4. Store in appropriate listings table (with user_id and optional match_id)
+    5. Generate embedding
+    6. Store embedding in Qdrant
+    7. Return listing_id and extracted_json
 
     This endpoint ONLY stores. It does NOT search or match.
     """
     check_service_health()
 
     try:
-        print(f"\n💾 Store Listing for user: {request.user_id}")
+        log.info("Store Listing request", emoji="store", user_id=request.user_id, query=request.query)
 
-        # Step 1: Canonicalize (units, currency, ontology)
-        canonical_listing = canonicalize_listing(request.listing_json)
+        # Step 1: GPT Extraction (natural language -> structured JSON)
+        extracted_json = extract_with_gpt(request.query)
+        log.info("GPT extraction complete", emoji="success", intent=extracted_json.get("intent"))
 
-        # Step 2: Validate and normalize
+        # Step 2: Canonicalize (units, currency, ontology)
+        canonical_listing = canonicalize_listing(extracted_json)
+
+        # Step 3: Validate and normalize
         normalized_listing = normalize_and_validate_v2(canonical_listing)
 
         # Step 2: Ingest (stores in Supabase + Qdrant)
@@ -711,9 +751,9 @@ async def store_listing_endpoint(request: StoreListingRequest):
             "data": normalized_listing
         }
 
-        print(f"📝 Storing in {table_name}...")
+        log.info("Storing in table...", emoji="db", table=table_name)
         db_clients.supabase.table(table_name).insert(data).execute()
-        print(f"✅ Stored in Supabase with listing_id: {listing_id}")
+        log.info("Stored in Supabase", emoji="success", listing_id=listing_id)
 
         # Step 3: Generate and store embedding in Qdrant
         embedding_text = build_embedding_text(normalized_listing)
@@ -741,17 +781,19 @@ async def store_listing_endpoint(request: StoreListingRequest):
             payload=payload
         )
 
-        print(f"🔢 Storing embedding in {collection_name}...")
+        log.info("Storing embedding in collection...", emoji="vector", collection=collection_name)
         db_clients.qdrant.upsert(
             collection_name=collection_name,
             points=[point]
         )
-        print(f"✅ Stored in Qdrant")
+        log.info("Stored in Qdrant", emoji="success")
 
         return {
             "status": "success",
             "listing_id": listing_id,
             "user_id": request.user_id,
+            "query": request.query,
+            "extracted_json": extracted_json,
             "intent": intent,
             "match_id": request.match_id,
             "message": f"Listing stored successfully. It will be visible to future searches."
@@ -760,7 +802,5 @@ async def store_listing_endpoint(request: StoreListingRequest):
     except HTTPException:
         raise
     except Exception as e:
-        print(f"❌ Error in store-listing: {e}")
-        import traceback
-        traceback.print_exc()
+        log.error("Error in store-listing", emoji="error", error=str(e), exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))

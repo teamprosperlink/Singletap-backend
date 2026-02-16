@@ -5,7 +5,7 @@ Phase 2.2
 Authority: MATCHING_CANON.md v1.1 (LOCKED)
 Input Contract: Normalized by schema_normalizer.py (Phase 2.1)
 
-Purpose: Evaluate numeric constraints using range-based semantics
+Purpose: Evaluate numeric constraints using OVERLAP-based semantics
 Scope: ONLY numeric constraint evaluation - NO listing orchestration
 
 Implements Canon Rules:
@@ -13,11 +13,21 @@ Implements Canon Rules:
 - M-14, M-15, M-16: Other→Self numeric constraints
 - M-19, M-20, M-21: Self→Other numeric constraints
 
-Numeric Semantics (from M-30 Range Comparison Operations):
-- MIN constraint: B_range.min >= A_min
-- MAX constraint: B_range.max <= A_max
-- RANGE constraint: B_range ⊆ A_range (i.e., A.min ≤ B.min AND B.max ≤ A.max)
+Numeric Semantics (OVERLAP-based):
+- MIN constraint: required_min <= candidate_max (candidate CAN provide at least required_min)
+- MAX constraint: candidate_min <= required_max (candidate CAN provide within required_max)
+- RANGE constraint: ranges_overlap(required_range, candidate_range)
 - Empty constraint set → VACUOUSLY SATISFIED
+
+OVERLAP LOGIC:
+Two ranges [a_min, a_max] and [b_min, b_max] overlap if:
+  a_min <= b_max AND b_min <= a_max
+
+This enables:
+- Buyer max=50000 + Seller min=40000 → MATCH (overlap at 40000-50000)
+- Buyer max=50000 + Seller min=60000 → NO MATCH (no overlap)
+- Exact=3 + Exact=3 → MATCH
+- Exact=3 + Range[2,5] → MATCH (3 is within 2-5)
 """
 
 from typing import Dict, Tuple
@@ -85,12 +95,13 @@ def _validate_range(r: Range, context: str = "") -> None:
 
 def range_contains(inner: Range, outer: Range) -> bool:
     """
-    Check if inner range is contained within outer range.
+    Check if inner range is contained within outer range (SUBSET semantics).
 
     Semantics: inner ⊆ outer
     Implementation: outer.min ≤ inner.min AND inner.max ≤ outer.max
 
-    Used by RANGE constraint evaluation (M-11, M-16, M-21).
+    NOTE: This is SUBSET logic, used when strict containment is required.
+    For most matching, use ranges_overlap() instead.
 
     Args:
         inner: The range that should be contained
@@ -114,72 +125,109 @@ def range_contains(inner: Range, outer: Range) -> bool:
     return outer_min <= inner_min and inner_max <= outer_max
 
 
+def ranges_overlap(range_a: Range, range_b: Range) -> bool:
+    """
+    Check if two ranges have any overlap (OVERLAP semantics).
+
+    Semantics: ranges_a ∩ range_b ≠ ∅
+    Implementation: a_min <= b_max AND b_min <= a_max
+
+    Used by RANGE constraint evaluation with overlap logic.
+
+    Args:
+        range_a: First range [min, max]
+        range_b: Second range [min, max]
+
+    Returns:
+        True if ranges overlap, False otherwise
+
+    Examples:
+        ranges_overlap([40000, 50000], [45000, 60000]) → True (overlap at 45000-50000)
+        ranges_overlap([3, 3], [3, 3]) → True (exact match)
+        ranges_overlap([3, 3], [2, 5]) → True (3 is within 2-5)
+        ranges_overlap([3, 3], [4, 4]) → False (no overlap)
+        ranges_overlap([1, 5], [6, 10]) → False (no overlap)
+        ranges_overlap([40000, inf], [0, 50000]) → True (buyer max=50000, seller min=40000)
+    """
+    _validate_range(range_a, "range_a")
+    _validate_range(range_b, "range_b")
+
+    a_min, a_max = range_a
+    b_min, b_max = range_b
+
+    # Overlap exists ⟺ a_min <= b_max AND b_min <= a_max
+    return a_min <= b_max and b_min <= a_max
+
+
 def satisfies_min_constraint(required_min: float, candidate_range: Range) -> bool:
     """
-    Check if candidate range satisfies minimum constraint.
+    Check if candidate range satisfies minimum constraint using OVERLAP logic.
 
-    Semantics (from M-30 Range Comparison Operations):
-    - MIN constraint: B_range.min >= A_min
-    - Candidate must meet or exceed threshold across ENTIRE range
+    OVERLAP Semantics:
+    - MIN constraint: required_min <= candidate_max
+    - Candidate CAN provide a value >= required_min if its max reaches required_min
 
     Used by MIN constraint rules (M-09, M-14, M-19).
 
     Args:
-        required_min: Minimum threshold value
+        required_min: Minimum threshold value (requester wants at least this)
         candidate_range: Candidate's value range [min, max]
 
     Returns:
-        True if candidate_range.min >= required_min, False otherwise
+        True if required_min <= candidate_max (overlap possible), False otherwise
 
     Examples:
-        satisfies_min_constraint(4.0, [4.5, 5.0]) → True
-        satisfies_min_constraint(4.0, [4.0, 4.0]) → True (EXACT match at boundary)
-        satisfies_min_constraint(4.0, [3.5, 5.0]) → False (range includes values below min)
+        satisfies_min_constraint(4.0, [4.5, 5.0]) → True (4.0 <= 5.0)
+        satisfies_min_constraint(4.0, [4.0, 4.0]) → True (4.0 <= 4.0, exact match)
+        satisfies_min_constraint(4.0, [3.5, 5.0]) → True (4.0 <= 5.0, overlap at 4.0-5.0)
+        satisfies_min_constraint(4.0, [1.0, 3.0]) → False (4.0 > 3.0, no overlap)
     """
     if not isinstance(required_min, (int, float)):
         raise TypeError(f"required_min must be numeric, got {type(required_min).__name__}")
 
     _validate_range(candidate_range, "candidate_range")
 
-    candidate_min, _ = candidate_range
+    _, candidate_max = candidate_range
 
-    # Pass ⇔ candidate_min >= required_min
-    # Rationale: Entire candidate range must be >= threshold
-    return candidate_min >= required_min
+    # OVERLAP: Pass ⇔ required_min <= candidate_max
+    # Rationale: Candidate can provide a value >= required_min if its range reaches that high
+    return required_min <= candidate_max
 
 
 def satisfies_max_constraint(required_max: float, candidate_range: Range) -> bool:
     """
-    Check if candidate range satisfies maximum constraint.
+    Check if candidate range satisfies maximum constraint using OVERLAP logic.
 
-    Semantics (from M-30 Range Comparison Operations):
-    - MAX constraint: B_range.max <= A_max
-    - Candidate must not exceed threshold across ENTIRE range
+    OVERLAP Semantics:
+    - MAX constraint: candidate_min <= required_max
+    - Candidate CAN provide a value <= required_max if its min is within budget
 
     Used by MAX constraint rules (M-10, M-15, M-20).
 
     Args:
-        required_max: Maximum threshold value
+        required_max: Maximum threshold value (requester accepts up to this)
         candidate_range: Candidate's value range [min, max]
 
     Returns:
-        True if candidate_range.max <= required_max, False otherwise
+        True if candidate_min <= required_max (overlap possible), False otherwise
 
     Examples:
-        satisfies_max_constraint(100, [50, 95]) → True
-        satisfies_max_constraint(100, [100, 100]) → True (EXACT match at boundary)
-        satisfies_max_constraint(100, [50, 150]) → False (range includes values above max)
+        satisfies_max_constraint(50000, [40000, +inf]) → True (40000 <= 50000, seller can sell at 40000-50000)
+        satisfies_max_constraint(50000, [60000, +inf]) → False (60000 > 50000, seller's min exceeds budget)
+        satisfies_max_constraint(100, [50, 95]) → True (50 <= 100)
+        satisfies_max_constraint(100, [100, 100]) → True (100 <= 100, exact match)
+        satisfies_max_constraint(100, [50, 150]) → True (50 <= 100, overlap at 50-100)
     """
     if not isinstance(required_max, (int, float)):
         raise TypeError(f"required_max must be numeric, got {type(required_max).__name__}")
 
     _validate_range(candidate_range, "candidate_range")
 
-    _, candidate_max = candidate_range
+    candidate_min, _ = candidate_range
 
-    # Pass ⇔ candidate_max <= required_max
-    # Rationale: Entire candidate range must be <= threshold
-    return candidate_max <= required_max
+    # OVERLAP: Pass ⇔ candidate_min <= required_max
+    # Rationale: Candidate can provide a value within requester's budget if its minimum is affordable
+    return candidate_min <= required_max
 
 
 # ============================================================================
@@ -327,47 +375,53 @@ def evaluate_range_constraints(
     candidate_ranges: Dict[str, Range]
 ) -> bool:
     """
-    Evaluate RANGE constraints for all required attributes.
+    Evaluate RANGE constraints for all required attributes using OVERLAP logic.
 
     Enforces Canon Rules:
     - M-11: Item Range Constraint Rule
     - M-16: Other-Self Range Constraint Rule
     - M-21: Self-Other Range Constraint Rule
 
-    Semantics:
-    - For each key in required_ranges: candidate_ranges[key] ⊆ required_ranges[key]
-    - Subset means: required.min ≤ candidate.min AND candidate.max ≤ required.max
+    OVERLAP Semantics:
+    - For each key in required_ranges: ranges_overlap(required_range, candidate_range)
+    - Overlap means: required.min <= candidate.max AND candidate.min <= required.max
     - Empty required_ranges → VACUOUSLY TRUE (no requirements)
     - Missing key in candidate_ranges → FAIL (required attribute absent)
     - Extra keys in candidate_ranges → IGNORED (not required)
 
     Special Case (EXACT constraints):
     - EXACT represented as range[x, x] (per I-02: EXACT not a separate mode)
-    - Candidate must also be [x, x] to satisfy
+    - With overlap: exact=3 matches candidate range [2,5] (3 is within 2-5)
+    - With overlap: exact=3 matches exact=3 (overlap at single point)
+    - With overlap: exact=3 does NOT match exact=4 (no overlap)
 
     Args:
         required_ranges: Dict of required ranges {attribute: [min, max]}
         candidate_ranges: Dict of candidate ranges {attribute: [min, max]}
 
     Returns:
-        True if all RANGE constraints satisfied, False otherwise
+        True if all RANGE constraints have overlap, False otherwise
 
     Examples:
         required = {"storage": [256, 256]}  # EXACT 256GB
         candidate = {"storage": [256, 256]}
-        → True (exact match)
+        → True (exact match, overlap at 256)
 
         required = {"price": [40000, 60000]}
         candidate = {"price": [55000, 55000]}
-        → True (55000 within [40000, 60000])
+        → True (55000 overlaps with [40000, 60000])
 
-        required = {"storage": [256, 256]}  # EXACT 256GB
-        candidate = {"storage": [128, 512]}
-        → False (range too wide, includes non-256 values)
+        required = {"diamonds": [3, 3]}  # EXACT 3
+        candidate = {"diamonds": [2, 5]}
+        → True (3 overlaps with [2, 5])
+
+        required = {"diamonds": [3, 3]}  # EXACT 3
+        candidate = {"diamonds": [4, 4]}
+        → False (3 does not overlap with 4)
 
         required = {"price": [40000, 60000]}
         candidate = {"price": [50000, 70000]}
-        → False (candidate.max exceeds required.max)
+        → True (overlap at [50000, 60000])
 
         required = {}
         candidate = anything
@@ -391,9 +445,8 @@ def evaluate_range_constraints(
 
         candidate_range = candidate_ranges[key]
 
-        # Validate ranges and check containment
-        # candidate ⊆ required (i.e., candidate is contained within required bounds)
-        if not range_contains(candidate_range, required_range):
+        # OVERLAP: Check if ranges have any overlap
+        if not ranges_overlap(required_range, candidate_range):
             return False
 
     # All constraints satisfied
