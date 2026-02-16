@@ -972,7 +972,7 @@ Query	domain
 Service
 Query	domain
 “need math tutor”	["education & training"]
-“plumber needed”	["construction & trades"]
+"plumber needed"	["repair & maintenance services"]
 Mutual
 Query	domain
 “looking for a roommate”	["real estate & property"]

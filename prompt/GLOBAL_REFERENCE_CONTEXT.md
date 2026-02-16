@@ -145,6 +145,8 @@ Root: Is the service primarily provided by / for government entities, involves l
     │   ├── YES → **Construction & Trades** (7)
     │   └── NO
     │       ├── Does it involve repair, fixing, servicing, or ongoing maintenance of objects, equipment, vehicles, homes, or appliances?
+    │       │   │   (NOTE: Trades like plumber, electrician, carpenter, HVAC technician default HERE
+    │       │   │    unless query explicitly mentions "new construction", "building", or "installation")
     │       │   ├── YES → **Repair & Maintenance Services** (14)
     │       │   └── NO
     │       ├── Does it involve moving people/goods, supply chain, warehousing, delivery, or fleet operations?
@@ -971,8 +973,11 @@ Query	domain
 “selling used bike”	["automotive & vehicles"]
 Service
 Query	domain
-“need math tutor”	["education & training"]
-“plumber needed”	["construction & trades"]
+"need math tutor"	["education & training"]
+"plumber needed"	["repair & maintenance services"]
+"electrician for AC repair"	["repair & maintenance services"]
+"need carpenter for furniture"	["repair & maintenance services"]
+"building contractor for new house"	["construction & trades"]
 Mutual
 Query	domain
 “looking for a roommate”	["real estate & property"]
