@@ -357,6 +357,7 @@ def semantic_implies(candidate_val: str, required_val: str) -> bool:
 
 class ListingRequest(BaseModel):
     listing: Dict[str, Any]
+    user_id: Optional[str] = None  # Required for /ingest, optional for /search
 
 class MatchRequest(BaseModel):
     listing_a: Dict[str, Any]
@@ -400,20 +401,29 @@ def ping():
 async def ingest_endpoint(request: ListingRequest):
     check_service_health()
     try:
+        # Validate user_id for ingest
+        if not request.user_id:
+            raise HTTPException(
+                status_code=400,
+                detail="user_id is required for ingesting listings"
+            )
+
         # 1. Canonicalize
         canonical_listing = canonicalize_listing(request.listing)
 
         # 2. Normalize
         listing_old = normalize_and_validate_v2(canonical_listing)
 
-        # 3. Ingest
-        listing_id, _ = ingest_listing(ingestion_clients, listing_old, verbose=True)
-        
+        # 3. Ingest with user_id
+        listing_id, _ = ingest_listing(ingestion_clients, listing_old, user_id=request.user_id, verbose=True)
+
         return {
             "status": "success",
             "listing_id": listing_id,
             "message": "Listing normalized and ingested successfully"
         }
+    except HTTPException:
+        raise
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
