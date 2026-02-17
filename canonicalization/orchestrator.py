@@ -14,11 +14,13 @@ from typing import Dict, Any, Optional, List
 from copy import deepcopy
 from canonicalization.resolvers.generic_categorical_resolver import GenericCategoricalResolver
 from canonicalization.resolvers.quantitative_resolver import QuantitativeResolver
+from canonicalization.key_canonicalizer import KeyCanonicalizer
 from services.external.geocoding_service import get_geocoding_service
 
 # Shared resolver singletons — synonym registrations persist across listings
 _categorical_resolver = None
 _quantitative_resolver = None
+_key_canonicalizer = None
 
 
 def _get_categorical_resolver():
@@ -33,6 +35,13 @@ def _get_quantitative_resolver():
     if _quantitative_resolver is None:
         _quantitative_resolver = QuantitativeResolver()
     return _quantitative_resolver
+
+
+def _get_key_canonicalizer():
+    global _key_canonicalizer
+    if _key_canonicalizer is None:
+        _key_canonicalizer = KeyCanonicalizer()
+    return _key_canonicalizer
 
 
 def canonicalize_listing(
@@ -195,14 +204,20 @@ def _canonicalize_items(
         # The matching engine expects categorical values to be plain strings.
         if "categorical" in item and item["categorical"]:
             canonical_categorical = {}
+            key_canonicalizer = _get_key_canonicalizer()
+            domain_str = domain_context[0] if domain_context else "general"
 
             for key, value in item["categorical"].items():
-                node = categorical_resolver.resolve(value, attribute_key=key)
+                # Canonicalize KEY first (e.g., "style" -> "kind", "variety" -> "kind")
+                canonical_key = key_canonicalizer.canonicalize(key, domain=domain_str)
+
+                # Then canonicalize VALUE
+                node = categorical_resolver.resolve(value, attribute_key=canonical_key)
 
                 if node:
-                    canonical_categorical[key] = node.concept_id
+                    canonical_categorical[canonical_key] = node.concept_id
                 else:
-                    canonical_categorical[key] = value
+                    canonical_categorical[canonical_key] = value
 
             canonical_item["categorical"] = canonical_categorical
 
@@ -312,42 +327,58 @@ def _canonicalize_preferences(
     # Canonicalize identity (categorical - ontology)
     if "identity" in preferences and preferences["identity"]:
         canonical_identity = []
+        key_canonicalizer = _get_key_canonicalizer()
 
         for identity_item in preferences["identity"]:
             if "value" in identity_item:
+                # Canonicalize the TYPE (which is a key)
+                raw_type = identity_item.get("type", "")
+                canonical_type = key_canonicalizer.canonicalize(raw_type, domain="identity") if raw_type else raw_type
+
                 node = categorical_resolver.resolve(
                     identity_item["value"],
-                    attribute_key=identity_item.get("type")
+                    attribute_key=canonical_type
                 )
 
                 if node:
                     canonical_identity.append({
-                        "type": identity_item.get("type"),
+                        "type": canonical_type,
                         "value": node.concept_id
                     })
                 else:
-                    canonical_identity.append(identity_item)
+                    canonical_identity.append({
+                        "type": canonical_type,
+                        "value": identity_item.get("value")
+                    })
 
         canonical_prefs["identity"] = canonical_identity
 
     # Canonicalize lifestyle (categorical - ontology)
     if "lifestyle" in preferences and preferences["lifestyle"]:
         canonical_lifestyle = []
+        key_canonicalizer = _get_key_canonicalizer()
 
         for lifestyle_item in preferences["lifestyle"]:
             if "value" in lifestyle_item:
+                # Canonicalize the TYPE (which is a key)
+                raw_type = lifestyle_item.get("type", "")
+                canonical_type = key_canonicalizer.canonicalize(raw_type, domain="lifestyle") if raw_type else raw_type
+
                 node = categorical_resolver.resolve(
                     lifestyle_item["value"],
-                    attribute_key=lifestyle_item.get("type")
+                    attribute_key=canonical_type
                 )
 
                 if node:
                     canonical_lifestyle.append({
-                        "type": lifestyle_item.get("type"),
+                        "type": canonical_type,
                         "value": node.concept_id
                     })
                 else:
-                    canonical_lifestyle.append(lifestyle_item)
+                    canonical_lifestyle.append({
+                        "type": canonical_type,
+                        "value": lifestyle_item.get("value")
+                    })
 
         canonical_prefs["lifestyle"] = canonical_lifestyle
 

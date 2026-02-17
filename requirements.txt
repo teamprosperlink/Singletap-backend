@@ -15,6 +15,7 @@ pint
 quantulum3
 requests
 nltk
+networkx>=2.6
 structlog>=25.5.0
 
 # OpenTelemetry for Jaeger distributed tracing
