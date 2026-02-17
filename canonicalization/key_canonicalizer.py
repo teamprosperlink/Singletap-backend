@@ -62,7 +62,7 @@ class KeyCanonicalizer:
         self,
         model_name: str = 'all-MiniLM-L6-v2',
         persistence_file: str = 'key_canonicals.json',
-        similarity_threshold: float = 0.85,
+        similarity_threshold: float = 0.80,
         hypernym_depth: int = 3
     ):
         """
@@ -247,8 +247,17 @@ class KeyCanonicalizer:
     def _is_too_generic(self, hypernyms: set) -> bool:
         """Filter out overly generic hypernyms like 'entity', 'abstraction'."""
         generics = {
+            # Top-level abstractions
             'entity.n.01', 'abstraction.n.06', 'object.n.01', 'whole.n.02',
-            'physical_entity.n.01', 'thing.n.12', 'psychological_feature.n.01'
+            'physical_entity.n.01', 'thing.n.12', 'psychological_feature.n.01',
+            # Mid-level generics that cause false positives
+            'attribute.n.02',       # connects condition/quality to unrelated terms
+            'communication.n.02',   # connects brand to condition
+            'group.n.01',           # connects manufacturer to state
+            'relation.n.01',        # too broad
+            'process.n.06',         # too broad
+            'causal_agent.n.01',    # too broad
+            'matter.n.03',          # too broad
         }
         try:
             return all(h.name() in generics for h in hypernyms if hasattr(h, 'name'))

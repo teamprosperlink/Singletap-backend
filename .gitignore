@@ -51,3 +51,9 @@ test_synsets.py
 
 # Temporary notes
 without\ wsd\ fine\ tuning.txt
+
+# Documentation files
+docs/
+
+# Assets
+assets/

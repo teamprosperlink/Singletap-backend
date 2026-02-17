@@ -1,11 +1,52 @@
 {
   "mappings": {
-    "food|variety": "variety",
-    "food|style": "variety",
-    "food|kind": "variety"
+    "food & beverage|variety": "variety",
+    "food & beverage|style": "variety",
+    "food & beverage|kind": "variety",
+    "food & beverage|type": "variety",
+    "food & beverage|flavor": "flavor",
+    "food & beverage|taste": "flavor",
+    "food & beverage|price": "price",
+    "food & beverage|brand": "brand",
+    "electronics|brand": "brand",
+    "electronics|make": "brand",
+    "electronics|manufacturer": "brand",
+    "electronics|condition": "condition",
+    "electronics|quality": "quality",
+    "electronics|state": "state",
+    "electronics|model": "model",
+    "electronics|version": "version",
+    "fashion|color": "color",
+    "fashion|colour": "color",
+    "fashion|size": "size",
+    "fashion|fit": "fit",
+    "fashion|material": "material",
+    "fashion|fabric": "material",
+    "fashion|style": "style",
+    "fashion|design": "style",
+    "fashion|pattern": "style",
+    "real estate|bedrooms": "bedrooms",
+    "real estate|rooms": "bedrooms",
+    "real estate|location": "location",
+    "real estate|area": "area",
+    "real estate|price": "price",
+    "real estate|cost": "price",
+    "real estate|size": "size",
+    "vehicles|make": "make",
+    "vehicles|brand": "make",
+    "vehicles|model": "model",
+    "vehicles|variant": "variant",
+    "vehicles|color": "color",
+    "vehicles|colour": "color",
+    "vehicles|mileage": "mileage",
+    "vehicles|kilometers": "kilometers",
+    "furniture|size": "size",
+    "furniture|dimension": "size",
+    "furniture|material": "material",
+    "furniture|wood": "material"
   },
   "graphs": {
-    "food": [
+    "food & beverage": [
       [
         "variety",
         "style"
@@ -13,6 +54,72 @@
       [
         "variety",
         "kind"
+      ],
+      [
+        "variety",
+        "type"
+      ],
+      [
+        "flavor",
+        "taste"
+      ]
+    ],
+    "electronics": [
+      [
+        "brand",
+        "make"
+      ],
+      [
+        "brand",
+        "manufacturer"
+      ]
+    ],
+    "fashion": [
+      [
+        "color",
+        "colour"
+      ],
+      [
+        "material",
+        "fabric"
+      ],
+      [
+        "style",
+        "design"
+      ],
+      [
+        "design",
+        "pattern"
+      ]
+    ],
+    "real estate": [
+      [
+        "bedrooms",
+        "rooms"
+      ],
+      [
+        "price",
+        "cost"
+      ]
+    ],
+    "vehicles": [
+      [
+        "make",
+        "brand"
+      ],
+      [
+        "color",
+        "colour"
+      ]
+    ],
+    "furniture": [
+      [
+        "size",
+        "dimension"
+      ],
+      [
+        "material",
+        "wood"
       ]
     ]
   }
