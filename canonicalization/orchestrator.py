@@ -27,7 +27,78 @@ def _get_categorical_resolver():
     global _categorical_resolver
     if _categorical_resolver is None:
         _categorical_resolver = GenericCategoricalResolver()
+        # Load condition ontology into resolver for is_ancestor matching
+        _load_condition_ontology_into_resolver(_categorical_resolver)
     return _categorical_resolver
+
+
+def _load_condition_ontology_into_resolver(resolver: GenericCategoricalResolver) -> None:
+    """
+    Load hierarchical condition ontology into the categorical resolver.
+
+    This enables is_ancestor matching for condition terms.
+    E.g., is_ancestor("used", "like_new") -> True (Amazon hierarchy)
+
+    Ontology structure:
+        condition
+        ├── new
+        ├── refurbished
+        ├── used
+        │   ├── like_new
+        │   ├── very_good
+        │   ├── good
+        │   └── acceptable
+        ├── damaged
+        └── for_parts
+    """
+    import os
+    import json
+
+    try:
+        ontology_path = os.path.join(
+            os.path.dirname(__file__),
+            "static_dicts", "condition_ontology.json"
+        )
+        with open(ontology_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        concept_count = 0
+
+        def process_node(node: dict, concept_id: str, path: list):
+            """Recursively process ontology nodes."""
+            nonlocal concept_count
+
+            # Register concept_path for is_ancestor matching
+            resolver._register_concept_path(concept_id, path)
+
+            # Register concept_id -> itself
+            resolver._register_synonyms(concept_id, [concept_id])
+            resolver._register_synonyms(concept_id, [concept_id.replace("_", " ")])
+
+            # Register all synonyms
+            for synonym in node.get("synonyms", []):
+                resolver._register_synonyms(concept_id, [synonym])
+
+            # Register Wikidata aliases
+            for alias in node.get("wikidata_aliases", []):
+                resolver._register_synonyms(concept_id, [alias])
+
+            concept_count += 1
+
+            # Process children recursively
+            for child_id, child_node in node.get("children", {}).items():
+                child_path = path + [child_id]
+                process_node(child_node, child_id, child_path)
+
+        # Start from "condition" root
+        condition_root = data.get("condition", {})
+        for top_level_id, top_level_node in condition_root.get("children", {}).items():
+            process_node(top_level_node, top_level_id, ["condition", top_level_id])
+
+        print(f"Loaded condition ontology: {concept_count} concepts into resolver")
+
+    except Exception as e:
+        print(f"Could not load condition ontology into resolver: {e}")
 
 
 def _get_quantitative_resolver():

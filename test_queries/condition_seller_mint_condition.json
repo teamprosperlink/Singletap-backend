@@ -1,0 +1,30 @@
+{
+  "intent": "product",
+  "subintent": "sell",
+  "domain": ["technology & electronics"],
+  "primary_mutual_category": [],
+  "items": [
+    {
+      "type": "smartphone",
+      "categorical": {
+        "brand": "apple",
+        "condition": "mint condition"
+      },
+      "min": {},
+      "max": {},
+      "range": {
+        "capacity": [{"type": "storage", "min": 128, "max": 128, "unit": "gb"}],
+        "cost": [{"type": "price", "min": 44000, "max": 44000, "unit": "inr"}]
+      }
+    }
+  ],
+  "item_exclusions": [],
+  "other_party_preferences": {"categorical": {}, "min": {}, "max": {}, "range": {}},
+  "other_party_exclusions": [],
+  "self_attributes": {"categorical": {}, "min": {}, "max": {}, "range": {}},
+  "self_exclusions": [],
+  "target_location": {"mode": "explicit", "name": "mumbai", "coordinates": null},
+  "location_match_mode": "explicit",
+  "location_exclusions": [],
+  "reasoning": "Selling mint condition iPhone 128GB for 44k in Mumbai"
+}

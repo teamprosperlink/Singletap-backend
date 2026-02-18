@@ -19,8 +19,9 @@ Deterministic: Same input always produces same output.
 
 import json
 import os
-from typing import Dict, Tuple, Optional
+from typing import Dict, Tuple, Optional, List
 from collections import defaultdict
+from datetime import datetime
 
 # Optional imports - graceful degradation if unavailable
 try:
@@ -98,7 +99,13 @@ class KeyCanonicalizer:
         else:
             self.graphs = defaultdict(dict)  # Fallback: simple dict
 
+        # Review queue for borderline matches (manual verification)
+        self.review_queue_file = persistence_file.replace('.json', '_review_queue.json')
+        self.review_queue: List[Dict] = []
+        self.borderline_threshold = 0.85  # Flag matches between threshold and this
+
         self._load_persistence()
+        self._load_review_queue()
 
     def canonicalize(self, key: str, domain: str, value: Optional[str] = None) -> str:
         """
@@ -277,6 +284,17 @@ class KeyCanonicalizer:
                 sim = util.cos_sim(emb, existing_emb).item()
 
                 if sim > self.threshold:
+                    # Flag borderline matches for review (between threshold and borderline_threshold)
+                    if sim < self.borderline_threshold:
+                        self._flag_for_review(
+                            key1=key,
+                            key2=existing_key,
+                            domain=domain,
+                            match_type="embedding",
+                            score=sim,
+                            reason=f"Borderline similarity {sim:.3f} (threshold={self.threshold}, borderline={self.borderline_threshold})"
+                        )
+
                     # Add edge for clustering
                     if HAS_NETWORKX:
                         self.graphs[domain].add_edge(key, existing_key)
@@ -391,6 +409,150 @@ class KeyCanonicalizer:
             "canonical": canonical,
             "cluster": list(cluster),
             "cluster_size": len(cluster)
+        }
+
+    # ==================== REVIEW QUEUE METHODS ====================
+
+    def _flag_for_review(
+        self,
+        key1: str,
+        key2: str,
+        domain: str,
+        match_type: str,
+        score: float,
+        reason: str
+    ):
+        """Flag a match for manual review."""
+        # Check if already flagged (avoid duplicates)
+        for entry in self.review_queue:
+            if (entry["key1"] == key1 and entry["key2"] == key2 and
+                entry["domain"] == domain and entry["status"] == "pending"):
+                return  # Already flagged
+
+        entry = {
+            "id": f"{domain}|{key1}|{key2}|{datetime.now().strftime('%Y%m%d%H%M%S')}",
+            "timestamp": datetime.now().isoformat(),
+            "key1": key1,
+            "key2": key2,
+            "domain": domain,
+            "match_type": match_type,
+            "score": round(score, 4),
+            "reason": reason,
+            "status": "pending"  # pending, approved, rejected
+        }
+        self.review_queue.append(entry)
+        self._save_review_queue()
+        print(f"[REVIEW] Flagged for review: '{key1}' <-> '{key2}' in {domain} (score={score:.3f})")
+
+    def _save_review_queue(self):
+        """Save review queue to JSON file."""
+        try:
+            with open(self.review_queue_file, 'w') as f:
+                json.dump(self.review_queue, f, indent=2)
+        except Exception as e:
+            print(f"Warning: Could not save review queue: {e}")
+
+    def _load_review_queue(self):
+        """Load review queue from JSON file."""
+        if not os.path.exists(self.review_queue_file):
+            self.review_queue = []
+            return
+
+        try:
+            with open(self.review_queue_file, 'r') as f:
+                self.review_queue = json.load(f)
+            pending_count = sum(1 for e in self.review_queue if e.get("status") == "pending")
+            if pending_count > 0:
+                print(f"Loaded {pending_count} pending review items.")
+        except Exception as e:
+            print(f"Warning: Could not load review queue: {e}")
+            self.review_queue = []
+
+    def get_pending_reviews(self) -> List[Dict]:
+        """Get all pending review items."""
+        return [e for e in self.review_queue if e.get("status") == "pending"]
+
+    def get_all_reviews(self, status: Optional[str] = None) -> List[Dict]:
+        """Get all review items, optionally filtered by status."""
+        if status:
+            return [e for e in self.review_queue if e.get("status") == status]
+        return self.review_queue
+
+    def approve_match(self, key1: str, key2: str, domain: str) -> bool:
+        """
+        Approve a flagged match. The match stays in cache.
+
+        Returns True if found and approved, False otherwise.
+        """
+        for entry in self.review_queue:
+            if (entry["key1"] == key1 and entry["key2"] == key2 and
+                entry["domain"] == domain and entry["status"] == "pending"):
+                entry["status"] = "approved"
+                entry["reviewed_at"] = datetime.now().isoformat()
+                self._save_review_queue()
+                print(f"[REVIEW] Approved: '{key1}' <-> '{key2}' in {domain}")
+                return True
+        return False
+
+    def reject_match(
+        self,
+        key1: str,
+        key2: str,
+        domain: str,
+        block_hypernym: Optional[str] = None
+    ) -> bool:
+        """
+        Reject a flagged match. Removes from cache and optionally blocks a hypernym.
+
+        Args:
+            key1: First key in the match
+            key2: Second key in the match
+            domain: Domain of the match
+            block_hypernym: Optional hypernym to add to generics filter (e.g., 'property.n.02')
+
+        Returns True if found and rejected, False otherwise.
+        """
+        for entry in self.review_queue:
+            if (entry["key1"] == key1 and entry["key2"] == key2 and
+                entry["domain"] == domain and entry["status"] == "pending"):
+                entry["status"] = "rejected"
+                entry["reviewed_at"] = datetime.now().isoformat()
+                if block_hypernym:
+                    entry["blocked_hypernym"] = block_hypernym
+
+                # Remove the mapping for key1 (it should become its own canonical)
+                cache_key1 = (domain, key1)
+                if cache_key1 in self.mappings:
+                    del self.mappings[cache_key1]
+
+                # Remove edge from graph
+                if HAS_NETWORKX and domain in self.graphs:
+                    graph = self.graphs[domain]
+                    if graph.has_edge(key1, key2):
+                        graph.remove_edge(key1, key2)
+
+                # Set key1 as its own canonical
+                self.mappings[cache_key1] = key1
+
+                self._save_persistence()
+                self._save_review_queue()
+                print(f"[REVIEW] Rejected: '{key1}' <-> '{key2}' in {domain}")
+                if block_hypernym:
+                    print(f"[REVIEW] Note: Add '{block_hypernym}' to generics filter manually.")
+                return True
+        return False
+
+    def review_summary(self) -> Dict:
+        """Get a summary of the review queue."""
+        pending = sum(1 for e in self.review_queue if e.get("status") == "pending")
+        approved = sum(1 for e in self.review_queue if e.get("status") == "approved")
+        rejected = sum(1 for e in self.review_queue if e.get("status") == "rejected")
+
+        return {
+            "total": len(self.review_queue),
+            "pending": pending,
+            "approved": approved,
+            "rejected": rejected
         }
 
 

@@ -9,18 +9,10 @@ Applied AFTER abbreviation expansion, BEFORE lemmatization.
 """
 
 GENERAL_MWE = {
-    # Condition
-    "barely used": "used",
-    "lightly used": "used",
-    "gently used": "used",
-    "slightly used": "used",
-    "well used": "used",
-    "heavily used": "used",
-    "like new": "new",
-    "as good as new": "new",
+    # Condition - aligned with condition_ontology.json hierarchy
+    # new: brand new items in original packaging
     "brand new": "new",
     "brand-new": "new",
-    "mint condition": "new",
     "factory sealed": "new",
     "factory new": "new",
     "box packed": "new",
@@ -28,6 +20,27 @@ GENERAL_MWE = {
     "sealed pack": "new",
     "unopened": "new",
     "unused": "new",
+    # like_new: virtually new with minimal imperfections (child of used)
+    "like new": "like_new",
+    "as good as new": "like_new",
+    "mint condition": "like_new",
+    "barely used": "like_new",
+    "barely touched": "like_new",
+    "hardly used": "like_new",
+    # very_good: lightly used with minor cosmetic issues (child of used)
+    "lightly used": "very_good",
+    "gently used": "very_good",
+    "gently worn": "very_good",
+    "slightly used": "very_good",
+    "excellent condition": "very_good",
+    # good: shows wear from consistent use (child of used)
+    "well used": "good",
+    "good condition": "good",
+    "well maintained": "good",
+    # acceptable: heavy wear but usable (child of used)
+    "heavily used": "acceptable",
+    "fair condition": "acceptable",
+    # used: generic used without specific sub-category
     "pre-owned": "used",
     "pre owned": "used",
     "preowned": "used",
@@ -38,12 +51,10 @@ GENERAL_MWE = {
     "previously owned": "used",
     "one owner": "used",
     "single owner": "used",
-    "well maintained": "used",
-    "good condition": "used",
-    "fair condition": "used",
+    # damaged: non-functional or needs repair
     "needs repair": "damaged",
     "needs fixing": "damaged",
-    "for parts": "damaged",
+    "for parts": "for_parts",
     "not working": "damaged",
     "not functional": "damaged",
     "dead": "damaged",
@@ -103,27 +114,41 @@ GENERAL_MWE = {
 
 ATTRIBUTE_MWE = {
     "condition": {
-        "barely used": "used",
-        "lightly used": "used",
-        "gently used": "used",
-        "like new": "new",
-        "mint condition": "new",
+        # new: brand new items
         "brand new": "new",
         "brand-new": "new",
+        # like_new: virtually new (child of used)
+        "like new": "like_new",
+        "mint condition": "like_new",
+        "barely used": "like_new",
+        "barely touched": "like_new",
+        "hardly used": "like_new",
+        # very_good: lightly used (child of used)
+        "lightly used": "very_good",
+        "gently used": "very_good",
+        "gently worn": "very_good",
+        "excellent condition": "very_good",
+        # good: shows consistent wear (child of used)
+        "good condition": "good",
+        # acceptable: heavy wear but usable (child of used)
+        "fair condition": "acceptable",
+        # used: generic
         "pre-owned": "used",
         "pre owned": "used",
         "second hand": "used",
         "second-hand": "used",
         "secondhand": "used",
         "2nd hand": "used",
+        # refurbished
         "refurbished": "refurbished",
         "renewed": "refurbished",
         "reconditioned": "refurbished",
         "restored": "refurbished",
-        "for parts": "salvage",
-        "for spares": "salvage",
-        "parts only": "salvage",
-        "salvage title": "salvage",
+        # for_parts
+        "for parts": "for_parts",
+        "for spares": "for_parts",
+        "parts only": "for_parts",
+        "salvage title": "for_parts",
     },
     "fuel": {
         "petrol": "gasoline",

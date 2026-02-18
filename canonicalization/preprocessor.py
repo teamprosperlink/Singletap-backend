@@ -1,14 +1,18 @@
 """
-Phase 0: Static text normalization (Preprocess).
+Phase 0: Text normalization (Preprocess).
 
-All operations are deterministic, local, and require no API calls.
+Static, deterministic, local processing - no API calls.
+Uses hardcoded dictionaries for all transformations.
+
 Pipeline: lowercase -> strip -> expand abbreviations -> reduce MWEs ->
           normalize spelling -> normalize demonyms -> lemmatize
 """
 
+import os
 import re
 from typing import Optional
 
+# Static dict imports
 from canonicalization.static_dicts.abbreviations import ABBREVIATIONS
 from canonicalization.static_dicts.mwe_reductions import GENERAL_MWE, ATTRIBUTE_MWE
 from canonicalization.static_dicts.spelling_variants import UK_TO_US
@@ -21,7 +25,7 @@ _DEMONYM_ATTRIBUTES = frozenset({
     "country_of_origin", "made_in", "manufactured_in",
 })
 
-# Lazy-loaded lemmatizer
+# Lazy-loaded components
 _lemmatizer = None
 _nltk_ready = False
 
@@ -34,7 +38,6 @@ def _ensure_lemmatizer():
 
     try:
         import nltk
-        import os
 
         nltk_data_dir = os.path.join(os.path.dirname(__file__), "..", "nltk_data")
         nltk_data_dir = os.path.abspath(nltk_data_dir)
@@ -64,6 +67,9 @@ def _ensure_lemmatizer():
 def preprocess(value: str, attribute_key: Optional[str] = None) -> str:
     """
     Phase 0: All static, deterministic, no API calls.
+
+    Pipeline: lowercase -> strip -> expand abbreviations -> reduce MWEs ->
+              normalize spelling -> normalize demonyms -> lemmatize
 
     Args:
         value: The raw string to normalize.

@@ -1,0 +1,125 @@
+{
+  "_metadata": {
+    "version": "2.0",
+    "sources": ["Amazon Product Conditions", "eBay Item Conditions", "Wikidata Q2068804"],
+    "description": "Hierarchical condition ontology with semantic matching support"
+  },
+  "condition": {
+    "wikidata_id": null,
+    "children": {
+      "new": {
+        "wikidata_id": null,
+        "ebay_id": 1000,
+        "amazon_label": "New",
+        "definition": "A brand-new, unused, unopened, undamaged item in its original packaging",
+        "synonyms": [
+          "brand new", "factory new", "unopened", "sealed", "never used",
+          "never worn", "never opened", "never touched", "unused", "unworn",
+          "untouched", "new with tags", "nwt", "bnib", "bnwt", "nib",
+          "factory sealed", "still sealed", "still wrapped", "still packaged",
+          "box sealed", "factory packed", "in original packaging"
+        ],
+        "children": {
+          "new_other": {
+            "ebay_id": 1500,
+            "amazon_label": null,
+            "definition": "A new, unused item with no signs of wear but may be missing original packaging",
+            "synonyms": ["new other", "new without tags", "nwot", "open box new"]
+          }
+        }
+      },
+      "refurbished": {
+        "wikidata_id": "Q50359051",
+        "ebay_id": 2000,
+        "amazon_label": "Renewed",
+        "definition": "An item restored to working order by the manufacturer or qualified vendor",
+        "synonyms": [
+          "renewed", "reconditioned", "restored", "refurbishment", "refurbish",
+          "certified refurbished", "seller refurbished", "manufacturer refurbished",
+          "certified pre-owned", "cpo", "factory refurbished"
+        ],
+        "children": {}
+      },
+      "used": {
+        "wikidata_id": "Q2068804",
+        "ebay_id": 3000,
+        "amazon_label": "Used",
+        "definition": "An item that has been used previously",
+        "wikidata_aliases": ["secondhand good", "hand-me-downs", "second-hand", "used goods", "used product", "secondhand goods", "b-ware"],
+        "synonyms": [
+          "secondhand", "second-hand", "pre-owned", "previously owned",
+          "hand-me-downs", "b-ware", "used product", "preowned", "2nd hand"
+        ],
+        "children": {
+          "like_new": {
+            "ebay_id": 2750,
+            "amazon_label": "Used - Like New",
+            "definition": "An item in perfect working condition with minimal cosmetic imperfections",
+            "synonyms": [
+              "like new", "almost new", "nearly new", "practically new",
+              "virtually new", "as good as new", "as new", "mint", "mint condition",
+              "mint state", "pristine", "immaculate", "flawless", "perfect",
+              "perfect condition", "barely used", "barely worn", "barely touched",
+              "hardly used", "hardly worn", "hardly touched", "used once", "worn once",
+              "used twice", "worn briefly", "open box", "used - like new"
+            ]
+          },
+          "very_good": {
+            "ebay_id": 4000,
+            "amazon_label": "Used - Very Good",
+            "definition": "Item shows some signs of wear but is fully operational with minor cosmetic issues",
+            "synonyms": [
+              "very good", "very good condition", "excellent", "excellent condition",
+              "great", "great condition", "superb", "outstanding", "lightly used",
+              "lightly worn", "gently used", "gently worn", "slightly used",
+              "slightly worn", "minor wear", "used - very good"
+            ]
+          },
+          "good": {
+            "ebay_id": 5000,
+            "amazon_label": "Used - Good",
+            "definition": "Item shows wear from consistent use, but is fully operational and functions as intended",
+            "synonyms": [
+              "good", "good condition", "decent", "decent condition", "nice",
+              "fine", "normal wear", "some wear", "well used", "well worn",
+              "visible wear", "used - good"
+            ]
+          },
+          "acceptable": {
+            "ebay_id": 6000,
+            "amazon_label": "Used - Acceptable",
+            "definition": "Item shows heavy wear but remains usable, may have cosmetic damage",
+            "synonyms": [
+              "acceptable", "acceptable condition", "fair", "fair condition",
+              "fairly old", "quite old", "very old", "heavily used", "heavily worn",
+              "poor", "rough", "worn", "used - acceptable", "okay", "ok"
+            ]
+          }
+        }
+      },
+      "damaged": {
+        "wikidata_id": null,
+        "ebay_id": 7000,
+        "amazon_label": null,
+        "definition": "Item has defects or damage that may affect functionality",
+        "synonyms": [
+          "damaged", "broken", "defective", "faulty", "cracked", "scratched",
+          "dented", "chipped", "needs repair", "requires repair", "not working",
+          "non-working", "non-functional"
+        ],
+        "children": {}
+      },
+      "for_parts": {
+        "wikidata_id": null,
+        "ebay_id": 7000,
+        "amazon_label": null,
+        "definition": "Item does not function as intended and is not fully operational",
+        "synonyms": [
+          "for parts", "for parts only", "parts only", "for repair", "for spares",
+          "salvage", "junk", "scrap", "beyond repair", "past repair", "not repairable"
+        ],
+        "children": {}
+      }
+    }
+  }
+}
