@@ -43,7 +43,7 @@ def flatten_item_values(item: Dict[str, Any]) -> Set[str]:
     - Recursively processes nested dicts and lists
     - Converts all to lowercase (normalized)
     - Skips non-string values (numbers, booleans, etc.)
-
+    
     Args:
         item: Item dict (schema-normalized)
 
@@ -206,7 +206,7 @@ def required_item_has_match(
         2. item_matches() (expensive) - M-07 to M-11
 
     Short-circuit: Returns True on first valid candidate found.
-
+and also the thing is 
     Args:
         required_item: Single required item from A.items
         candidate_items: All candidate items from B.items

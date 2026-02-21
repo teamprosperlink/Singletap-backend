@@ -43,7 +43,8 @@
     "furniture|size": "size",
     "furniture|dimension": "size",
     "furniture|material": "material",
-    "furniture|wood": "material"
+    "furniture|wood": "material",
+    "pets & animals|role": "role"
   },
   "graphs": {
     "food & beverage": [
@@ -121,6 +122,7 @@
         "material",
         "wood"
       ]
-    ]
+    ],
+    "pets & animals": []
   }
 }

@@ -22,13 +22,14 @@ structlog>=25.5.0
 stanza>=1.7.0
 ufal.udpipe>=1.3.0
 
-# OpenTelemetry for Jaeger distributed tracing
+# OpenTelemetry for distributed tracing (Grafana Cloud / Jaeger)
 opentelemetry-api>=1.25.0
 opentelemetry-sdk>=1.25.0
 opentelemetry-exporter-otlp>=1.25.0
+opentelemetry-exporter-otlp-proto-http>=1.25.0  # Required for Grafana Cloud
 opentelemetry-instrumentation-fastapi>=0.46b0
 opentelemetry-instrumentation-requests>=0.46b0
 opentelemetry-instrumentation-logging>=0.46b0
 
-# Sentry for error tracking and performance monitoring
+# Sentry for error tracking (optional, can use Grafana Cloud instead)
 sentry-sdk[fastapi]>=2.0.0

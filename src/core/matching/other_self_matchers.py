@@ -208,10 +208,10 @@ def match_other_to_self(other: Dict[str, Any],
 
     This checks if B's offering (self) satisfies A's requirements (other).
 
-    Evaluation order (cheap to expensive):
-    1. Categorical subset (M-13)
-    2. Numeric constraints (M-14, M-15, M-16)
-    3. Exclusions (M-17)
+    Evaluation order (exclusions first for early exit):
+    1. Exclusions (M-17) - FIRST (cheap, early exit)
+    2. Categorical subset (M-13)
+    3. Numeric constraints (M-14, M-15, M-16)
 
     Short-circuits on first failure.
 
@@ -229,6 +229,28 @@ def match_other_to_self(other: Dict[str, Any],
     """
     if implies_fn is None:
         implies_fn = _exact_match_only
+
+    # M-17: Other Exclusion Disjoint Rule (CHECKED FIRST for early exit)
+    # Semantics: other.otherexclusions ∩ Flatten(self_obj.categorical) = ∅
+    # None of the excluded values can appear in candidate's categorical values
+    # ENHANCED: Now supports ontology-aware hierarchical exclusion checking
+    # This is STRICT: any overlap (exact or hierarchical) → rejection (I-07 invariant)
+    if other["otherexclusions"]:  # Empty list → no check needed
+        self_values = flatten_categorical_values(self_obj["categorical"])
+
+        for exclusion in other["otherexclusions"]:
+            # Exact match check (original behavior)
+            if exclusion in self_values:
+                return False  # Exclusion violated
+
+            # Ontology-aware hierarchical checking (NEW)
+            if ontology_resolver:
+                for self_value in self_values:
+                    violated, reason = ontology_resolver.check_exclusion_violation(
+                        exclusion, self_value
+                    )
+                    if violated:
+                        return False  # Hierarchical exclusion violated
 
     # M-13: Other-Self Categorical Subset Rule
     # Semantics: other.categorical ⊆ self_obj.categorical (with implications)
@@ -292,29 +314,7 @@ def match_other_to_self(other: Dict[str, Any],
         if not range_contains(candidate_range, tuple(required_range)):
             return False  # Candidate range not subset of required range
 
-    # M-17: Other Exclusion Disjoint Rule (ENHANCED)
-    # Semantics: other.otherexclusions ∩ Flatten(self_obj.categorical) = ∅
-    # None of the excluded values can appear in candidate's categorical values
-    # ENHANCED: Now supports ontology-aware hierarchical exclusion checking
-    # This is STRICT: any overlap (exact or hierarchical) → rejection (I-07 invariant)
-    if other["otherexclusions"]:  # Empty list → no check needed
-        self_values = flatten_categorical_values(self_obj["categorical"])
-
-        for exclusion in other["otherexclusions"]:
-            # Exact match check (original behavior)
-            if exclusion in self_values:
-                return False  # Exclusion violated
-
-            # Ontology-aware hierarchical checking (NEW)
-            if ontology_resolver:
-                for self_value in self_values:
-                    violated, reason = ontology_resolver.check_exclusion_violation(
-                        exclusion, self_value
-                    )
-                    if violated:
-                        return False  # Hierarchical exclusion violated
-
-    # All constraints satisfied
+    # All constraints satisfied (M-17 exclusions already checked at top)
     return True
 
 
@@ -335,10 +335,10 @@ def match_self_to_other(other: Dict[str, Any],
 
     This checks if B's offering (other) satisfies A's requirements (self).
 
-    Evaluation order (cheap to expensive):
-    1. Categorical subset (M-18)
-    2. Numeric constraints (M-19, M-20, M-21)
-    3. Exclusions (M-22)
+    Evaluation order (exclusions first for early exit):
+    1. Exclusions (M-22) - FIRST (cheap, early exit)
+    2. Categorical subset (M-18)
+    3. Numeric constraints (M-19, M-20, M-21)
 
     Short-circuits on first failure.
 
@@ -356,6 +356,28 @@ def match_self_to_other(other: Dict[str, Any],
     """
     if implies_fn is None:
         implies_fn = _exact_match_only
+
+    # M-22: Self Exclusion Disjoint Rule (CHECKED FIRST for early exit)
+    # Semantics: self_obj.selfexclusions ∩ Flatten(other.categorical) = ∅
+    # None of the excluded values can appear in candidate's categorical values
+    # ENHANCED: Now supports ontology-aware hierarchical exclusion checking
+    # This is STRICT: any overlap (exact or hierarchical) → rejection (I-07 invariant)
+    if self_obj["selfexclusions"]:  # Empty list → no check needed
+        other_values = flatten_categorical_values(other["categorical"])
+
+        for exclusion in self_obj["selfexclusions"]:
+            # Exact match check (original behavior)
+            if exclusion in other_values:
+                return False  # Exclusion violated
+
+            # Ontology-aware hierarchical checking (NEW)
+            if ontology_resolver:
+                for other_value in other_values:
+                    violated, reason = ontology_resolver.check_exclusion_violation(
+                        exclusion, other_value
+                    )
+                    if violated:
+                        return False  # Hierarchical exclusion violated
 
     # M-18: Self-Other Categorical Subset Rule
     # Semantics: self_obj.categorical ⊆ other.categorical (with implications)
@@ -419,29 +441,7 @@ def match_self_to_other(other: Dict[str, Any],
         if not range_contains(candidate_range, tuple(required_range)):
             return False  # Candidate range not subset of required range
 
-    # M-22: Self Exclusion Disjoint Rule (ENHANCED)
-    # Semantics: self_obj.selfexclusions ∩ Flatten(other.categorical) = ∅
-    # None of the excluded values can appear in candidate's categorical values
-    # ENHANCED: Now supports ontology-aware hierarchical exclusion checking
-    # This is STRICT: any overlap (exact or hierarchical) → rejection (I-07 invariant)
-    if self_obj["selfexclusions"]:  # Empty list → no check needed
-        other_values = flatten_categorical_values(other["categorical"])
-
-        for exclusion in self_obj["selfexclusions"]:
-            # Exact match check (original behavior)
-            if exclusion in other_values:
-                return False  # Exclusion violated
-
-            # Ontology-aware hierarchical checking (NEW)
-            if ontology_resolver:
-                for other_value in other_values:
-                    violated, reason = ontology_resolver.check_exclusion_violation(
-                        exclusion, other_value
-                    )
-                    if violated:
-                        return False  # Hierarchical exclusion violated
-
-    # All constraints satisfied
+    # All constraints satisfied (M-22 exclusions already checked at top)
     return True
 
 

@@ -1,1 +1,2 @@
 from matching.listing_matcher_v2 import listing_matches_v2
+from matching.similarity_scorer import evaluate_similarity, SimilarityResult

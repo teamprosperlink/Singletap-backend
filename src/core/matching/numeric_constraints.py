@@ -240,9 +240,11 @@ def evaluate_min_constraints(
 
     # Check each required attribute
     for key, min_threshold in required_min.items():
-        # Missing attribute in candidate → FAIL
+        # Missing attribute in candidate → PASS (permissive/intersection-based)
+        # Seller didn't specify this attribute = "open/flexible"
+        # Only FAIL on explicit conflicts, not missing attributes
         if key not in candidate_ranges:
-            return False
+            continue
 
         candidate_range = candidate_ranges[key]
 
@@ -308,9 +310,11 @@ def evaluate_max_constraints(
 
     # Check each required attribute
     for key, max_threshold in required_max.items():
-        # Missing attribute in candidate → FAIL
+        # Missing attribute in candidate → PASS (permissive/intersection-based)
+        # Seller didn't specify this attribute = "open/flexible"
+        # Only FAIL on explicit conflicts, not missing attributes
         if key not in candidate_ranges:
-            return False
+            continue
 
         candidate_range = candidate_ranges[key]
 
@@ -385,9 +389,11 @@ def evaluate_range_constraints(
 
     # Check each required attribute
     for key, required_range in required_ranges.items():
-        # Missing attribute in candidate → FAIL
+        # Missing attribute in candidate → PASS (permissive/intersection-based)
+        # Seller didn't specify this attribute = "open/flexible"
+        # Only FAIL on explicit conflicts, not missing attributes
         if key not in candidate_ranges:
-            return False
+            continue
 
         candidate_range = candidate_ranges[key]
 

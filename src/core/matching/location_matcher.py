@@ -148,10 +148,10 @@ def match_location_simple(
 
     Matching Rules:
     1. If required_location empty → always match (no location requirement)
-    2. Try coordinate-based matching (if geocoding available)
-    3. Fall back to canonical name matching
-    4. Final fallback to string equality
-    5. Check exclusions: candidate not in required exclusions, vice versa
+    2. Check exclusions FIRST (cheap, early exit)
+    3. Try coordinate-based matching (if geocoding available)
+    4. Fall back to canonical name matching
+    5. Final fallback to string equality
 
     Args:
         required_location: Required location (string or dict with name/coordinates)
@@ -184,7 +184,16 @@ def match_location_simple(
     if not required_name:
         return True
 
-    # Rule 2: Try coordinate-based matching first
+    # Rule 2: Check exclusions FIRST (cheap, early exit)
+    # Candidate location must not be in requester's exclusions
+    if _is_location_in_exclusions(candidate_location, required_exclusions):
+        return False
+
+    # Requester's location must not be in candidate's exclusions
+    if _is_location_in_exclusions(required_location, candidate_exclusions):
+        return False
+
+    # Rule 3: Try coordinate-based matching
     coord_match = match_location_by_coordinates(
         required_location,
         candidate_location,
@@ -211,15 +220,7 @@ def match_location_simple(
             if required_name != candidate_name:
                 return False
 
-    # Rule 3: Check exclusions
-    # Candidate location must not be in requester's exclusions
-    if _is_location_in_exclusions(candidate_location, required_exclusions):
-        return False
-
-    # Requester's location must not be in candidate's exclusions
-    if _is_location_in_exclusions(required_location, candidate_exclusions):
-        return False
-
+    # All checks passed (exclusions already checked at top)
     return True
 
 
@@ -360,16 +361,7 @@ def match_location_route(
     cand_origin_loc = _build_route_point_location(candidate_route, "origin")
     cand_dest_loc = _build_route_point_location(candidate_route, "destination")
 
-    # Match origin using coordinate-based matching
-    origin_match = _match_route_points(req_origin_loc, cand_origin_loc, max_distance_km)
-    if not origin_match:
-        return False
-
-    # Match destination using coordinate-based matching
-    dest_match = _match_route_points(req_dest_loc, cand_dest_loc, max_distance_km)
-    if not dest_match:
-        return False
-
+    # Check exclusions FIRST (cheap, early exit)
     # Check exclusions for candidate origin/destination
     if _is_location_in_exclusions(cand_origin_loc, required_exclusions):
         return False
@@ -382,6 +374,17 @@ def match_location_route(
     if _is_location_in_exclusions(req_dest_loc, candidate_exclusions):
         return False
 
+    # Match origin using coordinate-based matching (expensive)
+    origin_match = _match_route_points(req_origin_loc, cand_origin_loc, max_distance_km)
+    if not origin_match:
+        return False
+
+    # Match destination using coordinate-based matching (expensive)
+    dest_match = _match_route_points(req_dest_loc, cand_dest_loc, max_distance_km)
+    if not dest_match:
+        return False
+
+    # All checks passed
     return True
 
 

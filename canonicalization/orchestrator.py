@@ -98,7 +98,7 @@ def _load_condition_ontology_into_resolver(resolver: GenericCategoricalResolver)
         print(f"Loaded condition ontology: {concept_count} concepts into resolver")
 
     except Exception as e:
-        print(f"Could not load condition ontology into resolver: {e}")
+        logging.error(f"Could not load condition ontology into resolver: {e}")
 
 
 def _get_quantitative_resolver():
@@ -124,6 +124,7 @@ def canonicalize_listing(
 
     This function sits between GPT-4o extraction and schema normalization.
 
+    and also their is fine tuned model which does the same as what gpt does so just for as of now this will use this api for dev and testing.
     Pipeline:
         GPT-4o -> NEW Schema -> CANONICALIZE -> Canonical NEW -> Normalize -> OLD Schema
 
@@ -465,7 +466,7 @@ def _canonicalize_preferences(
 
     return canonical_prefs
 
-
+# and also we need to think 
 def _canonicalize_exclusions(
     exclusions: List[str],
     categorical_resolver: GenericCategoricalResolver
@@ -492,11 +493,11 @@ def _canonicalize_exclusions(
 
     return canonical_exclusions
 
-
+# the location field and need to add google maps 
 def _canonicalize_location(location: Dict):
     """
     Canonicalize location using geocoding API.
-
+    BUT THE API IS free and we can use it for dev and testing.
     Converts location names to coordinates for distance-based matching.
     Falls back to lowercase normalization if geocoding fails.
     """

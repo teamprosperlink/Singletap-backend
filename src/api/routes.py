@@ -804,3 +804,75 @@ async def store_listing_endpoint(request: StoreListingRequest):
     except Exception as e:
         log.error("Error in store-listing", emoji="error", error=str(e), exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# ============================================================================
+# BIDIRECTIONAL NOTIFICATION ENDPOINTS
+# ============================================================================
+
+@router.get("/my-interested-parties/{user_id}")
+async def get_interested_parties(user_id: str):
+    """
+    Get all users who searched and matched with this user's listings.
+
+    Works for all intent types (bidirectional):
+    - product: sellers see interested buyers
+    - service: providers see interested seekers
+    - mutual: connectors see interested connectors
+
+    The inverse also works:
+    - When sellers search, buyers see interested sellers
+    - When providers search, seekers see interested providers
+
+    Args:
+        user_id: The user ID to check for interested parties
+
+    Returns:
+        List of parties who matched with this user's listings
+    """
+    check_service_health()
+
+    try:
+        log.info("Fetching interested parties", emoji="search", user_id=user_id)
+
+        # Query matches where this user_id is in matched_user_ids array
+        response = db_clients.supabase.table("matches") \
+            .select("*") \
+            .contains("matched_user_ids", [user_id]) \
+            .order("created_at", desc=True) \
+            .execute()
+
+        interested_parties = []
+        for match in response.data:
+            # Find which of this user's listings were matched
+            matched_listing_ids = match.get("matched_listing_ids", [])
+            matched_user_ids = match.get("matched_user_ids", [])
+
+            # Get the listing IDs that belong to this user
+            your_matched_listing_ids = [
+                lid for lid, uid in zip(matched_listing_ids, matched_user_ids)
+                if uid == user_id
+            ]
+
+            interested_parties.append({
+                "match_id": match["match_id"],
+                "interested_user_id": match["query_user_id"],
+                "their_query": match["query_text"],
+                "their_requirements": match["query_json"],
+                "your_matched_listing_ids": your_matched_listing_ids,
+                "matched_at": match.get("created_at")
+            })
+
+        log.info("Found interested parties", emoji="success", count=len(interested_parties))
+
+        return {
+            "status": "success",
+            "user_id": user_id,
+            "interested_parties": interested_parties,
+            "count": len(interested_parties),
+            "message": f"{len(interested_parties)} parties are interested in your listings"
+        }
+
+    except Exception as e:
+        log.error("Error fetching interested parties", emoji="error", error=str(e), exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))

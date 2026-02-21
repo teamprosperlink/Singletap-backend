@@ -49,14 +49,44 @@ if os.environ.get("USE_HYBRID_EXTRACTION", "0").lower() in ("1", "true", "yes"):
 
 USE_HYBRID_EXTRACTION = (EXTRACTION_MODE == "hybrid")
 
+# ============================================================================
+# SIMILAR MATCHING CONFIGURATION
+# ============================================================================
+# When enabled, search-and-match returns similar listings in addition to
+# exact matches. Similar listings have matching Tier 1 fields (intent, domain,
+# type) but may differ on Tier 2 fields (numeric constraints, location).
+ENABLE_SIMILAR_MATCHING = os.environ.get("ENABLE_SIMILAR_MATCHING", "0").lower() in ("1", "true", "yes")
+SIMILAR_MATCH_MIN_SCORE = float(os.environ.get("SIMILAR_MATCH_MIN_SCORE", "0.70"))
+SIMILAR_MATCH_MAX_RESULTS = int(os.environ.get("SIMILAR_MATCH_MAX_RESULTS", "10"))
+
 # Import structured logging
 from src.utils.logging import get_logger, configure_structlog
 
-# Import distributed tracing
-from src.utils.tracing import init_tracing, shutdown_tracing, get_tracer, traced
+# Determine which observability stack to use BEFORE importing
+# This prevents OpenTelemetry conflicts between Grafana Cloud and legacy tracing
+_use_grafana_cloud = os.getenv("GRAFANA_CLOUD_ENABLED", "false").lower() == "true"
 
-# Import error tracking
-from src.utils.sentry import init_sentry
+if _use_grafana_cloud:
+    # Import Grafana Cloud observability (unified logs + traces)
+    from src.utils.grafana import init_grafana_cloud, shutdown_grafana_cloud, get_tracer, traced
+    # Provide stubs for legacy imports
+    init_tracing = lambda app=None: None
+    shutdown_tracing = lambda: None
+    init_sentry = lambda: None
+else:
+    # Import legacy tracing and error tracking (optional fallback)
+    from src.utils.tracing import init_tracing, shutdown_tracing
+    from src.utils.sentry import init_sentry
+    # Provide stubs for Grafana imports
+    init_grafana_cloud = lambda app=None: False
+    shutdown_grafana_cloud = lambda: None
+    def get_tracer(name=__name__):
+        from src.utils.tracing import get_tracer as legacy_get_tracer
+        return legacy_get_tracer(name)
+    def traced(span_name=None):
+        def decorator(func):
+            return func
+        return decorator
 
 # Configure structlog (can set json_output=True for production)
 configure_structlog(json_output=False, log_level="INFO")
@@ -67,6 +97,7 @@ from schema.schema_normalizer_v2 import normalize_and_validate_v2
 from pipeline.ingestion_pipeline import IngestionClients, ingest_listing
 from pipeline.retrieval_service import RetrievalClients, retrieve_candidates
 from matching.listing_matcher_v2 import listing_matches_v2
+from matching.similarity_scorer import evaluate_similarity
 from embedding.embedding_builder import build_embedding_text
 from canonicalization.orchestrator import canonicalize_listing
 
@@ -121,6 +152,10 @@ async def initialize_services():
     log.info("Environment check", emoji="config",
              SUPABASE_URL="SET" if os.environ.get("SUPABASE_URL") else "NOT SET",
              OPENAI_API_KEY="SET" if os.environ.get("OPENAI_API_KEY") else "NOT SET")
+    log.info("Similar matching configured", emoji="config",
+             ENABLE_SIMILAR_MATCHING=ENABLE_SIMILAR_MATCHING,
+             SIMILAR_MATCH_MIN_SCORE=SIMILAR_MATCH_MIN_SCORE,
+             SIMILAR_MATCH_MAX_RESULTS=SIMILAR_MATCH_MAX_RESULTS)
 
     try:
         # Initialize OpenAI client (fast, non-blocking)
@@ -188,12 +223,17 @@ async def startup_event():
     log.info("Server should be available", emoji="location",
              port=os.environ.get("PORT", "8000"))
 
-    # Initialize Sentry error tracking (should be first!)
-    init_sentry()
-
-    # Initialize distributed tracing (Jaeger/Grafana via OpenTelemetry)
-    init_tracing(app)
-    log.info("Observability initialized (Sentry + Tracing)", emoji="trace")
+    # Initialize observability stack
+    # Priority: Grafana Cloud (all-in-one) > Jaeger + Sentry (legacy)
+    if _use_grafana_cloud:
+        # Use Grafana Cloud for unified observability (logs + traces)
+        init_grafana_cloud(app)
+        log.info("Observability initialized (Grafana Cloud: Loki + Tempo)", emoji="start")
+    else:
+        # Fallback to legacy setup (Sentry + Jaeger)
+        init_sentry()
+        init_tracing(app)
+        log.info("Observability initialized (Sentry + Jaeger)", emoji="start")
 
     # Start initialization as a fire-and-forget background task
     asyncio.create_task(initialize_services())
@@ -204,7 +244,13 @@ async def startup_event():
 async def shutdown_event():
     """Cleanup on server shutdown."""
     log.info("FastAPI server shutting down...", emoji="stop")
-    shutdown_tracing()
+
+    # Shutdown observability
+    if _use_grafana_cloud:
+        shutdown_grafana_cloud()
+    else:
+        shutdown_tracing()
+
     log.info("Server shutdown complete", emoji="success")
 
 def check_service_health():
@@ -756,6 +802,9 @@ async def search_and_match_endpoint(request: SearchAndMatchRequest):
         matched_user_ids = []
         matched_listing_ids = []
 
+        # Track similar listings (when enabled)
+        similar_listings = []
+
         if candidate_ids:
             # Fetch candidates from Supabase
             intent = normalized_query.get("intent")
@@ -781,23 +830,69 @@ async def search_and_match_endpoint(request: SearchAndMatchRequest):
                         )
 
                         if is_match:
-                            matched_listings.append({
-                                "listing_id": listing_id,
-                                "user_id": candidate_user_id,
-                                "data": candidate_data
-                            })
+                            # Exact match - compute bonus attributes if similar matching enabled
+                            if ENABLE_SIMILAR_MATCHING:
+                                similarity_result = evaluate_similarity(
+                                    normalized_query,
+                                    candidate_data,
+                                    implies_fn=semantic_implies,
+                                    min_score=SIMILAR_MATCH_MIN_SCORE
+                                )
+                                matched_listings.append({
+                                    "listing_id": listing_id,
+                                    "user_id": candidate_user_id,
+                                    "data": candidate_data,
+                                    "match_type": "exact",
+                                    "similarity_score": 1.0,
+                                    "bonus_attributes": similarity_result.bonus_attributes
+                                })
+                            else:
+                                matched_listings.append({
+                                    "listing_id": listing_id,
+                                    "user_id": candidate_user_id,
+                                    "data": candidate_data
+                                })
+
                             if candidate_user_id:
                                 matched_user_ids.append(candidate_user_id)
                             matched_listing_ids.append(listing_id)
+
+                        elif ENABLE_SIMILAR_MATCHING:
+                            # Not an exact match - evaluate for similarity
+                            similarity_result = evaluate_similarity(
+                                normalized_query,
+                                candidate_data,
+                                implies_fn=semantic_implies,
+                                min_score=SIMILAR_MATCH_MIN_SCORE
+                            )
+
+                            if similarity_result.is_similar_match:
+                                similar_listings.append({
+                                    "listing_id": listing_id,
+                                    "user_id": candidate_user_id,
+                                    "data": candidate_data,
+                                    "match_type": "similar",
+                                    "similarity_score": similarity_result.similarity_score,
+                                    "satisfied_constraints": similarity_result.satisfied_constraints,
+                                    "unsatisfied_constraints": similarity_result.unsatisfied_constraints,
+                                    "smart_message": similarity_result.smart_message,
+                                    "recommendation": similarity_result.recommendation,
+                                    "bonus_attributes": similarity_result.bonus_attributes
+                                })
 
                 except Exception as e:
                     log.warning("Error fetching/matching listing", emoji="warning",
                                 listing_id=listing_id, error=str(e))
                     continue
 
+        # Sort similar listings by score (highest first) and limit
+        similar_listings.sort(key=lambda x: x["similarity_score"], reverse=True)
+        similar_listings = similar_listings[:SIMILAR_MATCH_MAX_RESULTS]
+
         # Step 5: Store query as a listing and create match records
         has_matches = len(matched_listings) > 0
         match_count = len(matched_listings)
+        similar_count = len(similar_listings)
 
         # Auto-store the query as a listing to get a listing_a_id
         query_listing_id, _ = ingest_listing(ingestion_clients, normalized_query, user_id=request.user_id, verbose=True)
@@ -826,6 +921,16 @@ async def search_and_match_endpoint(request: SearchAndMatchRequest):
                     log.warning("Error storing match record", emoji="warning", error=str(e))
             log.info("Stored match records", emoji="success", count=len(match_ids))
 
+        # Generate appropriate message
+        if has_matches and similar_count > 0:
+            message = f"Found {match_count} exact matches and {similar_count} similar listings"
+        elif has_matches:
+            message = f"Found {match_count} exact matches"
+        elif similar_count > 0:
+            message = f"No exact matches, but found {similar_count} similar listings"
+        else:
+            message = "No matches found. Your listing has been stored for future matching."
+
         return {
             "status": "success",
             "listing_id": query_listing_id,
@@ -835,7 +940,11 @@ async def search_and_match_endpoint(request: SearchAndMatchRequest):
             "has_matches": has_matches,
             "match_count": match_count,
             "matched_listings": matched_listings,
-            "message": f"Found {match_count} matches" if has_matches else "No matches found. Your listing has been stored for future matching."
+            # Similar matching fields
+            "similar_matching_enabled": ENABLE_SIMILAR_MATCHING,
+            "similar_count": similar_count,
+            "similar_listings": similar_listings,
+            "message": message
         }
 
     except HTTPException:

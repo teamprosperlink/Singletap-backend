@@ -348,17 +348,35 @@ def match_item_categorical(
         return True
 
     # Check each required attribute
+    # NEW: Intersection-based matching with priority order
     for key, required_value in required_categorical.items():
-        # Missing key in candidate → FAIL
-        if key not in candidate_categorical:
-            return False
+        # Extract numeric fields from candidate item
+        candidate_min = candidate_item.get("min", {})
+        candidate_max = candidate_item.get("max", {})
+        candidate_range = candidate_item.get("range", {})
 
-        candidate_value = candidate_categorical[key]
+        # PRIORITY 1: Check numeric first (specific takes priority over vague)
+        # If seller has a numeric value for this attribute, it satisfies buyer's vague categorical
+        if key in candidate_range or key in candidate_min or key in candidate_max:
+            # Seller has SPECIFIC numeric value for this attribute
+            # Buyer has VAGUE categorical value (e.g., "young", "cheap", "affordable")
+            # Specific satisfies vague → PASS
+            continue
 
-        # Check if values match (exact or via implication)
-        # M-08 subset logic: candidate must equal OR imply required
-        if not implies_fn(candidate_value, required_value):
-            return False
+        # PRIORITY 2: Check categorical (both have categorical - use implies_fn)
+        elif key in candidate_categorical:
+            candidate_value = candidate_categorical[key]
+            # Check if values match (exact or via implication)
+            # M-08 subset logic: candidate must equal OR imply required
+            if not implies_fn(candidate_value, required_value):
+                return False
+
+        # PRIORITY 3: Attribute missing entirely → PASS (permissive/intersection-based)
+        else:
+            # Seller didn't specify this attribute = "open/flexible"
+            # Let them match and negotiate details later
+            # Only FAIL on explicit conflicts, not missing attributes
+            continue
 
     # All required attributes satisfied
     return True
