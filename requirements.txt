@@ -33,3 +33,7 @@ opentelemetry-instrumentation-logging>=0.46b0
 
 # Sentry for error tracking (optional, can use Grafana Cloud instead)
 sentry-sdk[fastapi]>=2.0.0
+
+# ONNX Runtime for LLM message generation (optional)
+onnxruntime>=1.16.0
+# optimum[onnxruntime]>=1.14.0  # Uncomment for model conversion

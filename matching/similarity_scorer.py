@@ -737,28 +737,24 @@ def _compute_bonus_attributes(A: Dict, B: Dict) -> Dict[str, Any]:
 
 
 # ============================================================================
-# SMART MESSAGE GENERATION
+# SMART MESSAGE GENERATION (uses message_generator module)
 # ============================================================================
 
-def _generate_smart_message(unsatisfied: List[ConstraintResult]) -> str:
-    """Generate human-readable explanation of differences."""
-    if not unsatisfied:
-        return "This listing matches all your requirements."
-
-    messages = []
-
-    for constraint in unsatisfied[:3]:  # Limit to top 3
-        msg = _format_single_difference(constraint)
-        if msg:
-            messages.append(msg)
-
-    if len(unsatisfied) > 3:
-        messages.append(f"and {len(unsatisfied) - 3} other difference(s)")
-
-    if messages:
-        return "Close match with differences: " + "; ".join(messages)
-
-    return "Similar listing with some differences from your requirements."
+def _generate_smart_message(unsatisfied: List[ConstraintResult], bonus: Dict = None) -> str:
+    """Generate human-readable explanation using message_generator."""
+    try:
+        from .message_generator import generate_smart_message
+        # Convert ConstraintResult objects to dicts
+        unsatisfied_dicts = [c.to_dict() for c in unsatisfied]
+        return generate_smart_message(unsatisfied_dicts, bonus or {})
+    except ImportError:
+        # Fallback to simple message if message_generator not available
+        if not unsatisfied:
+            return "This listing matches all your requirements."
+        messages = [_format_single_difference(c) for c in unsatisfied[:3]]
+        if len(unsatisfied) > 3:
+            messages.append(f"and {len(unsatisfied) - 3} other difference(s)")
+        return "Close match with differences: " + "; ".join(filter(None, messages))
 
 
 def _format_single_difference(c: ConstraintResult) -> str:
@@ -933,7 +929,7 @@ def evaluate_similarity(
         satisfied_constraints=[r.to_dict() for r in satisfied],
         unsatisfied_constraints=[r.to_dict() for r in unsatisfied],
         bonus_attributes=bonus,
-        smart_message=_generate_smart_message(unsatisfied),
+        smart_message=_generate_smart_message(unsatisfied, bonus),
         recommendation=_generate_recommendation(score, unsatisfied)
     )
 

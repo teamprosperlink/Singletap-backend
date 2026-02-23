@@ -1160,3 +1160,134 @@ async def store_listing_endpoint(request: StoreListingRequest):
     except Exception as e:
         log.error("Error in store-listing", emoji="error", error=str(e), exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# ============================================================================
+# TEST MESSAGE GENERATION ENDPOINT
+# ============================================================================
+
+class TestMessageRequest(BaseModel):
+    """Request for testing message generation."""
+    unsatisfied_constraints: List[Dict[str, Any]] = []
+    bonus_attributes: Dict[str, Any] = {}
+    use_llm: bool = False  # Force LLM even if disabled globally
+
+
+@app.post("/test-message-generation")
+async def test_message_generation(request: TestMessageRequest):
+    """
+    Test endpoint for comparing template vs LLM message generation.
+
+    Example request:
+    {
+        "unsatisfied_constraints": [
+            {"field": "age", "required": 9, "actual": 10, "deviation": 0.11, "direction": "above", "type": "range"}
+        ],
+        "bonus_attributes": {"experience": 48, "role": "army"},
+        "use_llm": false
+    }
+    """
+    from matching.message_generator import get_message_generator, generate_smart_message
+
+    generator = get_message_generator()
+
+    # Always generate template message
+    template_msg = generator._generate_with_template(
+        request.unsatisfied_constraints,
+        request.bonus_attributes
+    )
+
+    # Try LLM if requested
+    llm_msg = None
+    llm_status = "disabled"
+
+    if request.use_llm:
+        # Try to load model
+        if generator.load_model():
+            try:
+                llm_msg = generator._generate_with_llm(
+                    request.unsatisfied_constraints,
+                    request.bonus_attributes
+                )
+                llm_status = "success"
+            except Exception as e:
+                llm_status = f"error: {str(e)}"
+        else:
+            llm_status = "model_not_found"
+
+    return {
+        "template_message": template_msg,
+        "llm_message": llm_msg,
+        "llm_status": llm_status,
+        "input": {
+            "unsatisfied_constraints": request.unsatisfied_constraints,
+            "bonus_attributes": request.bonus_attributes
+        },
+        "config": {
+            "ENABLE_LLM_MESSAGES": os.environ.get("ENABLE_LLM_MESSAGES", "0"),
+            "model_loaded": generator._model_loaded
+        }
+    }
+
+
+@app.get("/test-similar-matching")
+async def test_similar_matching_endpoint():
+    """
+    Test endpoint to verify similar matching configuration and show examples.
+    """
+    # Sample test cases
+    test_cases = [
+        {
+            "name": "Age mismatch (11% above)",
+            "query": {"items": [{"type": "dog", "range": {"age": [9, 9]}}]},
+            "listing": {"items": [{"type": "dog", "range": {"age": [10, 10]}}]},
+            "expected": "similar"
+        },
+        {
+            "name": "Min constraint satisfied",
+            "query": {"items": [{"type": "dog", "min": {"experience": 36}}]},
+            "listing": {"items": [{"type": "dog", "range": {"experience": [48, 48]}}]},
+            "expected": "exact"
+        },
+        {
+            "name": "Missing field in listing",
+            "query": {"items": [{"type": "dog", "range": {"age": [9, 9]}}]},
+            "listing": {"items": [{"type": "dog"}]},
+            "expected": "similar (field missing)"
+        }
+    ]
+
+    from matching.message_generator import generate_smart_message
+
+    # Generate sample messages
+    sample_messages = {
+        "age_mismatch": generate_smart_message(
+            [{"field": "age", "required": 9, "actual": 10, "deviation": 0.11, "direction": "above", "type": "range"}],
+            {"experience": 48}
+        ),
+        "location_mismatch": generate_smart_message(
+            [{"field": "location", "required": "Bangalore", "actual": "Mysore", "type": "location"}],
+            {}
+        ),
+        "missing_field": generate_smart_message(
+            [{"field": "experience", "required": 36, "actual": None, "type": "min"}],
+            {}
+        )
+    }
+
+    return {
+        "status": "ok",
+        "config": {
+            "ENABLE_SIMILAR_MATCHING": ENABLE_SIMILAR_MATCHING,
+            "SIMILAR_MATCH_MIN_SCORE": SIMILAR_MATCH_MIN_SCORE,
+            "SIMILAR_MATCH_MAX_RESULTS": SIMILAR_MATCH_MAX_RESULTS,
+            "ENABLE_LLM_MESSAGES": os.environ.get("ENABLE_LLM_MESSAGES", "0")
+        },
+        "test_cases": test_cases,
+        "sample_messages": sample_messages,
+        "usage": {
+            "template_test": "POST /test-message-generation with use_llm=false",
+            "llm_test": "POST /test-message-generation with use_llm=true (requires model)",
+            "download_model": "python -m matching.download_model"
+        }
+    }
