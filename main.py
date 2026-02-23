@@ -425,6 +425,11 @@ class StoreListingRequest(BaseModel):
     user_id: str
     match_id: Optional[str] = None
 
+class SearchMatchDirectRequest(BaseModel):
+    """Request model for /search-and-match-direct endpoint (bypasses GPT)."""
+    listing_json: Dict[str, Any]  # Pre-formatted listing JSON (NEW schema format)
+    user_id: str
+
 @app.get("/")
 def read_root():
     return {
@@ -955,7 +960,7 @@ async def search_and_match_endpoint(request: SearchAndMatchRequest):
 
 
 @app.post("/search-and-match-direct")
-async def search_and_match_direct_endpoint(request: StoreListingRequest):
+async def search_and_match_direct_endpoint(request: SearchMatchDirectRequest):
     """
     TESTING ENDPOINT: Complete search and match flow with pre-formatted JSON (bypasses GPT).
 
@@ -963,7 +968,8 @@ async def search_and_match_direct_endpoint(request: StoreListingRequest):
     1. Accept pre-formatted JSON directly (skip GPT extraction)
     2. Search database for matching listings (Qdrant + SQL)
     3. Boolean match each candidate (listing_matches_v2)
-    4. Return matches (does NOT store search history)
+    4. If ENABLE_SIMILAR_MATCHING: evaluate similarity for near-matches
+    5. Return matches (does NOT store search history)
 
     This endpoint is for testing only - bypasses GPT extraction.
 
@@ -975,6 +981,9 @@ async def search_and_match_direct_endpoint(request: StoreListingRequest):
         - has_matches: True/False
         - match_count: Number of matches
         - matches: List of matched user_ids or listing objects
+        - similar_matching_enabled: Whether similar matching is enabled
+        - similar_count: Number of similar (near-miss) matches
+        - similar_listings: List of similar listings with scores and messages
     """
     check_service_health()
 
@@ -995,6 +1004,9 @@ async def search_and_match_direct_endpoint(request: StoreListingRequest):
         matched_listings = []
         matched_user_ids = []
         seen_user_ids = set()  # Track unique user_ids to avoid duplicates
+
+        # Track similar listings (when enabled)
+        similar_listings = []
 
         intent = normalized_query.get("intent")
         table_name = f"{intent}_listings"
@@ -1017,29 +1029,90 @@ async def search_and_match_direct_endpoint(request: StoreListingRequest):
                     is_match = listing_matches_v2(normalized_query, candidate_data, implies_fn=semantic_implies)
 
                     if is_match:
-                        matched_listings.append({
-                            "listing_id": listing_id,
-                            "user_id": candidate_user_id,
-                            "data": candidate_data
-                        })
+                        # Exact match - compute bonus attributes if similar matching enabled
+                        if ENABLE_SIMILAR_MATCHING:
+                            similarity_result = evaluate_similarity(
+                                normalized_query,
+                                candidate_data,
+                                implies_fn=semantic_implies,
+                                min_score=SIMILAR_MATCH_MIN_SCORE
+                            )
+                            matched_listings.append({
+                                "listing_id": listing_id,
+                                "user_id": candidate_user_id,
+                                "data": candidate_data,
+                                "match_type": "exact",
+                                "similarity_score": 1.0,
+                                "bonus_attributes": similarity_result.bonus_attributes
+                            })
+                        else:
+                            matched_listings.append({
+                                "listing_id": listing_id,
+                                "user_id": candidate_user_id,
+                                "data": candidate_data
+                            })
+
                         if candidate_user_id:
                             matched_user_ids.append(candidate_user_id)
                             seen_user_ids.add(candidate_user_id)  # Mark as seen
+
+                    elif ENABLE_SIMILAR_MATCHING:
+                        # Not an exact match - evaluate for similarity
+                        similarity_result = evaluate_similarity(
+                            normalized_query,
+                            candidate_data,
+                            implies_fn=semantic_implies,
+                            min_score=SIMILAR_MATCH_MIN_SCORE
+                        )
+
+                        if similarity_result.is_similar_match:
+                            similar_listings.append({
+                                "listing_id": listing_id,
+                                "user_id": candidate_user_id,
+                                "data": candidate_data,
+                                "match_type": "similar",
+                                "similarity_score": similarity_result.similarity_score,
+                                "satisfied_constraints": similarity_result.satisfied_constraints,
+                                "unsatisfied_constraints": similarity_result.unsatisfied_constraints,
+                                "smart_message": similarity_result.smart_message,
+                                "recommendation": similarity_result.recommendation,
+                                "bonus_attributes": similarity_result.bonus_attributes
+                            })
 
             except Exception as e:
                 log.warning("Error fetching/matching listing", emoji="warning",
                             listing_id=listing_id, error=str(e))
                 continue
 
+        # Sort similar listings by score (highest first) and limit
+        similar_listings.sort(key=lambda x: x["similarity_score"], reverse=True)
+        similar_listings = similar_listings[:SIMILAR_MATCH_MAX_RESULTS]
+
         has_matches = len(matched_listings) > 0
         match_count = len(matched_listings)
+        similar_count = len(similar_listings)
+
+        # Generate appropriate message
+        if has_matches and similar_count > 0:
+            message = f"Found {match_count} exact matches and {similar_count} similar listings"
+        elif has_matches:
+            message = f"Found {match_count} exact matches"
+        elif similar_count > 0:
+            message = f"No exact matches, but found {similar_count} similar listings"
+        else:
+            message = "No matches found"
 
         return {
             "status": "success",
             "has_matches": has_matches,
             "match_count": match_count,
             "matches": matched_user_ids,  # Return user_ids for compatibility with test
-            "matched_listings": matched_listings
+            "matched_listings": matched_listings,
+            # Similar matching fields
+            "similar_matching_enabled": ENABLE_SIMILAR_MATCHING,
+            "similar_count": similar_count,
+            "similar_listings": similar_listings,
+            "message": message
         }
 
     except HTTPException:
