@@ -1,0 +1,3747 @@
+[
+  {
+    "seed_entry": {
+      "id": "S1_025357",
+      "query": "offering pet grooming services at home",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for pets as the item type. The service is provided at home, but no specific constraints or preferences were mentioned. Location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_031898",
+      "query": "urgent requirement for a dog groomer",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "dog"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for dogs as the item type. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_024086",
+      "query": "I provide pet grooming services in the comfort of your home.",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service as the type of service provided. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_027927",
+      "query": "need a pet groomer who does house calls",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet"
+            },
+            "min": {},
+            "max": {},
+            "range": {
+              "mode": [
+                {
+                  "type": "delivery",
+                  "min": 1,
+                  "max": 1,
+                  "unit": "house call"
+                }
+              ]
+            }
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for pets, with house call mode specified as delivery. No other constraints or preferences were mentioned, and location defaults to near_me as none specified."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_025464",
+      "query": "providing pet grooming services at home",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service as the type of service provided, specifically pet grooming. No constraints or location specified, so defaults to near_me."
+      }
+    },
+    "query_entry": {
+      "id": "S1_032231",
+      "query": "anyone good at pet grooming?",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking assistance with pet grooming. Grooming was identified as the service type. No specific constraints or preferences were mentioned, and no location was specified, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_026417",
+      "query": "providing pet grooming services at affordable rates",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "pet grooming"
+            },
+            "min": {},
+            "max": {
+              "cost": [
+                {
+                  "type": "price",
+                  "value": "affordable",
+                  "unit": "inr"
+                }
+              ]
+            },
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service provision because the user is offering pet grooming services. Grooming was extracted as the service type, with affordability noted as a maximum price constraint. No specific location was mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_035980",
+      "query": "looking for a pet groomer for my golden retriever",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "pet": "golden retriever"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking professional assistance for grooming their golden retriever. Grooming was identified as the service type, with the specific pet breed extracted as a categorical attribute. No location was explicitly mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_043405",
+      "query": "I’m a certified fitness trainer available for personal sessions.",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "fitness training",
+            "categorical": {
+              "certification": "certified"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {
+          "categorical": {
+            "profession": "fitness trainer"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        },
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted fitness training as the service item type, with certification noted as categorical. The user's profession as a fitness trainer is captured in self_attributes. No specific location or exclusions were mentioned, so defaults apply."
+      }
+    },
+    "query_entry": {
+      "id": "S1_038409",
+      "query": "I need a tailor who can alter dresses quickly.",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Fashion & Apparel"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Fashion & Apparel"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "alteration",
+            "categorical": {
+              "service": "tailoring"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {
+          "categorical": {
+            "speed": "quick"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        },
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking a tailoring service. Alteration was identified as the service type, with a preference for quick service captured in other_party_preferences. No specific location was mentioned, so local matching applies."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "service",
+    "item_type": "alteration vs fitness training",
+    "notes": "Different services: won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_024919",
+      "query": "I provide pet grooming services for dogs of all sizes.",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "animal": "dog"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for dogs as the item type. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_030775",
+      "query": "I need a pet groomer who can handle large dogs.",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "animal_size": "large"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {
+          "categorical": {
+            "animal": "dog"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        },
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking professional assistance for pet grooming. Grooming for large dogs was extracted as the service item, with the size of the animal specified as large. No location was explicitly mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_024432",
+      "query": "I’m a pet groomer offering services at your doorstep",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {
+          "categorical": {
+            "profession": "pet groomer"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        },
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service as the item type, with service type specified as pet grooming. The user's profession as a pet groomer is captured in self_attributes. No specific location or exclusions were mentioned, so defaults apply."
+      }
+    },
+    "query_entry": {
+      "id": "S1_028383",
+      "query": "available for pet grooming services in your area",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for pets as the item type. No specific constraints, preferences, or location details were mentioned, so defaults apply."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_024825",
+      "query": "offering dog grooming services in the neighborhood",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "dog"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for dogs as the item type. No specific constraints or location details were mentioned, so defaults apply."
+      }
+    },
+    "query_entry": {
+      "id": "S1_030145",
+      "query": "need a dog groomer in Whitefield, Bangalore",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "dog"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {
+          "name": "whitefield, bangalore"
+        },
+        "location_match_mode": "explicit",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for dogs as the item type. Location explicitly mentioned as Whitefield, Bangalore."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_025918",
+      "query": "I’m an experienced pet groomer, open to appointments this week",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "profession": "pet groomer"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {
+          "categorical": {
+            "experience": "experienced"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        },
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service type as the user is providing pet grooming services. The profession is specified as pet groomer. The user describes themselves as experienced, which is captured in self_attributes. No specific location or exclusions were mentioned, so defaults apply."
+      }
+    },
+    "query_entry": {
+      "id": "S1_033686",
+      "query": "looking for a pet groomer near the north side of town",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {
+          "name": "north side of town"
+        },
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking professional assistance for pet grooming. Grooming was identified as the service type. The location is specified as the north side of town, which is treated as a target location for local matching."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_024135",
+      "query": "Offering pet grooming services at your doorstep.",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service as the type of service provided, specifically pet grooming. No constraints or location details were specified, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_028130",
+      "query": "Seeking a pet groomer for my golden retriever.",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "pet": "dog",
+              "breed": "golden retriever"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for a golden retriever as the pet type. No specific constraints or location mentioned, so defaults to near_me."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_026825",
+      "query": "Available for pet grooming services on weekends",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service type for pets, indicating the user is providing this service. No specific constraints or location details were mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_037213",
+      "query": "Need a pet groomer for my golden retriever this weekend.",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "pet": "golden retriever"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for a golden retriever as the pet type. No specific constraints or location mentioned, so defaults to near_me."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_023992",
+      "query": "Providing pet grooming services at home.",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service as the item type, categorized under pet grooming. No specific constraints, preferences, or location details were mentioned, so defaults apply."
+      }
+    },
+    "query_entry": {
+      "id": "S1_026803",
+      "query": "looking for someone to groom my pet dog",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "animal": "dog"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking assistance for grooming their pet dog. Grooming was identified as the service type, with the animal specified as a dog. No specific constraints or preferences were mentioned, and location defaults to near_me as none was specified."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_036699",
+      "query": "offering HR consulting for small businesses",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Business Services & Consulting"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Business Services & Consulting"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "consulting",
+            "categorical": {
+              "service_type": "hr"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service provision because the user is offering HR consulting services. Consulting was extracted as the service type, specifically HR consulting. No constraints or location details were specified, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_036476",
+      "query": "urgent: need a carpenter to fix kitchen cabinets",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Construction & Trades"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Construction & Trades"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "carpentry",
+            "categorical": {
+              "service": "kitchen cabinets"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking professional assistance to fix kitchen cabinets. Carpentry was extracted as the service type. No specific constraints or preferences were mentioned, and location defaults to near_me as none was specified."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "service",
+    "item_type": "carpentry vs consulting",
+    "notes": "Different services: won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_028787",
+      "query": "I provide professional proofreading for essays",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Education & Training"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Education & Training"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "proofreading",
+            "categorical": {
+              "service_type": "essays"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service because the user is offering professional proofreading services for essays. Proofreading was extracted as the service type, with essays specified as the subject of the service. No constraints or location details were provided, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_037709",
+      "query": "Looking for someone to clean and organize my kitchen.",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "cleaning",
+            "categorical": {
+              "task": "organization"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking assistance for cleaning and organizing their kitchen. Cleaning was extracted as the service type, with organization noted as a specific task. No constraints or location details were specified, so local matching applies."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "service",
+    "item_type": "cleaning vs proofreading",
+    "notes": "Different services: won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_024979",
+      "query": "I offer pet grooming services at your home.",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service as the type of service provided. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_030981",
+      "query": "Does anyone offer pet grooming services near Koramangala?",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "explicit",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking professional assistance for pet grooming. Grooming was identified as the service type. The location was explicitly mentioned as Koramangala."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_028706",
+      "query": "offering bike repair services in Whitefield",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Repair & Maintenance Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Repair & Maintenance Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "repair",
+            "categorical": {
+              "service": "bike"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {
+          "name": "whitefield"
+        },
+        "location_match_mode": "explicit",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service provision because the user is offering bike repair services. The item type extracted is repair with the service specified as bike. The location is explicitly mentioned as Whitefield."
+      }
+    },
+    "query_entry": {
+      "id": "S1_023845",
+      "query": "need a party decorator for an event next week",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "decorating",
+            "categorical": {
+              "event_type": "party"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted decorating service for a party event. No specific constraints or preferences were mentioned. Location defaults to near_me as none specified."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "service",
+    "item_type": "decorating vs repair",
+    "notes": "Different services: won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_025210",
+      "query": "Available for pet grooming services in the area.",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {},
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service provision because the user is offering pet grooming services. Grooming was extracted as the service type. No specific constraints or preferences were mentioned, and location defaults to near_me as none was specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_031758",
+      "query": "can anyone recommend a reliable pet groomer?",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {
+          "categorical": {
+            "reliability": "yes"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        },
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking assistance in finding a reliable pet groomer. Grooming was identified as the service type, with a preference for reliability noted in other_party_preferences. No specific location was mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_033420",
+      "query": "I offer language translation services for legal documents.",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Finance, Insurance & Legal"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Finance, Insurance & Legal"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "translation",
+            "categorical": {
+              "service_type": "language translation"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is offering language translation services. Translation was extracted as the service item type, specifically for legal documents. No constraints or preferences were specified, and location defaults to near_me as none was mentioned."
+      }
+    },
+    "query_entry": {
+      "id": "S1_035368",
+      "query": "I need a tailor to alter a few dresses",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Fashion & Apparel"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Fashion & Apparel"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "tailoring",
+            "categorical": {},
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking professional assistance from a tailor. Tailoring was extracted as the service item type. No specific constraints or preferences were mentioned, and no location was explicitly stated, so local matching applies."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "service",
+    "item_type": "tailoring vs translation",
+    "notes": "Different services: won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_044032",
+      "query": "I provide virtual assistance services for data entry and scheduling.",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Business Services & Consulting"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Business Services & Consulting"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "virtual assistance",
+            "categorical": {
+              "service_type": "data entry"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service provision because the user is offering virtual assistance services. Data entry was extracted as the service type. No specific constraints or location details were mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_030745",
+      "query": "urgent: need someone to fix a broken window",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Repair & Maintenance Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Repair & Maintenance Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "repair",
+            "categorical": {
+              "appliance": "window"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking assistance to fix a broken window. The item type extracted is repair, with the specific appliance being a window. No constraints or location details were specified, so local matching applies."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "service",
+    "item_type": "repair vs virtual assistance",
+    "notes": "Different services: won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_024608",
+      "query": "providing pet grooming services for your furry friends",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for pets as the item type. The service type is categorized as pet grooming. No specific constraints, preferences, or location details were mentioned, so defaults apply."
+      }
+    },
+    "query_entry": {
+      "id": "S1_029274",
+      "query": "Looking for a pet groomer for my Golden Retriever.",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "pet": "golden retriever"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking professional assistance for grooming their Golden Retriever. Grooming was identified as the service type, with the specific pet breed extracted as a categorical attribute. No constraints or location details were specified, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_026462",
+      "query": "I provide pet grooming at home, message me for details.",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service as the type of service provided. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_036109",
+      "query": "Need a dog groomer for my two golden retrievers.",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "animal": "dog"
+            },
+            "min": {
+              "quantity": [
+                {
+                  "type": "dogs",
+                  "value": 2,
+                  "unit": "count"
+                }
+              ]
+            },
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for dogs, specifying two golden retrievers as the quantity of dogs. No location or additional constraints were mentioned, so defaults apply."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_034252",
+      "query": "offering music composition and production services",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Entertainment & Events"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Entertainment & Events"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "music composition",
+            "categorical": {
+              "service": "production"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted music composition as the service type, with production as a categorical attribute. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_044260",
+      "query": "need a music composer for a short film project",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Entertainment & Events"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Entertainment & Events"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "music composition",
+            "categorical": {},
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking a music composer for a project. Music composition was extracted as the service item type. No specific constraints or preferences were mentioned, and no location was explicitly stated, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "music composition",
+    "notes": "Same service: music composition - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_025999",
+      "query": "I offer pet grooming services at affordable rates",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service offer because the user is providing pet grooming services. Grooming was extracted as the service type, with no specific constraints or preferences mentioned. Location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_034414",
+      "query": "any pet groomers nearby for a large dog?",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "pet_size": "large"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for large dogs as the item type. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_025307",
+      "query": "offering pet grooming services at your home",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service as the type of service provided, specifically pet grooming. No constraints or preferences were specified, and location defaults to near_me as none was mentioned."
+      }
+    },
+    "query_entry": {
+      "id": "S1_031830",
+      "query": "Need a pet groomer for my golden retriever.",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "pet": "golden retriever"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for a golden retriever as the pet type. No specific constraints or location mentioned, so defaults to near_me."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_025118",
+      "query": "offering handyman services for small repairs at home",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Repair & Maintenance Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Repair & Maintenance Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "handyman",
+            "categorical": {
+              "service_type": "repairs"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted handyman as the service type being provided, with repairs specified as the service category. No constraints or location details were mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_045882",
+      "query": "anyone available to tutor kids in English grammar?",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Education & Training"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Education & Training"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "tutoring",
+            "categorical": {
+              "subject": "english grammar"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking assistance in tutoring kids in English grammar. Tutoring was extracted as the service item, with English grammar specified as the subject. No constraints or preferences were mentioned, and no location was explicitly stated, so local matching applies."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "service",
+    "item_type": "tutoring vs handyman",
+    "notes": "Different services: won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_026245",
+      "query": "offering pet grooming services for small and large dogs",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {
+              "capacity": [
+                {
+                  "type": "size",
+                  "min": 1,
+                  "max": 1,
+                  "unit": "dogs"
+                }
+              ]
+            }
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service because the user is offering a grooming service for pets. Grooming was extracted as the service type, with a capacity constraint indicating the service is available for both small and large dogs. No specific location was mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_035321",
+      "query": "I need a reliable dog groomer in my area",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "dog"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {
+          "categorical": {
+            "reliability": "yes"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        },
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for dogs as the item type. Reliability is specified as a preference in other_party_preferences. No explicit location mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_023715",
+      "query": "offering pet grooming services, mobile or at your place",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for pets as the item type. The service is provided either mobile or at the user's place, but no specific constraints or preferences were mentioned. Location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_023914",
+      "query": "Looking for a pet groomer to trim my dog’s fur and nails.",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {
+          "categorical": {},
+          "min": {},
+          "max": {},
+          "range": {}
+        },
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for pets as the item type. No specific constraints or location details were mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_024698",
+      "query": "offering pet grooming services in the city",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service as the item type, categorized under pet grooming. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_029613",
+      "query": "Need a dog groomer for a large breed, any recommendations?",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "breed": "large"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking professional assistance for dog grooming. Grooming was identified as the service type, with a preference for large breed captured as a categorical attribute. No specific constraints or location details were mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_025737",
+      "query": "I provide pet grooming services at your doorstep",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service because the user is offering a service related to pet grooming. Grooming was extracted as the service type. No specific constraints or location details were mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_033181",
+      "query": "Searching for a pet groomer for my golden retriever.",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "pet": "golden retriever"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking professional assistance for grooming their golden retriever. Grooming was identified as the service type, with the specific pet breed extracted as a categorical attribute. No location was explicitly mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_030978",
+      "query": "I’m available to teach baking classes for beginners.",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Education & Training"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Education & Training"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "baking",
+            "categorical": {
+              "level": "beginner"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service provision because the user is offering to teach baking classes. Baking was extracted as the service type, with the level specified as beginner. No location or additional constraints were mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_043238",
+      "query": "Looking for a tutor with experience in SAT preparation.",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Education & Training"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Education & Training"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "tutoring",
+            "categorical": {
+              "subject": "sat preparation"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {
+          "min": {
+            "time": [
+              {
+                "type": "experience",
+                "value": 12,
+                "unit": "months"
+              }
+            ]
+          }
+        },
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted tutoring service for SAT preparation as the subject. Experience requirement was implied but not explicitly stated, so it was not included in the min/max/range. Location defaults to near_me as none specified."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "service",
+    "item_type": "tutoring vs baking",
+    "notes": "Different services: won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_024072",
+      "query": "Providing hair styling and grooming services for men and women.",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "hair styling"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service with hair styling as the service type. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_027524",
+      "query": "need a mobile pet groomer for my dog",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {
+          "categorical": {
+            "animal": "dog"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        },
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for pets, specifically for dogs as indicated in other_party_preferences. No specific constraints or location details were mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_032608",
+      "query": "offering cleaning services for offices and apartments",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "cleaning",
+            "categorical": {
+              "service_type": "apartment"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service provision because the user is offering cleaning services. Cleaning was extracted as the service type, with office and apartment specified as categorical attributes. No constraints or location details were provided, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_029008",
+      "query": "Looking for someone to proofread my manuscript.",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Education & Training"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Education & Training"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "proofreading",
+            "categorical": {},
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking assistance with proofreading. The item type was extracted as proofreading, with no specific constraints or preferences mentioned. Location defaults to near_me as none was specified."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "service",
+    "item_type": "proofreading vs cleaning",
+    "notes": "Different services: won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_026582",
+      "query": "I’m a dog groomer, available for home visits",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "dog grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {
+          "categorical": {
+            "profession": "dog groomer"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        },
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service type as dog grooming. The user's profession as a dog groomer is captured in self_attributes. No specific location or constraints were mentioned, so defaults apply."
+      }
+    },
+    "query_entry": {
+      "id": "S1_036523",
+      "query": "Looking for a dog groomer who can visit my home.",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "dog grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {
+          "categorical": {
+            "mode": "home visit"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        },
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for dogs as the item type. The request specifies a home visit mode, captured in other_party_preferences. No specific location or additional constraints were mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_025092",
+      "query": "I offer haircut and grooming services at your home",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "haircut"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service provision because the user is offering grooming services, specifically haircutting, at the customer's home. The item type extracted is grooming, with haircut as the specific service type. No constraints or location details were specified, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_031123",
+      "query": "Can anyone recommend a dog groomer near me?",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "dog"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking assistance for dog grooming. Grooming service for dogs was extracted as the item type. No specific constraints or preferences were mentioned, and location defaults to near_me as none was explicitly stated."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_042434",
+      "query": "I’m a fitness instructor, providing group workout sessions.",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Sports & Outdoors"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Sports & Outdoors"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "fitness",
+            "categorical": {
+              "service_type": "group workout sessions"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {
+          "categorical": {
+            "profession": "fitness instructor"
+          }
+        },
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service because the user is providing fitness instruction. The item type is fitness with service type specified as group workout sessions. The user's profession as a fitness instructor was extracted as a self attribute."
+      }
+    },
+    "query_entry": {
+      "id": "S1_028507",
+      "query": "desperately need a carpenter to repair a broken door",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Repair & Maintenance Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Repair & Maintenance Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "carpentry",
+            "categorical": {
+              "service": "repair"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking professional assistance for carpentry work. The item type extracted is carpentry with a service category of repair. No specific constraints or preferences were mentioned, and location defaults to near_me as none was specified."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "service",
+    "item_type": "carpentry vs fitness",
+    "notes": "Different services: won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_026641",
+      "query": "I offer pet grooming services at home.",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service provision because the user is offering pet grooming services. Grooming was identified as the service type, with no specific constraints or preferences mentioned. Location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_036861",
+      "query": "urgently looking for a pet groomer",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "pet"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking professional assistance for pet grooming. Grooming was identified as the service type, specifically for pets. No specific constraints or preferences were mentioned, and no location was explicitly stated, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_026314",
+      "query": "Offering pet grooming services for small and large dogs.",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming as the service type for pet grooming services. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_035604",
+      "query": "searching for a pet groomer nearby",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking professional assistance for pet grooming. Grooming was identified as the service type. No specific constraints or preferences were mentioned, and no location was explicitly stated, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_025677",
+      "query": "I offer dog grooming services in my neighborhood.",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service_type": "dog"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {
+          "name": "neighborhood"
+        },
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for dogs as the item type. The service is provided in the user's neighborhood, which is treated as a location. No specific constraints or preferences were mentioned."
+      }
+    },
+    "query_entry": {
+      "id": "S1_033111",
+      "query": "anyone providing pet grooming services near me?",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service request because the user is seeking assistance for pet grooming. Grooming was identified as the service type. No specific constraints or preferences were mentioned, and location defaults to near_me as none was explicitly stated."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_024228",
+      "query": "Offering pet grooming services in the downtown area",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "pet grooming"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {
+          "name": "downtown"
+        },
+        "location_match_mode": "explicit",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service offer because the user is providing pet grooming services. Grooming was extracted as the service type. The location was explicitly mentioned as downtown."
+      }
+    },
+    "query_entry": {
+      "id": "S1_028167",
+      "query": "Searching for a dog groomer nearby",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "service": "dog"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for dogs as the item type. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_023800",
+      "query": "I offer pet grooming services for dogs and cats",
+      "source": "service",
+      "subintent": "provide",
+      "stage2": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "provide",
+        "domain": [
+          "Pets & Animals"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "animal": "dog"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          },
+          {
+            "type": "grooming",
+            "categorical": {
+              "animal": "cat"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a service because the user is offering professional grooming services for pets. Grooming for both dogs and cats was extracted as separate items, each categorized under the type grooming. No specific constraints or location details were mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_024121",
+      "query": "Looking for an experienced dog groomer in the area.",
+      "source": "service",
+      "subintent": "seek",
+      "stage2": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "service",
+        "subintent": "seek",
+        "domain": [
+          "Personal Services"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "grooming",
+            "categorical": {
+              "animal": "dog"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {
+          "min": {
+            "time": [
+              {
+                "type": "experience",
+                "value": 36,
+                "unit": "months"
+              }
+            ]
+          }
+        },
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted grooming service for dogs, with a minimum experience of 3 years (36 months) specified in other_party_preferences. Location defaults to near_me as none specified."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "service",
+    "item_type": "grooming",
+    "notes": "Same service: grooming - likely to match"
+  }
+]

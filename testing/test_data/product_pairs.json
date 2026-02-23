@@ -1,0 +1,3810 @@
+[
+  {
+    "seed_entry": {
+      "id": "S1_007540",
+      "query": "selling my DSLR lens, perfect condition",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "lens",
+            "categorical": {
+              "condition": "perfect"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted lens as the item type, with condition marked as perfect. No numeric constraints or location specified, so defaults apply."
+      }
+    },
+    "query_entry": {
+      "id": "S1_008830",
+      "query": "need a brand new smartwatch",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "smartwatch",
+            "categorical": {
+              "condition": "new"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted smartwatch as the item type, with condition marked as new. No additional attributes, constraints, or location specified, so defaults apply."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "product",
+    "item_type": "smartwatch vs lens",
+    "notes": "Different types: smartwatch vs lens - won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_013344",
+      "query": "selling second-hand rugs, various sizes, well kept",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Home & Furniture"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Home & Furniture"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "rug",
+            "categorical": {
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted rug as the item type, with condition marked as used (second-hand). No specific size or location mentioned, so defaults apply."
+      }
+    },
+    "query_entry": {
+      "id": "S1_012448",
+      "query": "want to buy a second-hand electric keyboard",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "keyboard",
+            "categorical": {
+              "condition": "used",
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted keyboard as the item type, with condition marked as used (second-hand) and fuel type electric. No specific constraints or location were mentioned, so local matching applies."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "product",
+    "item_type": "keyboard vs rug",
+    "notes": "Different types: keyboard vs rug - won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_008846",
+      "query": "for sale: antique lamp, very unique",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Home & Furniture"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Home & Furniture"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "lamp",
+            "categorical": {
+              "condition": "antique",
+              "uniqueness": "very unique"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is offering a tangible item for sale. An antique lamp was extracted as the item type, with condition marked as antique and uniqueness noted as very unique. No location was explicitly mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_000920",
+      "query": "need a reliable DSLR camera for travel",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "camera",
+            "categorical": {
+              "condition": "reliable"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted camera type as DSLR for travel, with reliability as a categorical condition. No specific constraints or location mentioned, so defaults apply."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "product",
+    "item_type": "camera vs lamp",
+    "notes": "Different types: camera vs lamp - won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_006994",
+      "query": "selling LEGO sets, various themes, like new",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Books, Media & Entertainment"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Books, Media & Entertainment"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "toy",
+            "categorical": {
+              "brand": "lego",
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted LEGO sets as toys, with condition marked as used (like new implies used). No specific themes or numeric constraints were provided, so those fields are left empty. Location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_003561",
+      "query": "need a bean bag, any color is fine",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Home & Furniture"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Home & Furniture"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "bean bag",
+            "categorical": {},
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted bean bag as the item type. No specific color or other attributes were mentioned, so categorical and numeric fields are empty. Location defaults to near_me as none specified."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "product",
+    "item_type": "bean bag vs toy",
+    "notes": "Different types: bean bag vs toy - won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_007824",
+      "query": "selling brand new wired earphones, unopened box",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "earphones",
+            "categorical": {
+              "condition": "new",
+              "packaging": "unopened"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted earphones as the product type, with condition marked as new and packaging as unopened. No location or additional constraints were specified, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001185",
+      "query": "need a pair of wireless earphones, good battery life",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "earphones",
+            "categorical": {
+              "battery": "good"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted earphones as the item type, with battery life described as good captured in categorical attributes. No specific constraints or location details were mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "earphones",
+    "notes": "Same item type: earphones - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_000045",
+      "query": "want to sell my electric scooter, good range",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {
+              "performance": [
+                {
+                  "type": "range",
+                  "min": 0,
+                  "max": 0,
+                  "unit": "km"
+                }
+              ]
+            }
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is looking to sell a tangible item, specifically an electric scooter. The type was extracted as scooter with fuel type electric. The range was mentioned as good, but no specific numeric value was provided, so it remains as a placeholder. No location was specified, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_000061",
+      "query": "want to buy an electric scooter, under 25k",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {
+              "cost": [
+                {
+                  "type": "price",
+                  "value": 25000,
+                  "unit": "inr"
+                }
+              ]
+            },
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter type with electric fuel as categorical. Price constraint set to a maximum of 25k INR. No location specified, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_002391",
+      "query": "selling my second-hand electric scooter",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "condition": "used",
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is selling a tangible item. An electric scooter was extracted as the item type, with condition marked as used (second-hand). No location was explicitly mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_002135",
+      "query": "looking for a budget-friendly electric scooter",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {
+              "cost": [
+                {
+                  "type": "price",
+                  "value": 30000,
+                  "unit": "inr"
+                }
+              ]
+            },
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the product type, with electric fuel type as categorical. Budget-friendly implies a maximum price constraint, assumed to be 30000 INR. No specific location mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_000792",
+      "query": "selling my Bluetooth earphones, like new",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "earphones",
+            "categorical": {
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted earphones as the item type, with condition marked as used based on the phrase 'like new'. No specific constraints or location were mentioned, so defaults apply."
+      }
+    },
+    "query_entry": {
+      "id": "S1_000911",
+      "query": "Looking for Bluetooth earphones, sweat-resistant",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "earphones",
+            "categorical": {
+              "feature": "sweat-resistant"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted earphones as the product type, with sweat-resistant as a categorical feature. No numeric constraints or location specified, so defaults apply."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "earphones",
+    "notes": "Same item type: earphones - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_001640",
+      "query": "new electric scooter for sale, 50km range",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "condition": "new",
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {
+              "performance": [
+                {
+                  "type": "range",
+                  "min": 50,
+                  "max": 50,
+                  "unit": "km"
+                }
+              ]
+            }
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the item type, condition marked as new, and electric as the fuel type. The range of 50km was extracted as a performance constraint with exact value. No location was specified, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001701",
+      "query": "want to buy a used electric scooter, any model",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "condition": "used",
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product purchase because the user is seeking to buy a tangible item. A scooter was extracted as the item type, with condition marked as used and fuel type electric. No specific model was mentioned, so it is treated as any model. Location defaults to near_me as none specified."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_000660",
+      "query": "selling my old scooter, 125cc, runs great",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {
+              "performance": [
+                {
+                  "type": "engine_capacity",
+                  "min": 125,
+                  "max": 125,
+                  "unit": "cc"
+                }
+              ]
+            }
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically an old scooter. The condition was extracted as used, and the engine capacity of 125cc was noted as a performance attribute with exact values. No location or additional constraints were specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001024",
+      "query": "looking for an electric scooter, used",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric",
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product purchase because the user is seeking to buy a tangible item. An electric scooter was extracted as the item type, with the condition marked as used. No location was explicitly mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_000731",
+      "query": "selling my electric scooter, almost new, great range",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric",
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the item type, with fuel type electric and condition marked as used based on the phrase 'almost new'. No specific constraints or location were mentioned, so defaults apply."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001110",
+      "query": "looking for a second-hand electric scooter",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "condition": "used",
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product purchase because the user is seeking to buy a tangible item. A second-hand electric scooter was extracted as the item type, with condition marked as used and fuel type as electric. No location was explicitly mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_000696",
+      "query": "for sale: electric scooter, perfect for city commute",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the item type, with fuel type electric. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001037",
+      "query": "need a scooter, automatic transmission",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "transmission": "automatic"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the item type with automatic transmission as a categorical attribute. No other constraints or location details were specified, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_002416",
+      "query": "selling a brand-new electric scooter, never used",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "condition": "new",
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the item type, with condition marked as new and fuel type electric. No additional attributes, constraints, or location specified, so defaults apply."
+      }
+    },
+    "query_entry": {
+      "id": "S1_002247",
+      "query": "want to buy a fuel-efficient scooter, under budget",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "fuel-efficient"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the product type, with fuel efficiency noted as a categorical attribute. No specific budget mentioned, so no constraints applied. Location defaults to near_me as none specified."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_023156",
+      "query": "selling my professional DJ equipment",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "dj equipment",
+            "categorical": {},
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {
+          "categorical": {
+            "profession": "dj"
+          }
+        },
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted DJ equipment as the item type for sale. The user's profession as a DJ was noted in self_attributes. No specific constraints or location details were provided, so defaults apply."
+      }
+    },
+    "query_entry": {
+      "id": "S1_015897",
+      "query": "need a used microwave oven",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "microwave oven",
+            "categorical": {
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted microwave oven as the item type, with condition marked as used. No additional constraints or location specified, so local matching applies."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "product",
+    "item_type": "microwave oven vs dj equipment",
+    "notes": "Different types: microwave oven vs dj equipment - won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_012085",
+      "query": "anyone selling affordable wireless earbuds?",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "earbuds",
+            "categorical": {
+              "wireless": "yes"
+            },
+            "min": {},
+            "max": {
+              "cost": [
+                {
+                  "type": "price",
+                  "value": 10000,
+                  "unit": "inr"
+                }
+              ]
+            },
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is looking for affordable wireless earbuds. Earbuds were extracted as the item type, with a wireless attribute specified. The price constraint was inferred as affordable, set to a maximum of 10000 INR. No location was explicitly mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_006480",
+      "query": "looking for extra-large bean bags",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Home & Furniture"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Home & Furniture"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "bean bag",
+            "categorical": {
+              "size": "extra-large"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted bean bag as the product type with size specified as extra-large. No other attributes, constraints, or location details were mentioned, so defaults apply."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "product",
+    "item_type": "bean bag vs earbuds",
+    "notes": "Different types: bean bag vs earbuds - won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_000550",
+      "query": "selling a second-hand electric scooter, affordable",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "condition": "used",
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the item type, with condition marked as used (second-hand) and fuel type electric. No specific constraints or preferences were mentioned, so item_exclusions and other_party_preferences are empty. Location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_000823",
+      "query": "Searching for a budget-friendly electric scooter",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {
+              "cost": [
+                {
+                  "type": "price",
+                  "value": 30000,
+                  "unit": "inr"
+                }
+              ]
+            },
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter type with fuel as electric. Budget-friendly implies a maximum price constraint, assumed to be 30,000 INR. No specific location mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_002212",
+      "query": "selling a second-hand electric scooter",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "condition": "used",
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is selling a tangible item. A scooter was extracted as the item type, with condition marked as used (second-hand) and fuel type electric. No location was explicitly mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001969",
+      "query": "looking for an electric scooter, budget-friendly",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {
+          "categorical": {
+            "budget": "friendly"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        },
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter type with electric fuel as categorical. Budget-friendly is noted in other_party_preferences. No specific constraints or location mentioned, so defaults apply."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_000390",
+      "query": "want to sell my electric scooter",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is looking to sell a tangible item. An electric scooter was extracted as the item type, with fuel type categorized as electric. No specific constraints or location details were mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_000214",
+      "query": "searching for a reliable electric scooter",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {
+          "categorical": {
+            "reliability": "reliable"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        },
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the product type with electric fuel as categorical. Reliability is noted as a preference in other_party_preferences. No specific constraints or location details were mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_021450",
+      "query": "for sale: air conditioner, 1.5 ton, used 1 year",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "air conditioner",
+            "categorical": {
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {
+              "capacity": [
+                {
+                  "type": "ton",
+                  "min": 1.5,
+                  "max": 1.5,
+                  "unit": "ton"
+                }
+              ],
+              "time": [
+                {
+                  "type": "age",
+                  "min": 12,
+                  "max": 12,
+                  "unit": "months"
+                }
+              ]
+            }
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted air conditioner as the product type, with condition marked as used. Capacity of 1.5 ton and age of 1 year normalized to 12 months. No location specified, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_007252",
+      "query": "need a used kayak, single user",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Sports & Outdoors"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Sports & Outdoors"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "kayak",
+            "categorical": {
+              "condition": "used",
+              "ownership": "single"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted kayak as the product type, with condition marked as used and ownership specified as single user. No location was explicitly mentioned, so local matching applies."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "product",
+    "item_type": "kayak vs air conditioner",
+    "notes": "Different types: kayak vs air conditioner - won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_000527",
+      "query": "selling my pre-owned scooter, excellent mileage",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {
+              "performance": [
+                {
+                  "type": "mileage",
+                  "min": 0,
+                  "max": 0,
+                  "unit": "km/l"
+                }
+              ]
+            }
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically a scooter. The condition was extracted as used (pre-owned), and while mileage was mentioned, no specific numeric value was provided, so it is noted as a performance attribute without specific constraints. No location was specified, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_000752",
+      "query": "need an electric scooter for city commute",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter type as the product, with fuel type electric specified. No additional attributes, constraints, or location details were mentioned, so defaults apply."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_007553",
+      "query": "selling a pair of Bluetooth earphones",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "earphones",
+            "categorical": {
+              "connection": "bluetooth"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted earphones as the item type with Bluetooth as the connection type. No additional attributes, constraints, or location specified, so defaults apply."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001073",
+      "query": "need a pair of Bluetooth earphones",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "earphones",
+            "categorical": {
+              "connection": "bluetooth"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted earphones as the item type with Bluetooth as the connection type. No additional attributes, constraints, or location specified, so defaults apply."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "earphones",
+    "notes": "Same item type: earphones - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_002524",
+      "query": "selling my electric scooter, barely ridden",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric",
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the item type, with fuel type electric and condition marked as used based on the phrase 'barely ridden'. No specific constraints or location were mentioned, so defaults apply."
+      }
+    },
+    "query_entry": {
+      "id": "S1_002271",
+      "query": "looking to buy a used electric scooter",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "condition": "used",
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product purchase because the user is seeking to buy a tangible item. A used electric scooter was extracted as the item type, with condition marked as used and fuel type electric. No location was explicitly mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_001822",
+      "query": "selling my electric scooter, barely used",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric",
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically an electric scooter. The condition was extracted as used, and the fuel type was identified as electric. No specific constraints or location details were mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001750",
+      "query": "searching for an electric scooter, eco-friendly",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric",
+              "environmental_impact": "eco-friendly"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the product type, with fuel type electric and environmental impact noted as eco-friendly. No specific constraints or location details were provided, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_000611",
+      "query": "selling brand-new earphones, unopened box",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "earphones",
+            "categorical": {
+              "condition": "new",
+              "packaging": "unopened"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted earphones as the product type, with condition marked as new and packaging as unopened. No additional constraints or location details were specified, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_000411",
+      "query": "looking for a set of wireless earphones",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "earphones",
+            "categorical": {
+              "connection": "wireless"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted earphones as the item type, with the connection type specified as wireless. No additional attributes, constraints, or location details were provided, so defaults apply."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "earphones",
+    "notes": "Same item type: earphones - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_014435",
+      "query": "selling a pair of JBL speakers, powerful sound",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "speakers",
+            "categorical": {
+              "brand": "jbl",
+              "sound": "powerful"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted speakers as the item type, with brand JBL and sound quality described as powerful. No numeric constraints or location specified, so defaults apply."
+      }
+    },
+    "query_entry": {
+      "id": "S1_006347",
+      "query": "need a hard drive with at least 1TB capacity",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "hard drive",
+            "categorical": {},
+            "min": {
+              "capacity": [
+                {
+                  "type": "storage",
+                  "value": 1024,
+                  "unit": "gb"
+                }
+              ]
+            },
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted hard drive as the item type with a minimum capacity of 1TB normalized to 1024GB. No other attributes or constraints were specified, and location defaults to near_me as none was mentioned."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "product",
+    "item_type": "hard drive vs speakers",
+    "notes": "Different types: hard drive vs speakers - won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_000181",
+      "query": "selling my electric scooter, 2022 model, low mileage",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric",
+              "model": "2022"
+            },
+            "min": {},
+            "max": {},
+            "range": {
+              "performance": [
+                {
+                  "type": "mileage",
+                  "min": 0,
+                  "max": 0,
+                  "unit": "km"
+                }
+              ]
+            }
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically an electric scooter. The type was extracted as scooter, with fuel type electric and model year 2022 as categorical attributes. Mileage was mentioned but not quantified, so it remains as a placeholder in the range."
+      }
+    },
+    "query_entry": {
+      "id": "S1_000108",
+      "query": "looking for an electric scooter, must have warranty",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {
+          "categorical": {
+            "warranty": "yes"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        },
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter type with electric fuel as categorical. Warranty requirement captured in other_party_preferences. No specific constraints or location mentioned, so defaults apply."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_017730",
+      "query": "selling vintage jewelry, unique pieces available",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Jewelry & Accessories Manufacturing"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Jewelry & Accessories Manufacturing"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "jewelry",
+            "categorical": {
+              "condition": "vintage",
+              "uniqueness": "unique"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted jewelry as the product type, with condition marked as vintage and uniqueness specified as unique. No constraints or location details were provided, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_004319",
+      "query": "need a double-door fridge, LG preferred",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Home & Furniture"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Home & Furniture"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "fridge",
+            "categorical": {
+              "configuration": "double-door",
+              "brand": "lg"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted fridge type with configuration as double-door and brand preference LG. No numeric constraints or location specified, so defaults apply."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "product",
+    "item_type": "fridge vs jewelry",
+    "notes": "Different types: fridge vs jewelry - won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_000467",
+      "query": "for sale: electric scooter, barely used",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric",
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the item type, with fuel type electric and condition marked as used. No specific constraints or location were mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_000281",
+      "query": "looking for a new electric scooter under 50k",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "condition": "new",
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {
+              "cost": [
+                {
+                  "type": "price",
+                  "value": 50000,
+                  "unit": "inr"
+                }
+              ]
+            },
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the item type, with condition marked as new and fuel type electric. A maximum price constraint of 50k INR was extracted from the stated budget. No location was explicitly mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_009251",
+      "query": "used wardrobe for sale, pick up from Noida",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Home & Furniture"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Home & Furniture"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "wardrobe",
+            "categorical": {
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {
+          "name": "noida"
+        },
+        "location_match_mode": "explicit",
+        "location_exclusions": [],
+        "reasoning": "Extracted wardrobe as the item type with condition marked as used. Location explicitly mentioned as Noida, hence set to explicit mode."
+      }
+    },
+    "query_entry": {
+      "id": "S1_007687",
+      "query": "looking for a used bicycle for daily commute",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Sports & Outdoors"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Sports & Outdoors"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "bicycle",
+            "categorical": {
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product purchase because the user is seeking to buy a tangible item. A bicycle was extracted as the item type, with the condition marked as used. No location was explicitly mentioned, so local matching applies."
+      }
+    },
+    "expected_match": false,
+    "pair_type": "product",
+    "item_type": "bicycle vs wardrobe",
+    "notes": "Different types: bicycle vs wardrobe - won't match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_000268",
+      "query": "for sale: electric scooter, mint condition",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "condition": "mint"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is offering an electric scooter for sale. The item type was extracted as scooter, with the condition specified as mint. No additional constraints or location details were provided, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_000137",
+      "query": "looking for a kidsâ€™ scooter, lightweight and foldable",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Sports & Outdoors"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Sports & Outdoors"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "design": "lightweight",
+              "feature": "foldable"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the product type, with lightweight and foldable as categorical attributes. No numeric constraints or location specified, so defaults apply."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_000607",
+      "query": "selling my electric scooter, 2021 model",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric",
+              "model": "2021"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically an electric scooter. The type was extracted as scooter, with fuel type electric and model year 2021 as categorical attributes. No location was specified, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_000916",
+      "query": "want to buy an electric scooter, any brand",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter type with fuel type electric. No brand specified, so it is treated as any brand. No constraints or location mentioned, defaulting to near_me."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_001224",
+      "query": "selling my electric scooter, negotiable price",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the item type with fuel type electric. No price constraints were specified, so the price is treated as negotiable. Location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001482",
+      "query": "want to buy an electric scooter, low budget",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {
+              "cost": [
+                {
+                  "type": "price",
+                  "value": 30000,
+                  "unit": "inr"
+                }
+              ]
+            },
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter type with electric fuel as categorical. Budget constraint is implied as low, interpreted as a maximum price of 30000 INR. No specific location mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_001148",
+      "query": "anyone interested in buying my electric scooter?",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is looking to sell a tangible item, specifically an electric scooter. The item type was extracted as scooter with fuel type electric. No specific constraints or location details were mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001372",
+      "query": "searching for an eco-friendly electric scooter",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric",
+              "environmental_impact": "eco-friendly"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product purchase because the user is seeking to buy a tangible item. An electric scooter was extracted as the item type, with eco-friendly characteristics noted in the categorical attributes. No location was explicitly mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_002084",
+      "query": "selling my scooter, single owner, good condition",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "condition": "used",
+              "ownership": "single"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically a scooter. The condition was extracted as used, and ownership is specified as single owner. No location was mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001923",
+      "query": "need a second-hand scooter for city use",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the item type, with condition marked as used (second-hand). No specific constraints or location mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_001236",
+      "query": "used electric scooter for sale, low price",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "condition": "used",
+              "fuel": "electric"
+            },
+            "min": {
+              "cost": [
+                {
+                  "type": "price",
+                  "value": 0,
+                  "unit": "inr"
+                }
+              ]
+            },
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter type as the item, with condition marked as used and fuel type electric. No specific price constraint was provided, so the minimum price is set to 0. Location defaults to near_me as none specified."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001516",
+      "query": "looking for a used scooter in Chennai",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {
+          "name": "chennai"
+        },
+        "location_match_mode": "explicit",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product purchase because the user is seeking to buy a tangible item, specifically a used scooter. The condition 'used' was extracted as a categorical attribute. The location 'Chennai' was explicitly mentioned, hence the location match mode is set to explicit."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_000996",
+      "query": "selling an electric scooter, 2022 model",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric",
+              "model": "2022"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically an electric scooter. The type was extracted as scooter, with fuel type electric and model year 2022 captured as categorical attributes. No location was specified, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001332",
+      "query": "looking for an electric scooter, any brand",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter type with fuel categorized as electric. No specific brand mentioned, so it remains open. Location defaults to near_me as none specified."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_016975",
+      "query": "selling brand new earphones still sealed",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "earphones",
+            "categorical": {
+              "condition": "new",
+              "packaging": "sealed"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is selling a tangible item. Earphones were extracted as the item type, with condition marked as new and packaging as sealed. No location was explicitly mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001338",
+      "query": "need a pair of Bluetooth earphones, budget under 2k",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "earphones",
+            "categorical": {
+              "connection": "bluetooth"
+            },
+            "min": {},
+            "max": {
+              "cost": [
+                {
+                  "type": "price",
+                  "value": 2000,
+                  "unit": "inr"
+                }
+              ]
+            },
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted earphones as the item type with Bluetooth connection as categorical. Budget constraint is set as a maximum price of 2000 INR. No location specified, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "earphones",
+    "notes": "Same item type: earphones - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_001557",
+      "query": "selling my electric scooter, 2020 model",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric",
+              "model": "2020"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically an electric scooter. The type was extracted as scooter, with fuel type electric and model year 2020 as categorical attributes. No location was specified, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001567",
+      "query": "searching for a scooter, petrol or electric",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "petrol"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          },
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the product type. Two fuel types were identified: petrol and electric, each represented as separate items. No specific constraints or location details were mentioned, so local matching applies."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_001995",
+      "query": "selling my electric scooter, 6 months old",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {
+              "fuel": "electric",
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {
+              "time": [
+                {
+                  "type": "age",
+                  "min": 6,
+                  "max": 6,
+                  "unit": "months"
+                }
+              ]
+            }
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically an electric scooter. The scooter is categorized as used due to its age of 6 months, which is captured in the range for time."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001883",
+      "query": "want to buy a scooter for city rides",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Automotive & Vehicles"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "scooter",
+            "categorical": {},
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted scooter as the item type for city rides. No specific attributes, constraints, or location were mentioned, so defaults apply."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "scooter",
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "seed_entry": {
+      "id": "S1_017211",
+      "query": "giving away free earphones, used but working",
+      "source": "product",
+      "subintent": "sell",
+      "stage2": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "sell",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "earphones",
+            "categorical": {
+              "condition": "used"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted earphones as the item type, with condition marked as used. No specific constraints or location were mentioned, so local matching applies."
+      }
+    },
+    "query_entry": {
+      "id": "S1_001430",
+      "query": "searching for a pair of Bluetooth running earphones",
+      "source": "product",
+      "subintent": "buy",
+      "stage2": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": []
+      },
+      "stage3": {
+        "intent": "product",
+        "subintent": "buy",
+        "domain": [
+          "Technology & Electronics"
+        ],
+        "primary_mutual_category": [],
+        "items": [
+          {
+            "type": "earphones",
+            "categorical": {
+              "connection": "bluetooth",
+              "usage": "running"
+            },
+            "min": {},
+            "max": {},
+            "range": {}
+          }
+        ],
+        "item_exclusions": [],
+        "other_party_preferences": {},
+        "other_party_exclusions": {},
+        "self_attributes": {},
+        "self_exclusions": {},
+        "target_location": {},
+        "location_match_mode": "near_me",
+        "location_exclusions": [],
+        "reasoning": "Extracted earphones as the product type, with Bluetooth connection and running usage as categorical attributes. No numeric constraints or location specified, so defaults apply."
+      }
+    },
+    "expected_match": true,
+    "pair_type": "product",
+    "item_type": "earphones",
+    "notes": "Same item type: earphones - likely to match"
+  }
+]

@@ -1,0 +1,5686 @@
+[
+  {
+    "test_id": "test_product_001",
+    "original_id": "S1_007540",
+    "query": "selling my DSLR lens, perfect condition",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Technology & Electronics"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "lens",
+          "categorical": {
+            "condition": "perfect"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted lens as the item type, with condition marked as perfect. No numeric constraints or location specified, so defaults apply."
+    },
+    "notes": "Different types: smartwatch vs lens - won't match"
+  },
+  {
+    "test_id": "test_product_002",
+    "original_id": "S1_013344",
+    "query": "selling second-hand rugs, various sizes, well kept",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Home & Furniture"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "rug",
+          "categorical": {
+            "condition": "used"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted rug as the item type, with condition marked as used (second-hand). No specific size or location mentioned, so defaults apply."
+    },
+    "notes": "Different types: keyboard vs rug - won't match"
+  },
+  {
+    "test_id": "test_product_003",
+    "original_id": "S1_008846",
+    "query": "for sale: antique lamp, very unique",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Home & Furniture"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "lamp",
+          "categorical": {
+            "condition": "antique",
+            "uniqueness": "very unique"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is offering a tangible item for sale. An antique lamp was extracted as the item type, with condition marked as antique and uniqueness noted as very unique. No location was explicitly mentioned, so local matching applies."
+    },
+    "notes": "Different types: camera vs lamp - won't match"
+  },
+  {
+    "test_id": "test_product_004",
+    "original_id": "S1_006994",
+    "query": "selling LEGO sets, various themes, like new",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Books, Media & Entertainment"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "toy",
+          "categorical": {
+            "brand": "lego",
+            "condition": "used"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted LEGO sets as toys, with condition marked as used (like new implies used). No specific themes or numeric constraints were provided, so those fields are left empty. Location defaults to near_me as none specified."
+    },
+    "notes": "Different types: bean bag vs toy - won't match"
+  },
+  {
+    "test_id": "test_product_005",
+    "original_id": "S1_007824",
+    "query": "selling brand new wired earphones, unopened box",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Technology & Electronics"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "earphones",
+          "categorical": {
+            "condition": "new",
+            "packaging": "unopened"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted earphones as the product type, with condition marked as new and packaging as unopened. No location or additional constraints were specified, so local matching applies."
+    },
+    "notes": "Same item type: earphones - likely to match"
+  },
+  {
+    "test_id": "test_product_006",
+    "original_id": "S1_000045",
+    "query": "want to sell my electric scooter, good range",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "fuel": "electric"
+          },
+          "min": {},
+          "max": {},
+          "range": {
+            "performance": [
+              {
+                "type": "range",
+                "min": 0,
+                "max": 0,
+                "unit": "km"
+              }
+            ]
+          }
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is looking to sell a tangible item, specifically an electric scooter. The type was extracted as scooter with fuel type electric. The range was mentioned as good, but no specific numeric value was provided, so it remains as a placeholder. No location was specified, so local matching applies."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_007",
+    "original_id": "S1_002391",
+    "query": "selling my second-hand electric scooter",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "condition": "used",
+            "fuel": "electric"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is selling a tangible item. An electric scooter was extracted as the item type, with condition marked as used (second-hand). No location was explicitly mentioned, so local matching applies."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_008",
+    "original_id": "S1_000792",
+    "query": "selling my Bluetooth earphones, like new",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Technology & Electronics"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "earphones",
+          "categorical": {
+            "condition": "used"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted earphones as the item type, with condition marked as used based on the phrase 'like new'. No specific constraints or location were mentioned, so defaults apply."
+    },
+    "notes": "Same item type: earphones - likely to match"
+  },
+  {
+    "test_id": "test_product_009",
+    "original_id": "S1_001640",
+    "query": "new electric scooter for sale, 50km range",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "condition": "new",
+            "fuel": "electric"
+          },
+          "min": {},
+          "max": {},
+          "range": {
+            "performance": [
+              {
+                "type": "range",
+                "min": 50,
+                "max": 50,
+                "unit": "km"
+              }
+            ]
+          }
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted scooter as the item type, condition marked as new, and electric as the fuel type. The range of 50km was extracted as a performance constraint with exact value. No location was specified, so local matching applies."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_010",
+    "original_id": "S1_000660",
+    "query": "selling my old scooter, 125cc, runs great",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "condition": "used"
+          },
+          "min": {},
+          "max": {},
+          "range": {
+            "performance": [
+              {
+                "type": "engine_capacity",
+                "min": 125,
+                "max": 125,
+                "unit": "cc"
+              }
+            ]
+          }
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically an old scooter. The condition was extracted as used, and the engine capacity of 125cc was noted as a performance attribute with exact values. No location or additional constraints were specified."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_011",
+    "original_id": "S1_000731",
+    "query": "selling my electric scooter, almost new, great range",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "fuel": "electric",
+            "condition": "used"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted scooter as the item type, with fuel type electric and condition marked as used based on the phrase 'almost new'. No specific constraints or location were mentioned, so defaults apply."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_012",
+    "original_id": "S1_000696",
+    "query": "for sale: electric scooter, perfect for city commute",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "fuel": "electric"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted scooter as the item type, with fuel type electric. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_013",
+    "original_id": "S1_002416",
+    "query": "selling a brand-new electric scooter, never used",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "condition": "new",
+            "fuel": "electric"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted scooter as the item type, with condition marked as new and fuel type electric. No additional attributes, constraints, or location specified, so defaults apply."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_014",
+    "original_id": "S1_023156",
+    "query": "selling my professional DJ equipment",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Technology & Electronics"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "dj equipment",
+          "categorical": {},
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {
+        "categorical": {
+          "profession": "dj"
+        }
+      },
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted DJ equipment as the item type for sale. The user's profession as a DJ was noted in self_attributes. No specific constraints or location details were provided, so defaults apply."
+    },
+    "notes": "Different types: microwave oven vs dj equipment - won't match"
+  },
+  {
+    "test_id": "test_product_015",
+    "original_id": "S1_012085",
+    "query": "anyone selling affordable wireless earbuds?",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Technology & Electronics"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "earbuds",
+          "categorical": {
+            "wireless": "yes"
+          },
+          "min": {},
+          "max": {
+            "cost": [
+              {
+                "type": "price",
+                "value": 10000,
+                "unit": "inr"
+              }
+            ]
+          },
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is looking for affordable wireless earbuds. Earbuds were extracted as the item type, with a wireless attribute specified. The price constraint was inferred as affordable, set to a maximum of 10000 INR. No location was explicitly mentioned, so local matching applies."
+    },
+    "notes": "Different types: bean bag vs earbuds - won't match"
+  },
+  {
+    "test_id": "test_product_016",
+    "original_id": "S1_000550",
+    "query": "selling a second-hand electric scooter, affordable",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "condition": "used",
+            "fuel": "electric"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted scooter as the item type, with condition marked as used (second-hand) and fuel type electric. No specific constraints or preferences were mentioned, so item_exclusions and other_party_preferences are empty. Location defaults to near_me as none specified."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_017",
+    "original_id": "S1_002212",
+    "query": "selling a second-hand electric scooter",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "condition": "used",
+            "fuel": "electric"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is selling a tangible item. A scooter was extracted as the item type, with condition marked as used (second-hand) and fuel type electric. No location was explicitly mentioned, so local matching applies."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_018",
+    "original_id": "S1_000390",
+    "query": "want to sell my electric scooter",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "fuel": "electric"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is looking to sell a tangible item. An electric scooter was extracted as the item type, with fuel type categorized as electric. No specific constraints or location details were mentioned, so local matching applies."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_019",
+    "original_id": "S1_021450",
+    "query": "for sale: air conditioner, 1.5 ton, used 1 year",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Technology & Electronics"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "air conditioner",
+          "categorical": {
+            "condition": "used"
+          },
+          "min": {},
+          "max": {},
+          "range": {
+            "capacity": [
+              {
+                "type": "ton",
+                "min": 1.5,
+                "max": 1.5,
+                "unit": "ton"
+              }
+            ],
+            "time": [
+              {
+                "type": "age",
+                "min": 12,
+                "max": 12,
+                "unit": "months"
+              }
+            ]
+          }
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted air conditioner as the product type, with condition marked as used. Capacity of 1.5 ton and age of 1 year normalized to 12 months. No location specified, so local matching applies."
+    },
+    "notes": "Different types: kayak vs air conditioner - won't match"
+  },
+  {
+    "test_id": "test_product_020",
+    "original_id": "S1_000527",
+    "query": "selling my pre-owned scooter, excellent mileage",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "condition": "used"
+          },
+          "min": {},
+          "max": {},
+          "range": {
+            "performance": [
+              {
+                "type": "mileage",
+                "min": 0,
+                "max": 0,
+                "unit": "km/l"
+              }
+            ]
+          }
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically a scooter. The condition was extracted as used (pre-owned), and while mileage was mentioned, no specific numeric value was provided, so it is noted as a performance attribute without specific constraints. No location was specified, so local matching applies."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_021",
+    "original_id": "S1_007553",
+    "query": "selling a pair of Bluetooth earphones",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Technology & Electronics"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "earphones",
+          "categorical": {
+            "connection": "bluetooth"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted earphones as the item type with Bluetooth as the connection type. No additional attributes, constraints, or location specified, so defaults apply."
+    },
+    "notes": "Same item type: earphones - likely to match"
+  },
+  {
+    "test_id": "test_product_022",
+    "original_id": "S1_002524",
+    "query": "selling my electric scooter, barely ridden",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "fuel": "electric",
+            "condition": "used"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted scooter as the item type, with fuel type electric and condition marked as used based on the phrase 'barely ridden'. No specific constraints or location were mentioned, so defaults apply."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_023",
+    "original_id": "S1_001822",
+    "query": "selling my electric scooter, barely used",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "fuel": "electric",
+            "condition": "used"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically an electric scooter. The condition was extracted as used, and the fuel type was identified as electric. No specific constraints or location details were mentioned, so local matching applies."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_024",
+    "original_id": "S1_000611",
+    "query": "selling brand-new earphones, unopened box",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Technology & Electronics"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "earphones",
+          "categorical": {
+            "condition": "new",
+            "packaging": "unopened"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted earphones as the product type, with condition marked as new and packaging as unopened. No additional constraints or location details were specified, so local matching applies."
+    },
+    "notes": "Same item type: earphones - likely to match"
+  },
+  {
+    "test_id": "test_product_025",
+    "original_id": "S1_014435",
+    "query": "selling a pair of JBL speakers, powerful sound",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Technology & Electronics"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "speakers",
+          "categorical": {
+            "brand": "jbl",
+            "sound": "powerful"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted speakers as the item type, with brand JBL and sound quality described as powerful. No numeric constraints or location specified, so defaults apply."
+    },
+    "notes": "Different types: hard drive vs speakers - won't match"
+  },
+  {
+    "test_id": "test_product_026",
+    "original_id": "S1_000181",
+    "query": "selling my electric scooter, 2022 model, low mileage",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "fuel": "electric",
+            "model": "2022"
+          },
+          "min": {},
+          "max": {},
+          "range": {
+            "performance": [
+              {
+                "type": "mileage",
+                "min": 0,
+                "max": 0,
+                "unit": "km"
+              }
+            ]
+          }
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically an electric scooter. The type was extracted as scooter, with fuel type electric and model year 2022 as categorical attributes. Mileage was mentioned but not quantified, so it remains as a placeholder in the range."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_027",
+    "original_id": "S1_017730",
+    "query": "selling vintage jewelry, unique pieces available",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Jewelry & Accessories Manufacturing"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "jewelry",
+          "categorical": {
+            "condition": "vintage",
+            "uniqueness": "unique"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted jewelry as the product type, with condition marked as vintage and uniqueness specified as unique. No constraints or location details were provided, so local matching applies."
+    },
+    "notes": "Different types: fridge vs jewelry - won't match"
+  },
+  {
+    "test_id": "test_product_028",
+    "original_id": "S1_000467",
+    "query": "for sale: electric scooter, barely used",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "fuel": "electric",
+            "condition": "used"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted scooter as the item type, with fuel type electric and condition marked as used. No specific constraints or location were mentioned, so local matching applies."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_029",
+    "original_id": "S1_009251",
+    "query": "used wardrobe for sale, pick up from Noida",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Home & Furniture"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "wardrobe",
+          "categorical": {
+            "condition": "used"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {
+        "name": "noida"
+      },
+      "location_match_mode": "explicit",
+      "location_exclusions": [],
+      "reasoning": "Extracted wardrobe as the item type with condition marked as used. Location explicitly mentioned as Noida, hence set to explicit mode."
+    },
+    "notes": "Different types: bicycle vs wardrobe - won't match"
+  },
+  {
+    "test_id": "test_product_030",
+    "original_id": "S1_000268",
+    "query": "for sale: electric scooter, mint condition",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "condition": "mint"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is offering an electric scooter for sale. The item type was extracted as scooter, with the condition specified as mint. No additional constraints or location details were provided, so local matching applies."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_031",
+    "original_id": "S1_000607",
+    "query": "selling my electric scooter, 2021 model",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "fuel": "electric",
+            "model": "2021"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically an electric scooter. The type was extracted as scooter, with fuel type electric and model year 2021 as categorical attributes. No location was specified, so local matching applies."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_032",
+    "original_id": "S1_001224",
+    "query": "selling my electric scooter, negotiable price",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "fuel": "electric"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted scooter as the item type with fuel type electric. No price constraints were specified, so the price is treated as negotiable. Location defaults to near_me as none specified."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_033",
+    "original_id": "S1_001148",
+    "query": "anyone interested in buying my electric scooter?",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "fuel": "electric"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is looking to sell a tangible item, specifically an electric scooter. The item type was extracted as scooter with fuel type electric. No specific constraints or location details were mentioned, so local matching applies."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_034",
+    "original_id": "S1_002084",
+    "query": "selling my scooter, single owner, good condition",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "condition": "used",
+            "ownership": "single"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically a scooter. The condition was extracted as used, and ownership is specified as single owner. No location was mentioned, so local matching applies."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_035",
+    "original_id": "S1_001236",
+    "query": "used electric scooter for sale, low price",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "condition": "used",
+            "fuel": "electric"
+          },
+          "min": {
+            "cost": [
+              {
+                "type": "price",
+                "value": 0,
+                "unit": "inr"
+              }
+            ]
+          },
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted scooter type as the item, with condition marked as used and fuel type electric. No specific price constraint was provided, so the minimum price is set to 0. Location defaults to near_me as none specified."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_036",
+    "original_id": "S1_000996",
+    "query": "selling an electric scooter, 2022 model",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "fuel": "electric",
+            "model": "2022"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically an electric scooter. The type was extracted as scooter, with fuel type electric and model year 2022 captured as categorical attributes. No location was specified, so local matching applies."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_037",
+    "original_id": "S1_016975",
+    "query": "selling brand new earphones still sealed",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Technology & Electronics"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "earphones",
+          "categorical": {
+            "condition": "new",
+            "packaging": "sealed"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is selling a tangible item. Earphones were extracted as the item type, with condition marked as new and packaging as sealed. No location was explicitly mentioned, so local matching applies."
+    },
+    "notes": "Same item type: earphones - likely to match"
+  },
+  {
+    "test_id": "test_product_038",
+    "original_id": "S1_001557",
+    "query": "selling my electric scooter, 2020 model",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "fuel": "electric",
+            "model": "2020"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically an electric scooter. The type was extracted as scooter, with fuel type electric and model year 2020 as categorical attributes. No location was specified, so local matching applies."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_039",
+    "original_id": "S1_001995",
+    "query": "selling my electric scooter, 6 months old",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Automotive & Vehicles"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "scooter",
+          "categorical": {
+            "fuel": "electric",
+            "condition": "used"
+          },
+          "min": {},
+          "max": {},
+          "range": {
+            "time": [
+              {
+                "type": "age",
+                "min": 6,
+                "max": 6,
+                "unit": "months"
+              }
+            ]
+          }
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a product sale because the user is selling a tangible item, specifically an electric scooter. The scooter is categorized as used due to its age of 6 months, which is captured in the range for time."
+    },
+    "notes": "Same item type: scooter - likely to match"
+  },
+  {
+    "test_id": "test_product_040",
+    "original_id": "S1_017211",
+    "query": "giving away free earphones, used but working",
+    "source": "product",
+    "subintent": "sell",
+    "normalized_query": {
+      "intent": "product",
+      "subintent": "sell",
+      "domain": [
+        "Technology & Electronics"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "earphones",
+          "categorical": {
+            "condition": "used"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted earphones as the item type, with condition marked as used. No specific constraints or location were mentioned, so local matching applies."
+    },
+    "notes": "Same item type: earphones - likely to match"
+  },
+  {
+    "test_id": "test_service_041",
+    "original_id": "S1_025357",
+    "query": "offering pet grooming services at home",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service for pets as the item type. The service is provided at home, but no specific constraints or preferences were mentioned. Location defaults to near_me as none specified."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_042",
+    "original_id": "S1_024086",
+    "query": "I provide pet grooming services in the comfort of your home.",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service as the type of service provided. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_043",
+    "original_id": "S1_025464",
+    "query": "providing pet grooming services at home",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service as the type of service provided, specifically pet grooming. No constraints or location specified, so defaults to near_me."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_044",
+    "original_id": "S1_026417",
+    "query": "providing pet grooming services at affordable rates",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service": "pet grooming"
+          },
+          "min": {},
+          "max": {
+            "cost": [
+              {
+                "type": "price",
+                "value": "affordable",
+                "unit": "inr"
+              }
+            ]
+          },
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service provision because the user is offering pet grooming services. Grooming was extracted as the service type, with affordability noted as a maximum price constraint. No specific location was mentioned, so local matching applies."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_045",
+    "original_id": "S1_043405",
+    "query": "I’m a certified fitness trainer available for personal sessions.",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Personal Services"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "fitness training",
+          "categorical": {
+            "certification": "certified"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {
+        "categorical": {
+          "profession": "fitness trainer"
+        },
+        "min": {},
+        "max": {},
+        "range": {}
+      },
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted fitness training as the service item type, with certification noted as categorical. The user's profession as a fitness trainer is captured in self_attributes. No specific location or exclusions were mentioned, so defaults apply."
+    },
+    "notes": "Different services: won't match"
+  },
+  {
+    "test_id": "test_service_046",
+    "original_id": "S1_024919",
+    "query": "I provide pet grooming services for dogs of all sizes.",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "animal": "dog"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service for dogs as the item type. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_047",
+    "original_id": "S1_024432",
+    "query": "I’m a pet groomer offering services at your doorstep",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {
+        "categorical": {
+          "profession": "pet groomer"
+        },
+        "min": {},
+        "max": {},
+        "range": {}
+      },
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service as the item type, with service type specified as pet grooming. The user's profession as a pet groomer is captured in self_attributes. No specific location or exclusions were mentioned, so defaults apply."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_048",
+    "original_id": "S1_024825",
+    "query": "offering dog grooming services in the neighborhood",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Personal Services"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "dog"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service for dogs as the item type. No specific constraints or location details were mentioned, so defaults apply."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_049",
+    "original_id": "S1_025918",
+    "query": "I’m an experienced pet groomer, open to appointments this week",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "profession": "pet groomer"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {
+        "categorical": {
+          "experience": "experienced"
+        },
+        "min": {},
+        "max": {},
+        "range": {}
+      },
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service type as the user is providing pet grooming services. The profession is specified as pet groomer. The user describes themselves as experienced, which is captured in self_attributes. No specific location or exclusions were mentioned, so defaults apply."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_050",
+    "original_id": "S1_024135",
+    "query": "Offering pet grooming services at your doorstep.",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Personal Services"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service as the type of service provided, specifically pet grooming. No constraints or location details were specified, so local matching applies."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_051",
+    "original_id": "S1_026825",
+    "query": "Available for pet grooming services on weekends",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service type for pets, indicating the user is providing this service. No specific constraints or location details were mentioned, so local matching applies."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_052",
+    "original_id": "S1_023992",
+    "query": "Providing pet grooming services at home.",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service as the item type, categorized under pet grooming. No specific constraints, preferences, or location details were mentioned, so defaults apply."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_053",
+    "original_id": "S1_036699",
+    "query": "offering HR consulting for small businesses",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Business Services & Consulting"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "consulting",
+          "categorical": {
+            "service_type": "hr"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service provision because the user is offering HR consulting services. Consulting was extracted as the service type, specifically HR consulting. No constraints or location details were specified, so local matching applies."
+    },
+    "notes": "Different services: won't match"
+  },
+  {
+    "test_id": "test_service_054",
+    "original_id": "S1_028787",
+    "query": "I provide professional proofreading for essays",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Education & Training"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "proofreading",
+          "categorical": {
+            "service_type": "essays"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service because the user is offering professional proofreading services for essays. Proofreading was extracted as the service type, with essays specified as the subject of the service. No constraints or location details were provided, so local matching applies."
+    },
+    "notes": "Different services: won't match"
+  },
+  {
+    "test_id": "test_service_055",
+    "original_id": "S1_024979",
+    "query": "I offer pet grooming services at your home.",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service as the type of service provided. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_056",
+    "original_id": "S1_028706",
+    "query": "offering bike repair services in Whitefield",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Repair & Maintenance Services"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "repair",
+          "categorical": {
+            "service": "bike"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {
+        "name": "whitefield"
+      },
+      "location_match_mode": "explicit",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service provision because the user is offering bike repair services. The item type extracted is repair with the service specified as bike. The location is explicitly mentioned as Whitefield."
+    },
+    "notes": "Different services: won't match"
+  },
+  {
+    "test_id": "test_service_057",
+    "original_id": "S1_025210",
+    "query": "Available for pet grooming services in the area.",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {},
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service provision because the user is offering pet grooming services. Grooming was extracted as the service type. No specific constraints or preferences were mentioned, and location defaults to near_me as none was specified."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_058",
+    "original_id": "S1_033420",
+    "query": "I offer language translation services for legal documents.",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Finance, Insurance & Legal"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "translation",
+          "categorical": {
+            "service_type": "language translation"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service request because the user is offering language translation services. Translation was extracted as the service item type, specifically for legal documents. No constraints or preferences were specified, and location defaults to near_me as none was mentioned."
+    },
+    "notes": "Different services: won't match"
+  },
+  {
+    "test_id": "test_service_059",
+    "original_id": "S1_044032",
+    "query": "I provide virtual assistance services for data entry and scheduling.",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Business Services & Consulting"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "virtual assistance",
+          "categorical": {
+            "service_type": "data entry"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service provision because the user is offering virtual assistance services. Data entry was extracted as the service type. No specific constraints or location details were mentioned, so local matching applies."
+    },
+    "notes": "Different services: won't match"
+  },
+  {
+    "test_id": "test_service_060",
+    "original_id": "S1_024608",
+    "query": "providing pet grooming services for your furry friends",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service for pets as the item type. The service type is categorized as pet grooming. No specific constraints, preferences, or location details were mentioned, so defaults apply."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_061",
+    "original_id": "S1_026462",
+    "query": "I provide pet grooming at home, message me for details.",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service as the type of service provided. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_062",
+    "original_id": "S1_034252",
+    "query": "offering music composition and production services",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Entertainment & Events"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "music composition",
+          "categorical": {
+            "service": "production"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted music composition as the service type, with production as a categorical attribute. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+    },
+    "notes": "Same service: music composition - likely to match"
+  },
+  {
+    "test_id": "test_service_063",
+    "original_id": "S1_025999",
+    "query": "I offer pet grooming services at affordable rates",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service offer because the user is providing pet grooming services. Grooming was extracted as the service type, with no specific constraints or preferences mentioned. Location defaults to near_me as none specified."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_064",
+    "original_id": "S1_025307",
+    "query": "offering pet grooming services at your home",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service as the type of service provided, specifically pet grooming. No constraints or preferences were specified, and location defaults to near_me as none was mentioned."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_065",
+    "original_id": "S1_025118",
+    "query": "offering handyman services for small repairs at home",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Repair & Maintenance Services"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "handyman",
+          "categorical": {
+            "service_type": "repairs"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted handyman as the service type being provided, with repairs specified as the service category. No constraints or location details were mentioned, so local matching applies."
+    },
+    "notes": "Different services: won't match"
+  },
+  {
+    "test_id": "test_service_066",
+    "original_id": "S1_026245",
+    "query": "offering pet grooming services for small and large dogs",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {
+            "capacity": [
+              {
+                "type": "size",
+                "min": 1,
+                "max": 1,
+                "unit": "dogs"
+              }
+            ]
+          }
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service because the user is offering a grooming service for pets. Grooming was extracted as the service type, with a capacity constraint indicating the service is available for both small and large dogs. No specific location was mentioned, so local matching applies."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_067",
+    "original_id": "S1_023715",
+    "query": "offering pet grooming services, mobile or at your place",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service for pets as the item type. The service is provided either mobile or at the user's place, but no specific constraints or preferences were mentioned. Location defaults to near_me as none specified."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_068",
+    "original_id": "S1_024698",
+    "query": "offering pet grooming services in the city",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service as the item type, categorized under pet grooming. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_069",
+    "original_id": "S1_025737",
+    "query": "I provide pet grooming services at your doorstep",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service because the user is offering a service related to pet grooming. Grooming was extracted as the service type. No specific constraints or location details were mentioned, so local matching applies."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_070",
+    "original_id": "S1_030978",
+    "query": "I’m available to teach baking classes for beginners.",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Education & Training"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "baking",
+          "categorical": {
+            "level": "beginner"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service provision because the user is offering to teach baking classes. Baking was extracted as the service type, with the level specified as beginner. No location or additional constraints were mentioned, so local matching applies."
+    },
+    "notes": "Different services: won't match"
+  },
+  {
+    "test_id": "test_service_071",
+    "original_id": "S1_024072",
+    "query": "Providing hair styling and grooming services for men and women.",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Personal Services"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "hair styling"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service with hair styling as the service type. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_072",
+    "original_id": "S1_032608",
+    "query": "offering cleaning services for offices and apartments",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Personal Services"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "cleaning",
+          "categorical": {
+            "service_type": "apartment"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service provision because the user is offering cleaning services. Cleaning was extracted as the service type, with office and apartment specified as categorical attributes. No constraints or location details were provided, so local matching applies."
+    },
+    "notes": "Different services: won't match"
+  },
+  {
+    "test_id": "test_service_073",
+    "original_id": "S1_026582",
+    "query": "I’m a dog groomer, available for home visits",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Personal Services"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "dog grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {
+        "categorical": {
+          "profession": "dog groomer"
+        },
+        "min": {},
+        "max": {},
+        "range": {}
+      },
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service type as dog grooming. The user's profession as a dog groomer is captured in self_attributes. No specific location or constraints were mentioned, so defaults apply."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_074",
+    "original_id": "S1_025092",
+    "query": "I offer haircut and grooming services at your home",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Personal Services"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "haircut"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service provision because the user is offering grooming services, specifically haircutting, at the customer's home. The item type extracted is grooming, with haircut as the specific service type. No constraints or location details were specified, so local matching applies."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_075",
+    "original_id": "S1_042434",
+    "query": "I’m a fitness instructor, providing group workout sessions.",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Sports & Outdoors"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "fitness",
+          "categorical": {
+            "service_type": "group workout sessions"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {
+        "categorical": {
+          "profession": "fitness instructor"
+        }
+      },
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service because the user is providing fitness instruction. The item type is fitness with service type specified as group workout sessions. The user's profession as a fitness instructor was extracted as a self attribute."
+    },
+    "notes": "Different services: won't match"
+  },
+  {
+    "test_id": "test_service_076",
+    "original_id": "S1_026641",
+    "query": "I offer pet grooming services at home.",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service provision because the user is offering pet grooming services. Grooming was identified as the service type, with no specific constraints or preferences mentioned. Location defaults to near_me as none specified."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_077",
+    "original_id": "S1_026314",
+    "query": "Offering pet grooming services for small and large dogs.",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming as the service type for pet grooming services. No specific constraints or preferences were mentioned, and location defaults to near_me as none specified."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_078",
+    "original_id": "S1_025677",
+    "query": "I offer dog grooming services in my neighborhood.",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Personal Services"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service_type": "dog"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {
+        "name": "neighborhood"
+      },
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "Extracted grooming service for dogs as the item type. The service is provided in the user's neighborhood, which is treated as a location. No specific constraints or preferences were mentioned."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_079",
+    "original_id": "S1_024228",
+    "query": "Offering pet grooming services in the downtown area",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "service": "pet grooming"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {
+        "name": "downtown"
+      },
+      "location_match_mode": "explicit",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service offer because the user is providing pet grooming services. Grooming was extracted as the service type. The location was explicitly mentioned as downtown."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_service_080",
+    "original_id": "S1_023800",
+    "query": "I offer pet grooming services for dogs and cats",
+    "source": "service",
+    "subintent": "provide",
+    "normalized_query": {
+      "intent": "service",
+      "subintent": "provide",
+      "domain": [
+        "Pets & Animals"
+      ],
+      "primary_mutual_category": [],
+      "items": [
+        {
+          "type": "grooming",
+          "categorical": {
+            "animal": "dog"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        },
+        {
+          "type": "grooming",
+          "categorical": {
+            "animal": "cat"
+          },
+          "min": {},
+          "max": {},
+          "range": {}
+        }
+      ],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as a service because the user is offering professional grooming services for pets. Grooming for both dogs and cats was extracted as separate items, each categorized under the type grooming. No specific constraints or location details were mentioned, so local matching applies."
+    },
+    "notes": "Same service: grooming - likely to match"
+  },
+  {
+    "test_id": "test_mutual_081",
+    "original_id": "S1_047335",
+    "query": "looking for a travel buddy for my next road trip",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel buddy for shared participation. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_082",
+    "original_id": "S1_047415",
+    "query": "looking for a travel companion for a backpacking trip through Europe",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion for a shared experience. The primary mutual category extracted is travel, indicating the nature of the connection sought. No specific items or location details were mentioned, so items are empty and local matching applies."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_083",
+    "original_id": "S1_047449",
+    "query": "looking for someone to share a carpool to office with",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in a carpool. No specific items or attributes were mentioned, and the primary mutual category was set to 'Transportation' as it aligns with the request for carpooling."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_084",
+    "original_id": "S1_047536",
+    "query": "Need a travel companion for a trip to Goa.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion for a trip. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_085",
+    "original_id": "S1_047553",
+    "query": "Looking to connect with other digital nomads.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking connection with other individuals. No specific items or attributes were mentioned, and the primary mutual category was identified as travel. Location defaults to near_me as none was specified."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_086",
+    "original_id": "S1_047628",
+    "query": "Searching for a travel partner for a Europe trip.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel partner for a trip. The primary mutual category extracted is travel. No specific items, preferences, or location details were mentioned, so those fields are empty."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_087",
+    "original_id": "S1_047677",
+    "query": "Who wants to road trip together?",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in a road trip. No specific items, preferences, or location details were mentioned, so the items array is empty and local matching applies."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_088",
+    "original_id": "S1_047697",
+    "query": "Want to connect with other digital nomads.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking connection with other individuals. No specific items or attributes were mentioned, and the primary mutual categories were identified as travel, adventure, and community."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_089",
+    "original_id": "S1_047738",
+    "query": "searching for a travel buddy to Europe",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion. The primary mutual category identified is travel, with no specific items or preferences stated. Location defaults to near_me as none was explicitly mentioned."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_090",
+    "original_id": "S1_047772",
+    "query": "want to find a travel companion for backpacking Asia",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion for backpacking, indicating a shared activity. The primary mutual category extracted is travel. No specific items, preferences, or location details were mentioned, so those fields are left empty."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_091",
+    "original_id": "S1_047792",
+    "query": "any travelers planning a trip to South America?",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking shared participation among travelers. The primary mutual category identified is travel, with no specific items or preferences stated."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_092",
+    "original_id": "S1_047829",
+    "query": "Looking for a travel companion for a Goa trip.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion, indicating shared participation. The primary mutual category identified is travel. No specific items, preferences, or location details were provided, so those fields are left empty."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_093",
+    "original_id": "S1_047860",
+    "query": "Looking for a fellow traveler to explore Europe.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a fellow traveler for shared participation in exploring Europe. No specific items or attributes were mentioned, and the location defaults to near_me as none was specified."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_094",
+    "original_id": "S1_047905",
+    "query": "Searching for a travel buddy for my next adventure.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel buddy for shared participation in an adventure. No specific items or location details were mentioned, so items are empty and local matching applies."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_095",
+    "original_id": "S1_047972",
+    "query": "anyone planning a backpacking trip to South America?",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in a backpacking trip. The primary mutual category extracted is travel, indicating the nature of the connection sought. No specific items, preferences, or location details were mentioned, so those fields are left empty."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_096",
+    "original_id": "S1_047993",
+    "query": "looking for someone to join a travel photography project",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a person to join in a shared activity related to travel photography. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_097",
+    "original_id": "S1_048027",
+    "query": "planning to visit Paris, need a travel buddy",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {
+        "name": "paris"
+      },
+      "location_match_mode": "explicit",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel buddy for a trip to Paris. No specific items or attributes were mentioned, and the location was explicitly stated as Paris."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_098",
+    "original_id": "S1_048042",
+    "query": "seeking a travel companion for backpacking Asia",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a shared experience with another person. The primary mutual category extracted is travel, indicating the nature of the connection sought. No specific items, preferences, or location details were mentioned, so those fields remain empty."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_099",
+    "original_id": "S1_048094",
+    "query": "Looking for a travel buddy for my next trip.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion. No specific items or attributes were mentioned, so the items array is empty. The primary mutual category is travel, and no location was specified, defaulting to near_me."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_100",
+    "original_id": "S1_048122",
+    "query": "Seeking someone to go on road trips with.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a shared activity with another person. The primary mutual category identified is travel, indicating the nature of the connection sought. No specific items, preferences, or location details were provided."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_101",
+    "original_id": "S1_048176",
+    "query": "Looking for a travel companion for offbeat destinations.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion, indicating shared participation. The primary mutual category identified is travel, with no specific items or preferences stated."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_102",
+    "original_id": "S1_048214",
+    "query": "Need a travel companion for a trip to the mountains.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion for a shared trip. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_103",
+    "original_id": "S1_048290",
+    "query": "Searching for a travel companion for a Goa trip.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion, indicating a shared activity. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_104",
+    "original_id": "S1_048392",
+    "query": "need a friend to travel across India with",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a friend for shared travel across India. No specific items or attributes were mentioned, so the items array is empty. The location defaults to near_me as none was specified."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_105",
+    "original_id": "S1_048408",
+    "query": "need a partner for weekend road trips",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a partner for shared activities. The primary mutual category extracted is travel, specifically for weekend road trips. No specific items or location details were mentioned, so defaults apply."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_106",
+    "original_id": "S1_048439",
+    "query": "want to connect with fellow solo travelers",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a connection with fellow travelers. No specific items or attributes were mentioned, and the primary mutual category identified is travel. Location defaults to near_me as none was specified."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_107",
+    "original_id": "S1_048481",
+    "query": "someone to share travel stories with",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves sharing experiences with another person. The primary mutual category extracted is travel, indicating the nature of the connection sought. No specific items, preferences, or location details were mentioned."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_108",
+    "original_id": "S1_048516",
+    "query": "need a travel buddy for exploring Europe",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion for shared exploration. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_109",
+    "original_id": "S1_048606",
+    "query": "anyone want to carpool to work daily?",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in carpooling. No specific items or constraints were mentioned, and the primary mutual category was set to Transportation as it aligns with the request for carpooling."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_110",
+    "original_id": "S1_048635",
+    "query": "need a travel buddy for an India road trip",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion for a road trip. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_111",
+    "original_id": "S1_048705",
+    "query": "Want a travel buddy for a backpacking trip to Southeast Asia.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion for a backpacking trip. The primary mutual category extracted is travel, indicating the nature of the connection sought. No specific items, preferences, or location details were provided."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_112",
+    "original_id": "S1_048757",
+    "query": "Anyone interested in a road trip next month?",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in a road trip. No specific items, preferences, or location details were mentioned, so the items array is empty and local matching applies."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_113",
+    "original_id": "S1_048771",
+    "query": "Looking for travel companions for a Goa trip.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking travel companions for a trip. The primary mutual category extracted is travel. No specific items, preferences, or location details were mentioned, so those fields are left empty."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_114",
+    "original_id": "S1_048827",
+    "query": "Searching for fellow solo travelers to plan trips with.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking fellow travelers for shared participation in planning trips. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_115",
+    "original_id": "S1_048858",
+    "query": "looking for a carpool buddy to office daily",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a carpool buddy for shared transportation. The primary mutual category was identified as 'Transportation'. No specific items, preferences, or location details were provided."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_116",
+    "original_id": "S1_048888",
+    "query": "anyone up for weekend road trips?",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in weekend road trips. No specific items or preferences were mentioned, and the location defaults to near_me as none was specified."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_117",
+    "original_id": "S1_048960",
+    "query": "Seeking a travel buddy for a trip to Bali.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {
+        "name": "bali"
+      },
+      "location_match_mode": "explicit",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel buddy for a trip. The primary mutual category is travel, and the target location is explicitly mentioned as Bali."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_118",
+    "original_id": "S1_049032",
+    "query": "Trying to find someone to share long road trips with.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a shared activity with another person. The primary mutual category identified is travel, indicating the nature of the connection sought. No specific items, preferences, or location details were provided."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_119",
+    "original_id": "S1_049059",
+    "query": "Looking for a travel buddy for an upcoming Europe trip.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion for a trip. No specific items or attributes were mentioned, and the primary mutual category identified is travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_120",
+    "original_id": "S1_049139",
+    "query": "looking for a travel buddy for exploring Southeast Asia.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion for shared exploration. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_121",
+    "original_id": "S1_049216",
+    "query": "Looking for other solo travelers for a trip to Bali.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking connection with other solo travelers for a shared trip experience. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_122",
+    "original_id": "S1_049265",
+    "query": "Want a partner to explore historical sites in Rajasthan.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a partner for shared exploration. The primary mutual category identified is travel, reflecting the focus on exploring historical sites in Rajasthan. No specific items, preferences, or location details were provided."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_123",
+    "original_id": "S1_049298",
+    "query": "Who’s up for a weekend road trip to the hills?",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in a road trip. The primary mutual category identified is travel, with no specific items or preferences stated."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_124",
+    "original_id": "S1_049348",
+    "query": "Looking for a holiday travel buddy.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel buddy for shared participation. No specific items or attributes were mentioned, and the location defaults to near_me as none was specified."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_125",
+    "original_id": "S1_049380",
+    "query": "Need a travel partner for my next trip to the mountains.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel partner for shared participation in an adventure. No specific items or attributes were mentioned, and the location defaults to near_me as none was specified."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_126",
+    "original_id": "S1_049402",
+    "query": "Need someone to split fuel costs for a road trip to Manali.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {
+        "name": "manali"
+      },
+      "location_match_mode": "explicit",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in splitting costs for a road trip. The primary mutual category is travel, and the target location is explicitly mentioned as Manali."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_127",
+    "original_id": "S1_049439",
+    "query": "Looking for a co-traveler for a backpacking trip in Europe.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a co-traveler for a shared activity. The primary mutual category identified is travel, reflecting the nature of the request. No specific items, preferences, or location details were provided."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_128",
+    "original_id": "S1_049480",
+    "query": "Searching for someone to travel the world with.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a shared travel partner. No specific items or attributes were mentioned, and the primary mutual category identified is travel. Location defaults to near_me as none was specified."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_129",
+    "original_id": "S1_049517",
+    "query": "Looking for people to share car rides to work.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in car rides. The primary mutual category was identified as Transportation, reflecting the nature of the request. No specific items, preferences, or location details were provided."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_130",
+    "original_id": "S1_049608",
+    "query": "Seeking a travel partner for a backpacking trip abroad.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a partner for a shared activity. The primary mutual category extracted is travel. No specific items or preferences were mentioned, and location defaults to near_me as none was specified."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_131",
+    "original_id": "S1_049648",
+    "query": "Need someone to share a cabin on a cruise journey.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in a cruise journey. The primary mutual category identified is travel, indicating the nature of the connection sought. No specific items, preferences, or location details were provided."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_132",
+    "original_id": "S1_049665",
+    "query": "Anyone want to join me for a road trip to Ladakh?",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {
+        "name": "ladakh"
+      },
+      "location_match_mode": "explicit",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in a road trip. The primary mutual category is travel, and the target location is explicitly mentioned as Ladakh."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_133",
+    "original_id": "S1_049706",
+    "query": "Want to connect with solo travelers for planning trips.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves connecting with other individuals for shared travel planning. No specific items, preferences, or location details were mentioned, so the items array is empty and local matching applies."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_134",
+    "original_id": "S1_049747",
+    "query": "Looking for like-minded people to plan a road trip together.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking like-minded individuals for a shared activity, specifically planning a road trip together. No specific items or attributes were mentioned, and the location defaults to near_me as none was specified."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_135",
+    "original_id": "S1_049766",
+    "query": "interested in connecting with other digital nomads",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves connecting with other individuals. No specific items or attributes were mentioned, and the primary mutual categories were identified as travel, adventure, and community."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_136",
+    "original_id": "S1_049841",
+    "query": "any travelers up for a spontaneous road trip?",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in a road trip. No specific items or attributes were mentioned, and the primary mutual category identified is travel. Location defaults to near_me as none was explicitly stated."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_137",
+    "original_id": "S1_049873",
+    "query": "anyone planning a weekend trip to the mountains?",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in a weekend trip. The primary mutual category identified is travel, indicating a desire to connect with others for this activity. No specific items, preferences, or locations were mentioned."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_138",
+    "original_id": "S1_049919",
+    "query": "seeking a road trip buddy for an upcoming drive",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a shared activity with another person. The primary mutual category identified is travel, specifically for a road trip buddy. No specific items, preferences, or location details were provided."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_139",
+    "original_id": "S1_049989",
+    "query": "seeking travel companions for exploring Southeast Asia",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking travel companions for shared exploration. The primary mutual category extracted is travel. No specific items, preferences, or location details were mentioned, so those fields are left empty."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_140",
+    "original_id": "S1_050019",
+    "query": "looking for a travel buddy to backpack in Europe",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a shared activity with another person. The primary mutual category extracted is travel, indicating the nature of the connection sought. No specific items, preferences, or location details were mentioned, so those fields are left empty."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_141",
+    "original_id": "S1_050079",
+    "query": "searching for someone to share travel stories",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in travel storytelling. No specific items or attributes were mentioned, so the items array is empty. The primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_142",
+    "original_id": "S1_050129",
+    "query": "Looking for a travel partner for a Goa trip.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel partner for a trip. The primary mutual category extracted is travel. No specific items, preferences, or location details were mentioned, so those fields are left empty."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_143",
+    "original_id": "S1_050179",
+    "query": "Anyone up for impromptu road trips?",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in road trips. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_144",
+    "original_id": "S1_050198",
+    "query": "Need to find someone to work out a carpooling arrangement.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a connection for a carpooling arrangement. The primary mutual category was determined to be Travel, as it best fits the context of transportation sharing. No specific items, preferences, or location details were provided."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_145",
+    "original_id": "S1_050254",
+    "query": "Want to connect with fellow digital nomads nearby.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a connection with fellow digital nomads. No specific items or attributes were mentioned, and the primary mutual category was identified as travel. Location defaults to near_me as none was explicitly stated."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_146",
+    "original_id": "S1_050320",
+    "query": "want a travel companion for a Goa trip",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion, indicating a shared activity. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_147",
+    "original_id": "S1_050346",
+    "query": "need someone to split fuel costs on a long drive",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in splitting fuel costs for a long drive. No specific items or attributes were mentioned, and the primary mutual category identified is travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_148",
+    "original_id": "S1_050413",
+    "query": "Looking for a travel companion for a backpacking trip.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion for a shared activity. No specific items or attributes were mentioned, and the primary mutual category identified is travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_149",
+    "original_id": "S1_050468",
+    "query": "Searching for fellow travelers to plan a group trip.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking fellow travelers for a shared activity. No specific items or attributes were mentioned, and the primary mutual category identified is travel. Location defaults to near_me as none was specified."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_150",
+    "original_id": "S1_050504",
+    "query": "Need a travel buddy for a Goa trip.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion. No specific items or attributes were mentioned, so the items array is empty. The primary mutual category is travel, and no location details were provided, defaulting to near_me."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_151",
+    "original_id": "S1_050546",
+    "query": "Looking for someone to share commute rides.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in commute rides. The primary mutual category was assigned as 'Transportation' based on the context of sharing rides. No specific items, preferences, or location details were mentioned."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_152",
+    "original_id": "S1_050581",
+    "query": "looking to meet fellow digital nomads in Southeast Asia",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking to connect with fellow digital nomads. The primary mutual category extracted is travel, reflecting the context of meeting others in Southeast Asia. No specific items or location details were mentioned, so those fields are left empty."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_153",
+    "original_id": "S1_050630",
+    "query": "want to find a partner for making travel vlogs",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a partner for a shared activity, specifically making travel vlogs. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_154",
+    "original_id": "S1_050672",
+    "query": "searching for a travel companion for Southeast Asia",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion, indicating a shared participation. The primary mutual category identified is travel, with no specific items or location details mentioned."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_155",
+    "original_id": "S1_050723",
+    "query": "anyone keen to start a community of solo travelers?",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking to connect with others for a shared activity. The primary mutual category identified is travel, focusing on forming a community of solo travelers. No specific items, preferences, or location details were provided."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_156",
+    "original_id": "S1_050808",
+    "query": "trying to find a partner for travel vlogging",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a partner for a shared activity, specifically travel vlogging. No specific items, constraints, or location details were mentioned, so the items array is empty and local matching applies."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_157",
+    "original_id": "S1_050853",
+    "query": "Need a travel buddy for a road trip to Manali.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {
+        "name": "manali"
+      },
+      "location_match_mode": "explicit",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion for a road trip. The primary mutual category is travel, and the target location is explicitly mentioned as Manali."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_158",
+    "original_id": "S1_050899",
+    "query": "Planning a road trip to Goa, looking for companions.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking companionship for a shared activity, specifically a road trip to Goa. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_159",
+    "original_id": "S1_050910",
+    "query": "Need someone to partner with for photography trips.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a partner for shared photography trips. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_160",
+    "original_id": "S1_050933",
+    "query": "Interested in planning international volunteer trips together.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in planning volunteer trips. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_161",
+    "original_id": "S1_050972",
+    "query": "need a travel buddy for a road trip across India",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion for a road trip. No specific items or attributes were mentioned, and the primary mutual category identified is travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_162",
+    "original_id": "S1_051031",
+    "query": "looking for someone who loves photography and travelling",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {
+        "categorical": {
+          "interests": "photography"
+        },
+        "min": {},
+        "max": {},
+        "range": {}
+      },
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a connection with someone who shares interests in photography and traveling. The primary mutual category is travel, and photography was extracted as an interest in other_party_preferences. No specific location was mentioned, so local matching applies."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_163",
+    "original_id": "S1_051132",
+    "query": "looking for a travel partner to explore the northeast",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel partner for shared participation. The primary mutual category extracted is travel. No specific items, preferences, or location details were mentioned, so those fields are empty."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_164",
+    "original_id": "S1_051171",
+    "query": "want to connect with solo travelers for trips",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a connection with solo travelers for shared trips. No specific items or attributes were mentioned, and the primary mutual category was identified as travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_165",
+    "original_id": "S1_051228",
+    "query": "any solo travelers heading to Manali this month?",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {
+        "name": "manali"
+      },
+      "location_match_mode": "explicit",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking shared participation among solo travelers heading to Manali. No specific items or attributes were mentioned, and the location was explicitly stated as Manali."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_166",
+    "original_id": "S1_051267",
+    "query": "want to find a group for budget travel ideas",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because the user is seeking to connect with others for shared travel ideas. No specific items or attributes were mentioned, and the primary mutual category identified is travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_167",
+    "original_id": "S1_051287",
+    "query": "anyone planning to travel to Europe next year?",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in travel plans. The primary mutual category identified is travel, with no specific items or preferences stated."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_168",
+    "original_id": "S1_051336",
+    "query": "Want to meet other solo travelers for shared trips.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking to connect with other solo travelers for shared trips. No specific items, constraints, or locations were mentioned, so those fields are left empty."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_169",
+    "original_id": "S1_051404",
+    "query": "anyone want to split a cab ride to the airport?",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in a cab ride. The primary mutual category was assigned as Travel, as it best fits the context of sharing a ride to the airport. No specific items, preferences, or location details were provided."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_170",
+    "original_id": "S1_051452",
+    "query": "looking for a travel buddy for Europe this winter",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion. The primary mutual category identified is travel, with no specific items or location details mentioned."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_171",
+    "original_id": "S1_051502",
+    "query": "want to join a carpool to Whitefield daily",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {
+        "name": "whitefield"
+      },
+      "location_match_mode": "explicit",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves shared participation in a carpool. No items were extracted as the request is about joining a carpool. The target location is explicitly Whitefield, and the primary mutual category is set to Transportation."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_172",
+    "original_id": "S1_051534",
+    "query": "seeking a co-traveler for a road trip across India",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a co-traveler for a shared activity. The primary mutual category identified is travel, indicating the nature of the connection sought. No specific items, preferences, or location details were provided."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_173",
+    "original_id": "S1_051561",
+    "query": "seeking someone to carpool with on weekdays",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a shared activity of carpooling. The primary mutual category was identified as Transportation. No specific items, preferences, or location details were provided."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_174",
+    "original_id": "S1_051585",
+    "query": "Looking for a companion to visit historical sites.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a companion for shared participation in visiting historical sites. No specific items or attributes were mentioned, and the location defaults to near_me as none was specified."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_175",
+    "original_id": "S1_051631",
+    "query": "Want to find fellow travelers for budget trips.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking fellow travelers for shared participation in budget trips. No specific items, constraints, or locations were mentioned, so the items array is empty and local matching applies."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_176",
+    "original_id": "S1_051680",
+    "query": "any travel enthusiasts who want to explore Europe?",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a shared activity with other travel enthusiasts. The primary mutual category identified is travel, with no specific items or preferences stated."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_177",
+    "original_id": "S1_051752",
+    "query": "Looking for a travel companion for a trip to Goa.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion, indicating a shared activity. No specific items or attributes were mentioned, and the location defaults to near_me as none was specified."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_178",
+    "original_id": "S1_051805",
+    "query": "Interested in meeting fellow solo travelers.",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking connection with fellow solo travelers. No specific items, preferences, or location details were mentioned, so the items array is empty and local matching applies."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_179",
+    "original_id": "S1_051850",
+    "query": "need a travel companion for a trip to Ladakh",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {},
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a travel companion for a trip. No specific items or attributes were mentioned, and the primary mutual category is travel."
+    },
+    "notes": "Same category: travel"
+  },
+  {
+    "test_id": "test_mutual_180",
+    "original_id": "S1_051880",
+    "query": "want to connect with other solo female travelers",
+    "source": "mutual",
+    "subintent": "connect",
+    "normalized_query": {
+      "intent": "mutual",
+      "subintent": "connect",
+      "domain": [],
+      "primary_mutual_category": [
+        "Travel"
+      ],
+      "items": [],
+      "item_exclusions": [],
+      "other_party_preferences": {
+        "categorical": {
+          "gender": "female"
+        },
+        "min": {},
+        "max": {},
+        "range": {}
+      },
+      "other_party_exclusions": {},
+      "self_attributes": {},
+      "self_exclusions": {},
+      "target_location": {},
+      "location_match_mode": "near_me",
+      "location_exclusions": [],
+      "reasoning": "The query was classified as mutual intent because it involves seeking a connection with other solo female travelers. The gender preference for the other party was extracted as female. No specific location or additional attributes were mentioned."
+    },
+    "notes": "Same category: travel"
+  }
+]

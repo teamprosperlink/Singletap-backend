@@ -1,0 +1,19 @@
+{
+  "total_pairs": 180,
+  "product_pairs": 40,
+  "product_expected_match": 30,
+  "product_expected_no_match": 10,
+  "service_pairs": 40,
+  "service_expected_match": 30,
+  "service_expected_no_match": 10,
+  "mutual_pairs": 100,
+  "total_expected_matches": 160,
+  "total_expected_non_matches": 20,
+  "files": [
+    "product_pairs.json",
+    "service_pairs.json",
+    "mutual_pairs.json",
+    "seed_listings.json",
+    "test_queries.json"
+  ]
+}

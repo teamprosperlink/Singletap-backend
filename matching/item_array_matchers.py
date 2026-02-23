@@ -58,9 +58,9 @@ def flatten_item_values(item: Dict[str, Any]) -> Set[str]:
 
         flatten_item_values({
             "type": "laptop",
-            "categorical": {"brand": "dell", "condition": "new"}
+            "categorical": {"brand": "dell", "condition": "ccc"}
         }) → {"laptop", "dell", "new"}
-
+we have 
     Note:
         - Numeric values in min/max/range are NOT extracted (they're constraints, not attributes)
         - Keys are NOT extracted (only values)

@@ -497,7 +497,7 @@ def _canonicalize_exclusions(
 def _canonicalize_location(location: Dict):
     """
     Canonicalize location using geocoding API.
-    BUT THE API IS free and we can use it for dev and testing.
+    BUT THE API IS free and we can use it for dev and testing.and the thing is we need to 
     Converts location names to coordinates for distance-based matching.
     Falls back to lowercase normalization if geocoding fails.
     """
